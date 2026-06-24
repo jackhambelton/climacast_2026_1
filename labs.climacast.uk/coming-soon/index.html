@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="ClimaCast — this page isn't ready yet. Coming soon.">
+  <title>Coming Soon — ClimaCast</title>
+  <link rel="preconnect" href="https://api.climacast.uk" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'ClimaCast Sans';
+      src: url('https://api.climacast.uk/fonts/climacast-sans/ClimaCastSans.woff2') format('woff2');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+*,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-muted: #f1f5f9;
+
+      --border: rgba(15, 23, 42, 0.06);
+      --border-strong: rgba(15, 23, 42, 0.12);
+      --border-glow: rgba(15, 23, 42, 0.24);
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --text-dark: #ffffff;
+
+      --green: #15803d;
+      --green-bg: rgba(22, 163, 74, 0.08);
+
+      --labs: #6d28d9;
+      --labs-bg: rgba(109, 40, 217, 0.05);
+      --labs-border: rgba(109, 40, 217, 0.22);
+
+      --heading: 'ClimaCast Sans', sans-serif;
+      --sans: 'ClimaCast Sans', sans-serif;
+      --mono: 'ClimaCast Sans', sans-serif;
+      --interactive: 'Inter', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--heading) !important;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+      background: none;
+      border: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ── ACCESSIBILITY ── */
+    .skip-link {
+      position: absolute;
+      left: 24px;
+      top: -100px;
+      background: var(--text-primary);
+      color: var(--text-dark);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 9999;
+      transition: var(--transition-bounce);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
+    }
+
+    .skip-link:focus {
+      top: 24px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--text-dark);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: scale(1.01);
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: scale(0.99);
+      box-shadow: none;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: var(--bg-surface);
+      border-color: var(--border-glow);
+      transform: scale(1.01);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    .btn-outline:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    .btn-lg {
+      height: 48px;
+      padding: 0 24px;
+      font-size: 14px;
+      border-radius: var(--radius-md);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .brand:hover {
+      opacity: 0.8;
+    }
+
+    .labs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--labs-border);
+      background: var(--labs-bg);
+      color: var(--labs);
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-nav {
+      height: 34px;
+      padding: 0 12px;
+      font-size: 12.5px;
+      background: rgba(15, 23, 42, 0.02);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .btn-nav:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    /* ── MAIN STAGE ── */
+    .stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 64px 0;
+    }
+
+    .stage-grid-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+      background-size: 56px 56px;
+      background-position: center top;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 35%, #000 30%, transparent 100%);
+      animation: bgPan 40s linear infinite;
+    }
+
+    @keyframes bgPan {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(56px);
+      }
+    }
+
+    .stage-glow {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 640px;
+      height: 380px;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle, rgba(109, 40, 217, 0.05) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+
+    .stage-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .badge-wrapper {
+      display: inline-flex;
+      padding: 1px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--border-strong) 0%, transparent 100%);
+      margin-bottom: 28px;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px 6px 10px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02);
+    }
+
+    .status-badge .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--labs);
+      box-shadow: 0 0 12px var(--labs);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+      }
+
+      70% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(0.95);
+      }
+    }
+
+    .status-code {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .stage-title {
+      font-size: clamp(40px, 8vw, 84px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #0f172a 0%, #64748b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stage-desc {
+      max-width: 540px;
+      margin: 0 auto 16px;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .stage-desc-secondary {
+      max-width: 540px;
+      margin: 0 auto 36px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .stage-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    /* ── INFO CARD ── */
+    .info-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--bg-surface);
+      padding: 28px 32px;
+      text-align: left;
+    }
+
+    .info-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .info-card-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      flex-shrink: 0;
+    }
+
+    .info-card-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .info-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .info-card-body {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .info-card-body p+p {
+      margin-top: 10px;
+    }
+
+    .info-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .info-card-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .info-card-list-item::before {
+      content: "→";
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER STRIP ── */
+    .stage-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+    }
+
+    .stage-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .stage-footer-links {
+      display: flex;
+      gap: 24px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+    }
+
+    .stage-footer-links a:hover {
+      color: var(--text-primary);
+      text-decoration: underline;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .nav-actions .btn-outline {
+        display: none;
+      }
+
+      .stage {
+        padding: 40px 0;
+      }
+
+      .info-card {
+        padding: 22px 20px;
+      }
+
+      .stage-footer-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    label,
+    .btn,
+    .btn-copy,
+    .btn-nav,
+    .btn-ghost,
+    .btn-outline,
+    .btn-primary,
+    .nav,
+    .nav a,
+    .nav button,
+    .nav-dropdown-trigger,
+    .nav-dropdown-menu,
+    .dropdown-item,
+    .dropdown-col h4,
+    .menu-toggle,
+    .status-chip,
+    .labs-pill,
+    .version-tag,
+    .severity-tag,
+    .warning-chip,
+    .meta-badge,
+    .pill-item,
+    .hero-badge,
+    .footer a,
+    .footer-system a,
+    .footer-links a,
+    .footer-social-links a,
+    .toc-link,
+    .faq-toc a,
+    .system-tab,
+    .step-dot,
+    .code-tile,
+    .form-input-element,
+    .cookie-button-group,
+    [onclick],
+    [tabindex],
+    [role='button'],
+    [role='tab'],
+    [role='menuitem'] {
+      font-family: var(--interactive);
+    }
+  </style>
+  <link rel="stylesheet" href="../editorial-theme.css?v=calm-simple-2026-06-23">
+  <style id="climacast-text-effects-standard">
+    /* Text effects: underline only. No colour or weight shifts for emphasis states. */
+    :where(.dim, .section-headline .dim, .section-heading em, .about-title .outline, .page-title .dim, .hero-title .dim, mark, em),
+    main :where(strong, b) {
+      color: inherit !important;
+      background: none !important;
+      font-weight: inherit !important;
+      font-style: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+      -webkit-text-stroke: 0 !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 0.08em !important;
+      text-underline-offset: 0.14em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link) {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 1px !important;
+      text-underline-offset: 0.22em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):hover,
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):focus-visible {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-color: currentColor !important;
+    }
+
+    :where(.dropdown-item:hover strong, .nav-dropdown-trigger:hover, .footer-column-group a:hover, .footer-social-links a:hover) {
+      color: inherit !important;
+      font-weight: inherit !important;
+    }
+  </style>
+
+  <style id="climacast-shared-about-header">
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      transition: transform 0.3s ease;
+    }
+
+    .header .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .header .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      width: 100%;
+    }
+
+    .header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .brand:hover {
+      opacity: 0.8;
+    }
+
+    .header .brand img {
+      width: 72px;
+      display: block;
+    }
+
+    .header button {
+      font: inherit;
+      background: none;
+      border: 0;
+    }
+
+    .header .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header .nav-dropdown {
+      position: relative;
+    }
+
+    .header .nav-dropdown-trigger {
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .header .nav-dropdown-trigger:hover,
+    .header .nav-dropdown.is-open .nav-dropdown-trigger {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .header .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: max-content;
+      min-width: 320px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      display: grid;
+      gap: 16px;
+      z-index: 2000;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      padding-top: 20px;
+      margin-top: -8px;
+    }
+
+    .header .nav-dropdown-menu.double-menu {
+      width: 620px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .header .nav-dropdown:hover .nav-dropdown-menu,
+    .header .nav-dropdown.is-open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .header .dropdown-col h4 {
+      font-family: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 6px;
+    }
+
+    .header .dropdown-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover {
+      background: var(--bg-surface);
+    }
+
+    .header .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover .dropdown-icon {
+      color: var(--text-primary);
+      background: #ffffff;
+    }
+
+    .header .dropdown-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .header .dropdown-item span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .header .dropdown-item .dropdown-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .header .nav-dropdown:hover .dropdown-chevron,
+    .header .nav-dropdown.is-open .dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--text-primary);
+    }
+
+    .header .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .header .btn-ghost {
+      color: var(--text-secondary);
+    }
+
+    .header .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .header .btn-nav {
+      background: var(--text-primary);
+      color: var(--bg-card);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .header .btn-nav:hover {
+      background: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    .header .btn-nav svg {
+      color: var(--text-muted);
+      transition: var(--transition-bounce);
+    }
+
+    .header .btn-nav:hover svg {
+      color: var(--bg-card);
+      transform: translateX(4px);
+    }
+
+    .header .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header .container {
+        width: min(100% - 32px, 1200px);
+      }
+
+      .header .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+      }
+
+      .header .nav-menu.is-active {
+        display: flex;
+      }
+
+      .header .nav-dropdown,
+      .header .nav-dropdown-trigger {
+        width: 100%;
+      }
+
+      .header .nav-dropdown-trigger {
+        justify-content: space-between;
+      }
+
+      .header .nav-dropdown-menu,
+      .header .nav-dropdown-menu.double-menu {
+        position: static;
+        transform: none !important;
+        width: 100% !important;
+        min-width: 0;
+        box-shadow: none;
+        border: none;
+        padding: 8px 12px;
+        display: none;
+        grid-template-columns: 1fr !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .header .nav-dropdown:hover .nav-dropdown-menu,
+      .header .nav-dropdown.is-open .nav-dropdown-menu {
+        display: grid;
+      }
+
+      .header .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .header .nav-actions .btn-nav {
+        height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .header .menu-toggle {
+        display: inline-flex;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to platform content</a>
+
+  <header class="header">
+    <div class="container">
+      <nav class="nav" id="global-navigation" aria-label="Global platform navigation">
+        <a class="brand" href="https://climacast.uk" aria-label="ClimaCast Homepage">
+          <img style="width: 72px;" src="https://climacast.uk/assets/icon.png" alt="ClimaCast">
+        </a>
+
+        <div class="nav-menu" id="nav-menu-links">
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              Platform
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu double-menu">
+              <div class="dropdown-col">
+                <h4>Product</h4>
+                <a href="https://about.climacast.uk/products/model-combinations/" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25M3 18.75A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75M3 18.75v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                    </svg>
+                  </div>
+                  <div><strong>Model Combinations</strong><span>See where leading forecasts agree and uncertainty remains.</span></div>
+                </a>
+                <a href="https://about.climacast.uk/#method" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 13.5 10.5 6.75l4.5 4.5 5.25-5.25M3.75 19.5h16.5" />
+                    </svg>
+                  </div>
+                  <div><strong>How it works</strong><span>The method behind each useful update.</span></div>
+                </a>
+              </div>
+              <div class="dropdown-col">
+                <h4>Explore</h4>
+                <a href="https://about.climacast.uk/#principles" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286Z" />
+                    </svg>
+                  </div>
+                  <div><strong>Product principles</strong><span>The rules ClimaCast is designed around.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              About
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <h4>ClimaCast</h4>
+                <a href="https://about.climacast.uk/#about" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11.25 11.25 11.25 16.5m0-8.25h.008v.008H11.25V8.25Zm9.75 3.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                  </div>
+                  <div><strong>Purpose</strong><span>Why clearer severe-weather information matters.</span></div>
+                </a>
+                <a href="https://about.climacast.uk/#facts" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-10m0 0L6.25 21" />
+                    </svg>
+                  </div>
+                  <div><strong>At a glance</strong><span>The product commitments in numbers.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              Resources
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <h4>Support</h4>
+                <a href="https://help.climacast.uk" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                  </div>
+                  <div><strong>Help Centre</strong><span>Guides, account help and safety information.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <a href="https://climacast.uk" class="btn btn-ghost">Sign in</a>
+          <a href="https://climacast.uk" class="btn btn-nav">
+            Create an Account
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <button class="menu-toggle" id="mobile-menu-trigger" aria-label="Toggle structural menu"
+            aria-expanded="false">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="stage">
+    <div class="stage-grid-bg"></div>
+    <div class="stage-glow"></div>
+    <div class="container">
+      <div class="stage-inner">
+        <div class="badge-wrapper">
+        </div>
+
+        <h1 class="stage-title">Coming soon.</h1>
+
+        <p class="stage-desc">
+          This Labs experiment is not open yet. Check back when sign-ups begin, or visit the service status page if you expected this feature to be available already.
+        </p>
+
+        <div class="stage-actions">
+          <a href="https://labs.climacast.uk/" class="btn btn-primary btn-lg">Return to ClimaCast Labs</a>
+          <a href="https://status.climacast.uk/" class="btn btn-outline btn-lg">Check Service Status</a>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-card-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+              </svg>
+            </div>
+            <div class="info-card-title">While you're here</div>
+          </div>
+          <div class="info-card-body">
+            <p>A few things you might find useful instead:</p>
+            <div class="info-card-list">
+              <div class="info-card-list-item">Your live severe weather alerts and decision plans are available from the main ClimaCast dashboard.</div>
+              <div class="info-card-list-item">ClimaCast Labs lists every beta feature currently available, along with its status — Live, Testing, or Coming Soon.</div>
+              <div class="info-card-list-item">The Roadmap explains what we're building next and roughly where it sits in our process, without fixed release dates.</div>
+              <div class="info-card-list-item">If you think this page should exist already, let us know through the feedback form so we can take a look.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="stage-footer">
+    <div class="container">
+      <div class="stage-footer-row">
+        <span>© <span id="runtime-year"></span> ClimaCast. All rights reserved.</span>
+        <div class="stage-footer-links">
+          <a href="https://status.climacast.uk">Status Page</a>
+          <a href="https://help.climacast.uk">Help Centre</a>
+          <a href="https://help.climacast.uk">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearField = document.getElementById('runtime-year');
+      if (yearField) yearField.textContent = new Date().getFullYear();
+    });
+  </script>
+
+  <script id="climacast-shared-about-header-script">
+    (() => {
+      const setupSharedHeader = () => {
+        const menu = document.getElementById('nav-menu-links');
+        const currentToggle = document.getElementById('mobile-menu-trigger');
+        let toggle = currentToggle;
+
+        if (currentToggle) {
+          toggle = currentToggle.cloneNode(true);
+          currentToggle.replaceWith(toggle);
+        }
+
+        const dropdowns = Array.from(document.querySelectorAll('.header .nav-dropdown'));
+        const triggers = dropdowns.map((dropdown) => {
+          const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+          if (!trigger) return null;
+          const cleanTrigger = trigger.cloneNode(true);
+          trigger.replaceWith(cleanTrigger);
+          return cleanTrigger;
+        }).filter(Boolean);
+
+        const closeDropdowns = (exception = null) => {
+          dropdowns.forEach((dropdown) => {
+            if (dropdown === exception) return;
+            dropdown.classList.remove('is-open');
+            dropdown.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        };
+
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('is-active');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.textContent = isOpen ? '\u00d7' : '\u2630';
+            if (!isOpen) closeDropdowns();
+          });
+        }
+
+        triggers.forEach((trigger) => {
+          const dropdown = trigger.closest('.nav-dropdown');
+          if (!dropdown) return;
+          trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            const willOpen = !dropdown.classList.contains('is-open');
+            closeDropdowns(dropdown);
+            dropdown.classList.toggle('is-open', willOpen);
+            trigger.setAttribute('aria-expanded', String(willOpen));
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.header .nav-dropdown') && !event.target.closest('#mobile-menu-trigger')) {
+            closeDropdowns();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeDropdowns();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSharedHeader);
+      } else {
+        setupSharedHeader();
+      }
+    })();
+  </script>
+</body>
+
+</html>

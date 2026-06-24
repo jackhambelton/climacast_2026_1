@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Code — ClimaCast</title>
+  <link rel="preconnect" href="https://api.climacast.uk" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'ClimaCast Sans';
+      src: url('https://api.climacast.uk/fonts/climacast-sans/ClimaCastSans.woff2') format('woff2');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-muted: #f1f5f9;
+
+      --border: rgba(15,23,42,0.06);
+      --border-strong: rgba(15,23,42,0.12);
+      --border-glow: rgba(15,23,42,0.24);
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --text-dark: #ffffff;
+
+      --amber: #b45309;
+      --amber-bg: rgba(245,158,11,0.05);
+      --amber-border: rgba(245,158,11,0.25);
+      --yellow: #e3c604;
+      --red: #b91c1c;
+      --red-bg: rgba(239,68,68,0.06);
+      --red-border: rgba(239,68,68,0.2);
+      --green: #15803d;
+      --green-bg: rgba(22,163,74,0.08);
+      --green-border: rgba(22,163,74,0.2);
+      --blue: #1d4ed8;
+
+      --heading: 'ClimaCast Sans', sans-serif;
+      --sans: 'ClimaCast Sans', sans-serif;
+      --mono: 'ClimaCast Sans', sans-serif;
+      --interactive: 'Inter', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    html { scroll-behavior: smooth; background: var(--bg); }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--heading) !important;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .brand img { width: 72px; }
+
+    .nav-tag {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      background: var(--bg-surface);
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 64px 24px 80px;
+    }
+
+    .flow-shell {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    /* ── PROGRESS ── */
+    .progress-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .step-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      transition: background 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .step-dot.active {
+      background: var(--text-primary);
+      transform: scale(1.25);
+    }
+
+    .step-dot.complete {
+      background: var(--green);
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 2px;
+      background: var(--border-strong);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--text-primary);
+      border-radius: 99px;
+      transition: width 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .step-counter {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── STEP PANELS ── */
+    .step-panel {
+      display: none;
+      flex-direction: column;
+      gap: 28px;
+      animation: panelIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    .step-panel.active { display: flex; }
+
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-eyebrow::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    .step-title {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+
+    .step-body {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── BANNER ── */
+    .banner {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .banner-warn {
+      background: rgba(180,83,9,0.05);
+      border: 1px solid var(--amber-border);
+      color: var(--amber);
+    }
+
+    .banner-danger {
+      background: var(--red-bg);
+      border: 1px solid var(--red-border);
+      color: var(--red);
+    }
+
+    .banner-success {
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      color: var(--green);
+    }
+
+    .banner-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── SCROLL BOX ── */
+    .scroll-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      max-height: 220px;
+      overflow-y: auto;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-strong) transparent;
+    }
+
+    .scroll-box::-webkit-scrollbar { width: 4px; }
+    .scroll-box::-webkit-scrollbar-track { background: transparent; }
+    .scroll-box::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
+
+    .scroll-box p { margin-bottom: 14px; }
+    .scroll-box p:last-child { margin-bottom: 0; }
+
+    .scroll-box strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .scroll-hint {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: -16px;
+    }
+
+    /* ── CHECKBOXES ── */
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .check-item:hover {
+      border-color: var(--border-glow);
+      background: var(--bg-surface);
+    }
+
+    .check-item.is-checked {
+      border-color: var(--green-border);
+      background: var(--green-bg);
+    }
+
+    .check-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-glow);
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      background: var(--bg-card);
+    }
+
+    .check-item input[type="checkbox"]:checked {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+
+    .check-item input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 5px;
+      width: 5px;
+      height: 9px;
+      border: 2px solid white;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+
+    .check-label strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .check-label span {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── BUTTON ROW ── */
+    .btn-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 44px;
+      padding: 0 22px;
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--text-dark);
+      box-shadow: 0 1px 2px rgba(15,23,42,0.1), inset 0 1px 0 rgba(255,255,255,0.12);
+    }
+
+    .btn-primary:hover:not(:disabled) { opacity: 0.88; transform: scale(1.01); }
+    .btn-primary:active:not(:disabled) { transform: scale(0.99); }
+
+    .btn-primary:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+    }
+
+    .btn-outline:hover { background: var(--bg-surface); border-color: var(--border-glow); transform: scale(1.01); }
+    .btn-outline:active { transform: scale(0.99); }
+
+    .btn svg {
+      flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .btn:hover:not(:disabled) svg.arrow { transform: translateX(3px); }
+
+    /* ── CODE REVEAL ── */
+    .code-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 48px 0 16px;
+    }
+
+    .code-tiles {
+      display: flex;
+      gap: 10px;
+    }
+
+    .code-tile {
+      width: 72px;
+      height: 88px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(12px) scale(0.92);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+    }
+
+    .code-tile.shown {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .code-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .copy-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 18px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+    }
+
+    .btn-copy:hover { background: var(--bg-surface); border-color: var(--border-glow); color: var(--text-primary); }
+    .btn-copy:active { transform: scale(0.98); }
+
+    .copy-confirm {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .copy-confirm.show { opacity: 1; }
+
+    /* ── SUCCESS CHECK ── */
+    .success-ring {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--green-border);
+      background: var(--green-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 4px;
+    }
+
+    .success-ring svg { color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 560px) {
+      main { padding: 40px 20px 60px; }
+      .step-title { font-size: 24px; }
+      .code-tile { width: 50px; height: 68px; font-size: 26px; }
+      .code-tiles { gap: 7px; }
+    }
+
+    @media (max-width: 380px) {
+      .code-tile { width: 42px; height: 58px; font-size: 22px; }
+      .code-tiles { gap: 5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    label,
+    .btn,
+    .btn-copy,
+    .btn-nav,
+    .btn-ghost,
+    .btn-outline,
+    .btn-primary,
+    .nav,
+    .nav a,
+    .nav button,
+    .nav-dropdown-trigger,
+    .nav-dropdown-menu,
+    .dropdown-item,
+    .dropdown-col h4,
+    .menu-toggle,
+    .status-chip,
+    .labs-pill,
+    .version-tag,
+    .severity-tag,
+    .warning-chip,
+    .meta-badge,
+    .pill-item,
+    .hero-badge,
+    .footer a,
+    .footer-system a,
+    .footer-links a,
+    .footer-social-links a,
+    .toc-link,
+    .faq-toc a,
+    .system-tab,
+    .step-dot,
+    .code-tile,
+    .form-input-element,
+    .cookie-button-group,
+    [onclick],
+    [tabindex],
+    [role='button'],
+    [role='tab'],
+    [role='menuitem'] {
+      font-family: var(--interactive);
+    }
+  </style>
+  <link rel="stylesheet" href="editorial-theme.css?v=calm-simple-2026-06-23">
+  <style id="climacast-text-effects-standard">
+    /* Text effects: underline only. No colour or weight shifts for emphasis states. */
+    :where(.dim, .section-headline .dim, .section-heading em, .about-title .outline, .page-title .dim, .hero-title .dim, mark, em),
+    main :where(strong, b) {
+      color: inherit !important;
+      background: none !important;
+      font-weight: inherit !important;
+      font-style: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+      -webkit-text-stroke: 0 !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 0.08em !important;
+      text-underline-offset: 0.14em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link) {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 1px !important;
+      text-underline-offset: 0.22em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):hover,
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):focus-visible {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-color: currentColor !important;
+    }
+
+    :where(.dropdown-item:hover strong, .nav-dropdown-trigger:hover, .footer-column-group a:hover, .footer-social-links a:hover) {
+      color: inherit !important;
+      font-weight: inherit !important;
+    }
+  </style>
+
+  <style id="climacast-shared-about-header">
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      transition: transform 0.3s ease;
+    }
+
+    .header .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .header .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      width: 100%;
+    }
+
+    .header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .brand:hover {
+      opacity: 0.8;
+    }
+
+    .header .brand img {
+      width: 72px;
+      display: block;
+    }
+
+    .header button {
+      font: inherit;
+      background: none;
+      border: 0;
+    }
+
+    .header .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header .nav-dropdown {
+      position: relative;
+    }
+
+    .header .nav-dropdown-trigger {
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .header .nav-dropdown-trigger:hover,
+    .header .nav-dropdown.is-open .nav-dropdown-trigger {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .header .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: max-content;
+      min-width: 320px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      display: grid;
+      gap: 16px;
+      z-index: 2000;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      padding-top: 20px;
+      margin-top: -8px;
+    }
+
+    .header .nav-dropdown-menu.double-menu {
+      width: 620px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .header .nav-dropdown:hover .nav-dropdown-menu,
+    .header .nav-dropdown.is-open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .header .dropdown-col h4 {
+      font-family: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 6px;
+    }
+
+    .header .dropdown-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover {
+      background: var(--bg-surface);
+    }
+
+    .header .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover .dropdown-icon {
+      color: var(--text-primary);
+      background: #ffffff;
+    }
+
+    .header .dropdown-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .header .dropdown-item span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .header .dropdown-item .dropdown-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .header .nav-dropdown:hover .dropdown-chevron,
+    .header .nav-dropdown.is-open .dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--text-primary);
+    }
+
+    .header .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .header .btn-ghost {
+      color: var(--text-secondary);
+    }
+
+    .header .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .header .btn-nav {
+      background: var(--text-primary);
+      color: var(--bg-card);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .header .btn-nav:hover {
+      background: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    .header .btn-nav svg {
+      color: var(--text-muted);
+      transition: var(--transition-bounce);
+    }
+
+    .header .btn-nav:hover svg {
+      color: var(--bg-card);
+      transform: translateX(4px);
+    }
+
+    .header .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header .container {
+        width: min(100% - 32px, 1200px);
+      }
+
+      .header .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+      }
+
+      .header .nav-menu.is-active {
+        display: flex;
+      }
+
+      .header .nav-dropdown,
+      .header .nav-dropdown-trigger {
+        width: 100%;
+      }
+
+      .header .nav-dropdown-trigger {
+        justify-content: space-between;
+      }
+
+      .header .nav-dropdown-menu,
+      .header .nav-dropdown-menu.double-menu {
+        position: static;
+        transform: none !important;
+        width: 100% !important;
+        min-width: 0;
+        box-shadow: none;
+        border: none;
+        padding: 8px 12px;
+        display: none;
+        grid-template-columns: 1fr !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .header .nav-dropdown:hover .nav-dropdown-menu,
+      .header .nav-dropdown.is-open .nav-dropdown-menu {
+        display: grid;
+      }
+
+      .header .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .header .nav-actions .btn-nav {
+        height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .header .menu-toggle {
+        display: inline-flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <nav class="nav" id="global-navigation" aria-label="Global platform navigation">
+        <a class="brand" href="https://climacast.uk" aria-label="ClimaCast Homepage">
+          <img style="width: 72px;" src="https://climacast.uk/assets/icon.png" alt="ClimaCast">
+        </a>
+
+        <div class="nav-menu" id="nav-menu-links">
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              Platform
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu double-menu">
+              <div class="dropdown-col">
+                <h4>Product</h4>
+                <a href="https://about.climacast.uk/products/model-combinations/" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25M3 18.75A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75M3 18.75v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                    </svg>
+                  </div>
+                  <div><strong>Model Combinations</strong><span>See where leading forecasts agree and uncertainty remains.</span></div>
+                </a>
+                <a href="https://about.climacast.uk/#method" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 13.5 10.5 6.75l4.5 4.5 5.25-5.25M3.75 19.5h16.5" />
+                    </svg>
+                  </div>
+                  <div><strong>How it works</strong><span>The method behind each useful update.</span></div>
+                </a>
+              </div>
+              <div class="dropdown-col">
+                <h4>Explore</h4>
+                <a href="https://about.climacast.uk/#principles" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286Z" />
+                    </svg>
+                  </div>
+                  <div><strong>Product principles</strong><span>The rules ClimaCast is designed around.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              About
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <h4>ClimaCast</h4>
+                <a href="https://about.climacast.uk/#about" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11.25 11.25 11.25 16.5m0-8.25h.008v.008H11.25V8.25Zm9.75 3.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                  </div>
+                  <div><strong>Purpose</strong><span>Why clearer severe-weather information matters.</span></div>
+                </a>
+                <a href="https://about.climacast.uk/#facts" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-10m0 0L6.25 21" />
+                    </svg>
+                  </div>
+                  <div><strong>At a glance</strong><span>The product commitments in numbers.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              Resources
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <h4>Support</h4>
+                <a href="https://help.climacast.uk" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                  </div>
+                  <div><strong>Help Centre</strong><span>Guides, account help and safety information.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <a href="https://climacast.uk" class="btn btn-ghost">Sign in</a>
+          <a href="https://climacast.uk" class="btn btn-nav">
+            Create an Account
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <button class="menu-toggle" id="mobile-menu-trigger" aria-label="Toggle structural menu"
+            aria-expanded="false">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="flow-shell">
+
+      <!-- Progress -->
+      <div class="progress-header" aria-hidden="true">
+        <div class="step-dots" id="step-dots"></div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <span class="step-counter" id="step-counter">1 / 4</span>
+      </div>
+
+      <!-- STEP 1: Introduction -->
+      <div class="step-panel active" id="panel-1" role="region" aria-label="Step 1: Introduction">
+        <div class="step-eyebrow">Introduction</div>
+        <h1 class="step-title">Before you continue</h1>
+        <p class="step-body">
+          Your access code is confidential and has been issued specifically to you. Please read the following steps carefully — you must acknowledge all terms before your code is revealed.
+        </p>
+        <div class="banner banner-warn" role="alert">
+          <span class="banner-icon">⚠</span>
+          <span>Do not share this code with anyone. It is tied to your account and any misuse is your sole responsibility.</span>
+        </div>
+        <div class="divider"></div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="goTo(2)">
+            Continue
+            <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Terms of Use -->
+      <div class="step-panel" id="panel-2" role="region" aria-label="Step 2: Terms of Use">
+        <div class="step-eyebrow">Terms of Use</div>
+        <h2 class="step-title">Read and agree</h2>
+        <p class="step-body">Please read the terms of use in full before ticking the box below.</p>
+
+<div class="scroll-box" id="terms-scroll" onscroll="checkScroll()">
+  <p><strong>1. Permitted use.</strong> This code grants access only to the specific service, feature, environment, or resource described at the point of issuance. It must not be used for any other purpose, including testing, bypassing restrictions, or gaining access to unrelated systems.</p>
+
+  <p><strong>2. Eligibility.</strong> You confirm that you are the intended recipient of this code and that any information provided during the access process is accurate, complete, and up to date.</p>
+
+  <p><strong>3. Non-transferability.</strong> This code is issued to a single named individual, account, organisation, or authorised entity. It may not be shared, sold, copied, transferred, published, forwarded, or otherwise made available to any other person or party.</p>
+
+  <p><strong>4. Confidentiality.</strong> You agree to keep this code confidential and to take reasonable steps to prevent unauthorised access, disclosure, or use. This includes not posting the code publicly, sending it through insecure channels, or storing it somewhere accessible to others.</p>
+
+  <p><strong>5. Account responsibility.</strong> You are responsible for any activity carried out using this code where such activity results from your action, inaction, negligence, or failure to keep the code secure.</p>
+
+  <p><strong>6. No automated access.</strong> This code must not be used with bots, scripts, automated tools, scraping systems, or any other process designed to repeatedly attempt access or interfere with normal service operation.</p>
+
+  <p><strong>7. Prohibited conduct.</strong> You must not use this code to attempt unauthorised access, disrupt services, reverse engineer systems, exploit vulnerabilities, impersonate another person, or bypass any technical, security, or access control measures.</p>
+
+  <p><strong>8. Expiry.</strong> This code may expire after a set period, after a single use, or once the relevant access window has closed. The issuer is not required to extend, renew, or replace expired codes.</p>
+
+  <p><strong>9. Revocation.</strong> The issuer reserves the right to suspend, invalidate, or revoke this code at any time, with or without notice, where misuse is suspected, security concerns arise, or continued access is no longer appropriate.</p>
+
+  <p><strong>10. Availability.</strong> Access granted by this code is provided on an as-available basis. The issuer does not guarantee uninterrupted access, continued availability, or compatibility with all devices, browsers, accounts, or environments.</p>
+
+  <p><strong>11. Changes to access.</strong> The issuer may modify, limit, pause, or withdraw the services or resources connected to this code at any time, including during testing, maintenance, incident response, or service updates.</p>
+
+  <p><strong>12. Monitoring and audit.</strong> Use of this code may be monitored for security, fraud prevention, abuse detection, and operational auditing. Suspicious or unusual activity may result in access being blocked or reviewed.</p>
+
+  <p><strong>13. Data handling.</strong> Your confirmation may be logged alongside your account identifier, timestamp, device or browser information, and access status for auditing and security purposes. No unnecessary personal data is collected during this process.</p>
+
+  <p><strong>14. Security incidents.</strong> If you believe this code has been lost, exposed, shared, stolen, or used without permission, you should notify the issuer as soon as reasonably possible so that appropriate action can be taken.</p>
+
+  <p><strong>15. No guarantee of entitlement.</strong> Possession of this code does not guarantee permanent access, account approval, eligibility for future services, or participation in any private, beta, preview, or restricted programme.</p>
+
+  <p><strong>16. Liability.</strong> The issuer accepts no liability for loss, damage, interruption, unauthorised use, or missed access arising from misuse of this code, failure to keep it secure, technical issues, or circumstances outside the issuer’s reasonable control.</p>
+
+  <p><strong>17. Breach of terms.</strong> Failure to comply with these terms may result in the immediate cancellation of this code, removal of access, account restrictions, or further action where necessary to protect the service and its users.</p>
+
+  <p><strong>18. Governing law.</strong> These terms are governed by and construed in accordance with the laws of England and Wales. Any dispute arising from or relating to these terms shall be subject to the jurisdiction of the courts of England and Wales.</p>
+
+  <p><strong>19. Acceptance.</strong> By continuing, confirming, or using this code, you acknowledge that you have read, understood, and agreed to these terms.</p>
+</div>
+        <p class="scroll-hint" id="scroll-hint" aria-live="polite">↓ Scroll to read all terms</p>
+
+        <div class="check-list">
+          <label class="check-item" id="item-terms" for="chk-terms">
+            <input type="checkbox" id="chk-terms" onchange="checkStep2()" disabled>
+            <div class="check-label">
+              <strong>I have read and agree to the terms of use</strong>
+              <span>You must scroll through and read the above before this option becomes available.</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="divider"></div>
+        <div class="btn-row">
+          <button class="btn btn-outline" onclick="goTo(1)">Back</button>
+          <button class="btn btn-primary" id="btn-step2" disabled onclick="goTo(3)">
+            Continue
+            <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Responsibilities -->
+      <div class="step-panel" id="panel-3" role="region" aria-label="Step 3: Your Responsibilities">
+        <div class="step-eyebrow">Your Responsibilities</div>
+        <h2 class="step-title">Confirm each point</h2>
+        <p class="step-body">Tick all three boxes to confirm you understand your responsibilities before the code is released.</p>
+
+        <div class="check-list">
+          <label class="check-item" id="item-a" for="chk-a">
+            <input type="checkbox" id="chk-a" onchange="checkStep3()">
+            <div class="check-label">
+              <strong>I am the intended recipient</strong>
+              <span>This code was issued specifically to me and no one else.</span>
+            </div>
+          </label>
+          <label class="check-item" id="item-b" for="chk-b">
+            <input type="checkbox" id="chk-b" onchange="checkStep3()">
+            <div class="check-label">
+              <strong>I will not share or screenshot this code</strong>
+              <span>I understand that doing so may result in immediate revocation and account suspension.</span>
+            </div>
+          </label>
+          <label class="check-item" id="item-c" for="chk-c">
+            <input type="checkbox" id="chk-c" onchange="checkStep3()">
+            <div class="check-label">
+              <strong>I accept sole responsibility for any misuse</strong>
+              <span>The issuer bears no liability for any losses resulting from my actions with this code.</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="divider"></div>
+        <div class="btn-row">
+          <button class="btn btn-outline" onclick="goTo(2)">Back</button>
+          <button class="btn btn-primary" id="btn-step3" disabled onclick="goTo(4)">
+            Reveal my code
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="transition: none;">
+              <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12s3.636-7 10-7 10 7 10 7-3.636 7-10 7-10-7-10-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Code Reveal -->
+      <div class="step-panel" id="panel-4" role="region" aria-label="Step 4: Your Access Code">
+        <div class="step-eyebrow">Access Code</div>
+
+        <div style="text-align: center;">
+          <div class="success-ring" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12l5 5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <h2 class="step-title" style="text-align: center;">All agreements confirmed</h2>
+        <p class="step-body" style="text-align: center;">
+          Your access code is below. Store it somewhere safe — this page will not display it again once you close it.
+        </p>
+
+        <div class="code-wrap">
+          <p class="code-label" aria-hidden="true">Your code</p>
+          <div class="code-tiles" aria-label="Access code: G 2 I L 4 7" role="text">
+            <div class="code-tile" id="c0" aria-hidden="true">G</div>
+            <div class="code-tile" id="c1" aria-hidden="true">2</div>
+            <div class="code-tile" id="c2" aria-hidden="true">I</div>
+            <div class="code-tile" id="c3" aria-hidden="true">L</div>
+            <div class="code-tile" id="c4" aria-hidden="true">4</div>
+            <div class="code-tile" id="c5" aria-hidden="true">7</div>
+          </div>
+          <div class="copy-row">
+            <button class="btn-copy" onclick="copyCode()" id="copy-btn" aria-label="Copy access code to clipboard">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              Copy code
+            </button>
+            <span class="copy-confirm" id="copy-confirm" aria-live="polite">✓ Copied</span>
+          </div>
+        </div>
+
+        <div class="banner banner-danger" role="alert">
+          <span class="banner-icon">⚠</span>
+          <span>This is the only time this code will be shown. Do not close this tab until you have saved it.</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    © <span id="yr"></span> ClimaCast. All rights reserved. &nbsp;·&nbsp; <a href="https://climacast.uk/legal/privacy" style="color: inherit;">Privacy Policy</a>
+  </footer>
+
+  <script>
+    const TOTAL_STEPS = 4;
+    let currentStep = 1;
+    let termsScrolled = false;
+
+    // Init
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    buildDots();
+    updateProgress(1);
+
+    // Build step dots
+    function buildDots() {
+      const container = document.getElementById('step-dots');
+      for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'step-dot';
+        dot.id = 'dot-' + i;
+        container.appendChild(dot);
+      }
+    }
+
+    // Update progress UI
+    function updateProgress(step) {
+      const pct = ((step - 1) / (TOTAL_STEPS - 1)) * 100;
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('step-counter').textContent = step + ' / ' + TOTAL_STEPS;
+
+      for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const dot = document.getElementById('dot-' + i);
+        dot.classList.remove('active', 'complete');
+        if (i < step) dot.classList.add('complete');
+        else if (i === step) dot.classList.add('active');
+      }
+    }
+
+    // Navigate between steps
+    function goTo(step) {
+      document.getElementById('panel-' + currentStep).classList.remove('active');
+      currentStep = step;
+      document.getElementById('panel-' + step).classList.add('active');
+      updateProgress(step);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (step === 4) revealCode();
+    }
+
+    // Step 2: scroll detection unlocks checkbox
+    function checkScroll() {
+      if (termsScrolled) return;
+      const box = document.getElementById('terms-scroll');
+      const atBottom = box.scrollTop + box.clientHeight >= box.scrollHeight - 10;
+      if (atBottom) {
+        termsScrolled = true;
+        const chk = document.getElementById('chk-terms');
+        chk.disabled = false;
+        document.getElementById('scroll-hint').textContent = '✓ You have read the terms';
+        document.getElementById('scroll-hint').style.color = 'var(--green)';
+      }
+    }
+
+    function checkStep2() {
+      const checked = document.getElementById('chk-terms').checked;
+      document.getElementById('btn-step2').disabled = !checked;
+      const item = document.getElementById('item-terms');
+      item.classList.toggle('is-checked', checked);
+    }
+
+    // Step 3: all three must be checked
+    function checkStep3() {
+      const all = ['chk-a','chk-b','chk-c'].every(id => document.getElementById(id).checked);
+      document.getElementById('btn-step3').disabled = !all;
+      ['a','b','c'].forEach(k => {
+        const chk = document.getElementById('chk-' + k);
+        document.getElementById('item-' + k).classList.toggle('is-checked', chk.checked);
+      });
+    }
+
+    // Step 4: animate code tiles in
+    function revealCode() {
+      const chars = ['c0','c1','c2','c3','c4','c5'];
+      chars.forEach((id, i) => {
+        setTimeout(() => {
+          document.getElementById(id).classList.add('shown');
+        }, 200 + i * 120);
+      });
+    }
+
+    // Copy code to clipboard
+    function copyCode() {
+      navigator.clipboard.writeText('G2IL47').then(() => {
+        const btn = document.getElementById('copy-btn');
+        const confirm = document.getElementById('copy-confirm');
+        btn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12l5 5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Copied!`;
+        confirm.classList.add('show');
+        setTimeout(() => {
+          btn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            Copy code`;
+          confirm.classList.remove('show');
+        }, 2500);
+      }).catch(() => {
+        // Fallback for non-secure contexts
+        const el = document.createElement('textarea');
+        el.value = 'G2IL47';
+        el.style.position = 'fixed';
+        el.style.opacity = '0';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        document.getElementById('copy-confirm').classList.add('show');
+        setTimeout(() => document.getElementById('copy-confirm').classList.remove('show'), 2500);
+      });
+    }
+
+    // Keyboard: allow Enter on check-items
+    document.querySelectorAll('.check-item').forEach(item => {
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const chk = item.querySelector('input[type="checkbox"]');
+          if (!chk.disabled) chk.click();
+        }
+      });
+      item.setAttribute('tabindex', '0');
+    });
+  </script>
+
+  <script id="climacast-shared-about-header-script">
+    (() => {
+      const setupSharedHeader = () => {
+        const menu = document.getElementById('nav-menu-links');
+        const currentToggle = document.getElementById('mobile-menu-trigger');
+        let toggle = currentToggle;
+
+        if (currentToggle) {
+          toggle = currentToggle.cloneNode(true);
+          currentToggle.replaceWith(toggle);
+        }
+
+        const dropdowns = Array.from(document.querySelectorAll('.header .nav-dropdown'));
+        const triggers = dropdowns.map((dropdown) => {
+          const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+          if (!trigger) return null;
+          const cleanTrigger = trigger.cloneNode(true);
+          trigger.replaceWith(cleanTrigger);
+          return cleanTrigger;
+        }).filter(Boolean);
+
+        const closeDropdowns = (exception = null) => {
+          dropdowns.forEach((dropdown) => {
+            if (dropdown === exception) return;
+            dropdown.classList.remove('is-open');
+            dropdown.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        };
+
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('is-active');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.textContent = isOpen ? '\u00d7' : '\u2630';
+            if (!isOpen) closeDropdowns();
+          });
+        }
+
+        triggers.forEach((trigger) => {
+          const dropdown = trigger.closest('.nav-dropdown');
+          if (!dropdown) return;
+          trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            const willOpen = !dropdown.classList.contains('is-open');
+            closeDropdowns(dropdown);
+            dropdown.classList.toggle('is-open', willOpen);
+            trigger.setAttribute('aria-expanded', String(willOpen));
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.header .nav-dropdown') && !event.target.closest('#mobile-menu-trigger')) {
+            closeDropdowns();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeDropdowns();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSharedHeader);
+      } else {
+        setupSharedHeader();
+      }
+    })();
+  </script>
+</body>
+</html>

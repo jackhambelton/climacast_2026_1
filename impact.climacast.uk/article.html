@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ClimaCast — UK severe weather intelligence. Clear decisions, not just descriptions.">
+  <title>Terms of Service — ClimaCast</title>
+  <link rel="preconnect" href="https://api.climacast.uk" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'ClimaCast Sans';
+      src: url('https://api.climacast.uk/fonts/climacast-sans/ClimaCastSans.woff2') format('woff2');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+/* ── SYSTEM RESET & VARIABLES ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Premium Slate-Neutral Light Palette */
+      --bg: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-muted: #f1f5f9;
+
+      --border: rgba(15, 23, 42, 0.06);
+      --border-strong: rgba(15, 23, 42, 0.12);
+      --border-glow: rgba(15, 23, 42, 0.24);
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --text-dark: #ffffff;
+
+      /* Weather Severity System */
+      --amber: #b45309;
+      --amber-bg: rgba(245, 158, 11, 0.05);
+      --amber-border: rgba(245, 158, 11, 0.25);
+      --yellow: #e3c604;
+      --yellow-bg: rgba(234, 179, 8, 0.05);
+      --yellow-border: rgba(234, 179, 8, 0.25);
+      --red: #b91c1c;
+      --red-bg: rgba(239, 68, 68, 0.05);
+      --red-border: rgba(239, 68, 68, 0.25);
+      --green: #15803d;
+      --green-bg: rgba(22, 163, 74, 0.08);
+      --blue: #1d4ed8;
+      --blue-bg: rgba(59, 130, 246, 0.05);
+      --blue-border: rgba(59, 130, 246, 0.25);
+
+      /* Typography */
+      --heading: 'ClimaCast Sans', sans-serif;
+      --sans: 'ClimaCast Sans', sans-serif;
+      --mono: 'ClimaCast Sans', sans-serif;
+      --interactive: 'Inter', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--heading) !important;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; background: none; border: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── LAYOUT UTILITIES ── */
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ── INTERACTIVE PREMIUM BUTTONS (Retained from Index) ── */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--text-dark);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    .btn-primary:hover:not(:disabled) { transform: scale(1.01); }
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    .btn-outline:hover:not(:disabled) {
+      background: var(--bg-surface);
+      border-color: var(--border-glow);
+      transform: scale(1.01);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+    }
+    .btn-ghost { color: var(--text-secondary); }
+    .btn-ghost:hover:not(:disabled) {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+      transform: scale(1.01);
+    }
+    .btn-nav {
+      height: 34px;
+      padding: 0 12px;
+      font-size: 12.5px;
+      background: rgba(15, 23, 42, 0.02);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-nav:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    /* ── HEADER & STICKY NAV (Retained from Index) ── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+    .brand:hover { opacity: 0.8; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+    /* ── ARTICLE ARCHITECTURE ── */
+    .article-hero {
+      padding: 80px 0 60px;
+      background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .article-hero-inner {
+      max-width: 800px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a { color: var(--text-secondary); transition: var(--transition); }
+    .breadcrumb a:hover { color: var(--text-primary); }
+
+    .article-title {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ── TWO-COLUMN DOCUMENT GRID ── */
+    .document-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+      padding-bottom: 120px;
+    }
+
+    /* ── STICKY SIDEBAR (TABLE OF CONTENTS) ── */
+    .toc-sidebar {
+      position: sticky;
+      top: 100px; /* Below header */
+      padding-right: 24px;
+      border-right: 1px solid var(--border);
+    }
+    
+    .toc-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toc-link {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      transition: var(--transition);
+      border-left: 2px solid transparent;
+      padding-left: 12px;
+      margin-left: -2px; /* Pull back to align with text */
+    }
+
+    .toc-link:hover, .toc-link.is-active {
+      color: var(--text-primary);
+      font-weight: 500;
+      border-left-color: var(--text-primary);
+    }
+
+    /* ── PROSE (THE READING EXPERIENCE) ── */
+    .prose {
+      max-width: 720px;
+      font-size: 16.5px; /* Larger for long-form reading */
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+
+    .prose h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin: 64px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 100px; /* Account for sticky header */
+    }
+
+    .prose h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+      scroll-margin-top: 100px;
+    }
+
+    .prose p {
+      margin-bottom: 24px;
+    }
+
+    .prose ul, .prose ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+
+    .prose li {
+      margin-bottom: 12px;
+      padding-left: 8px;
+    }
+    
+    .prose li::marker {
+      color: var(--text-muted);
+    }
+
+    .prose a {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 4px;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .prose a:hover {
+      text-decoration-color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .prose strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Elegant Callout/Info Box */
+    .prose .callout {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 32px 0;
+      display: flex;
+      gap: 16px;
+    }
+    
+    .callout-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      color: var(--text-primary);
+    }
+
+    .callout-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Embedded code/terminal styling */
+    .prose code {
+      font-family: var(--mono);
+      font-size: 13.5px;
+      background: var(--bg-surface);
+      padding: 3px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    /* ── FOOTER (Retained from Index) ── */
+    .footer-system {
+      border-top: 1px solid var(--border);
+      padding: 80px 0 40px;
+      background: #ffffff;
+    }
+    .footer-main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+    .footer-brand-summary {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 260px;
+      margin-top: 8px;
+    }
+    .footer-nav-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .footer-column-group h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .footer-column-group a {
+      display: block;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-column-group a:hover { color: var(--text-primary); transform: translateX(2px); }
+    .footer-base-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .footer-social-links { display: flex; gap: 20px; }
+    .footer-social-links a:hover { color: var(--text-primary); text-decoration: underline; }
+
+    /* ── RESPONSIVE ADAPTABILITY MATRIX ── */
+    @media (max-width: 900px) {
+      .document-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .toc-sidebar {
+        position: static;
+        border-right: none;
+        padding-right: 0;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .toc-link {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-main-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .nav-actions .btn-ghost { display: none; }
+    }
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    label,
+    .btn,
+    .btn-copy,
+    .btn-nav,
+    .btn-ghost,
+    .btn-outline,
+    .btn-primary,
+    .nav,
+    .nav a,
+    .nav button,
+    .nav-dropdown-trigger,
+    .nav-dropdown-menu,
+    .dropdown-item,
+    .dropdown-col h4,
+    .menu-toggle,
+    .status-chip,
+    .labs-pill,
+    .version-tag,
+    .severity-tag,
+    .warning-chip,
+    .meta-badge,
+    .pill-item,
+    .hero-badge,
+    .footer a,
+    .footer-system a,
+    .footer-links a,
+    .footer-social-links a,
+    .toc-link,
+    .faq-toc a,
+    .system-tab,
+    .step-dot,
+    .code-tile,
+    .form-input-element,
+    .cookie-button-group,
+    [onclick],
+    [tabindex],
+    [role='button'],
+    [role='tab'],
+    [role='menuitem'] {
+      font-family: var(--interactive);
+    }
+  </style>
+  <link rel="stylesheet" href="editorial-theme.css?v=calm-simple-2026-06-23">
+  <style id="climacast-text-effects-standard">
+    /* Text effects: underline only. No colour or weight shifts for emphasis states. */
+    :where(.dim, .section-headline .dim, .section-heading em, .about-title .outline, .page-title .dim, .hero-title .dim, mark, em),
+    main :where(strong, b) {
+      color: inherit !important;
+      background: none !important;
+      font-weight: inherit !important;
+      font-style: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+      -webkit-text-stroke: 0 !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 0.08em !important;
+      text-underline-offset: 0.14em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link) {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 1px !important;
+      text-underline-offset: 0.22em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):hover,
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):focus-visible {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-color: currentColor !important;
+    }
+
+    :where(.dropdown-item:hover strong, .nav-dropdown-trigger:hover, .footer-column-group a:hover, .footer-social-links a:hover) {
+      color: inherit !important;
+      font-weight: inherit !important;
+    }
+  </style>
+
+  <style id="climacast-shared-about-header">
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      transition: transform 0.3s ease;
+    }
+
+    .header .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .header .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      width: 100%;
+    }
+
+    .header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .brand:hover {
+      opacity: 0.8;
+    }
+
+    .header .brand img {
+      width: 72px;
+      display: block;
+    }
+
+    .header button {
+      font: inherit;
+      background: none;
+      border: 0;
+    }
+
+    .header .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header .nav-dropdown {
+      position: relative;
+    }
+
+    .header .nav-dropdown-trigger {
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .header .nav-dropdown-trigger:hover,
+    .header .nav-dropdown.is-open .nav-dropdown-trigger {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .header .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: max-content;
+      min-width: 320px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      display: grid;
+      gap: 16px;
+      z-index: 2000;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      padding-top: 20px;
+      margin-top: -8px;
+    }
+
+    .header .nav-dropdown-menu.double-menu {
+      width: 620px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .header .nav-dropdown:hover .nav-dropdown-menu,
+    .header .nav-dropdown.is-open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .header .dropdown-col h4 {
+      font-family: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 6px;
+    }
+
+    .header .dropdown-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover {
+      background: var(--bg-surface);
+    }
+
+    .header .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover .dropdown-icon {
+      color: var(--text-primary);
+      background: #ffffff;
+    }
+
+    .header .dropdown-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .header .dropdown-item span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .header .dropdown-item .dropdown-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .header .nav-dropdown:hover .dropdown-chevron,
+    .header .nav-dropdown.is-open .dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--text-primary);
+    }
+
+    .header .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .header .btn-ghost {
+      color: var(--text-secondary);
+    }
+
+    .header .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .header .btn-nav {
+      background: var(--text-primary);
+      color: var(--bg-card);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .header .btn-nav:hover {
+      background: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    .header .btn-nav svg {
+      color: var(--text-muted);
+      transition: var(--transition-bounce);
+    }
+
+    .header .btn-nav:hover svg {
+      color: var(--bg-card);
+      transform: translateX(4px);
+    }
+
+    .header .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header .container {
+        width: min(100% - 32px, 1200px);
+      }
+
+      .header .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+      }
+
+      .header .nav-menu.is-active {
+        display: flex;
+      }
+
+      .header .nav-dropdown,
+      .header .nav-dropdown-trigger {
+        width: 100%;
+      }
+
+      .header .nav-dropdown-trigger {
+        justify-content: space-between;
+      }
+
+      .header .nav-dropdown-menu,
+      .header .nav-dropdown-menu.double-menu {
+        position: static;
+        transform: none !important;
+        width: 100% !important;
+        min-width: 0;
+        box-shadow: none;
+        border: none;
+        padding: 8px 12px;
+        display: none;
+        grid-template-columns: 1fr !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .header .nav-dropdown:hover .nav-dropdown-menu,
+      .header .nav-dropdown.is-open .nav-dropdown-menu {
+        display: grid;
+      }
+
+      .header .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .header .nav-actions .btn-nav {
+        height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .header .menu-toggle {
+        display: inline-flex;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav" id="global-navigation" aria-label="Global platform navigation">
+        <a class="brand" href="https://climacast.uk" aria-label="ClimaCast Homepage">
+          <img style="width: 72px;" src="https://climacast.uk/assets/icon.png" alt="ClimaCast">
+        </a>
+
+        <div class="nav-menu" id="nav-menu-links">
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              Platform
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu double-menu">
+              <div class="dropdown-col">
+                <h4>Product</h4>
+                <a href="https://about.climacast.uk/products/model-combinations/" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25M3 18.75A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75M3 18.75v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                    </svg>
+                  </div>
+                  <div><strong>Model Combinations</strong><span>See where leading forecasts agree and uncertainty remains.</span></div>
+                </a>
+                <a href="https://about.climacast.uk/#method" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 13.5 10.5 6.75l4.5 4.5 5.25-5.25M3.75 19.5h16.5" />
+                    </svg>
+                  </div>
+                  <div><strong>How it works</strong><span>The method behind each useful update.</span></div>
+                </a>
+              </div>
+              <div class="dropdown-col">
+                <h4>Explore</h4>
+                <a href="https://about.climacast.uk/#principles" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286Z" />
+                    </svg>
+                  </div>
+                  <div><strong>Product principles</strong><span>The rules ClimaCast is designed around.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              About
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <h4>ClimaCast</h4>
+                <a href="https://about.climacast.uk/#about" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11.25 11.25 11.25 16.5m0-8.25h.008v.008H11.25V8.25Zm9.75 3.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                  </div>
+                  <div><strong>Purpose</strong><span>Why clearer severe-weather information matters.</span></div>
+                </a>
+                <a href="https://about.climacast.uk/#facts" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-10m0 0L6.25 21" />
+                    </svg>
+                  </div>
+                  <div><strong>At a glance</strong><span>The product commitments in numbers.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              Resources
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <h4>Support</h4>
+                <a href="https://help.climacast.uk" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                  </div>
+                  <div><strong>Help Centre</strong><span>Guides, account help and safety information.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <a href="https://climacast.uk" class="btn btn-ghost">Sign in</a>
+          <a href="https://climacast.uk" class="btn btn-nav">
+            Create an Account
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <button class="menu-toggle" id="mobile-menu-trigger" aria-label="Toggle structural menu"
+            aria-expanded="false">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    
+    <div class="article-hero">
+      <div class="container">
+        <div class="article-hero-inner">
+          <div class="breadcrumb">
+            <a href="https://climacast.uk">ClimaCast</a> 
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            <a href="https://climacast.uk/legal">Legal</a>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            Terms of Service
+          </div>
+          <h1 class="article-title">Terms of Service</h1>
+          <div class="article-meta">
+            <span class="meta-badge">Last Updated: October 2024</span>
+            <span>Approx. 4 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container document-grid">
+      
+      <aside class="toc-sidebar">
+        <div class="toc-title">On this page</div>
+        <nav class="toc-nav">
+          <a href="#section-1" class="toc-link is-active">1. Agreement to Terms</a>
+          <a href="#section-2" class="toc-link">2. Nature of the Service</a>
+          <a href="#section-3" class="toc-link">3. Acceptable Use</a>
+          <a href="#section-4" class="toc-link">4. Waitlist & Early Access</a>
+          <a href="#section-5" class="toc-link">5. Data Provision Limitations</a>
+        </nav>
+      </aside>
+
+      <article class="prose">
+        <p>Welcome to ClimaCast. By accessing or using our platform, you agree to be bound by these Terms of Service. Please read them carefully. If you do not agree to these terms, you must not use our services.</p>
+
+        <h2 id="section-1">1. Agreement to Terms</h2>
+        <p>These Terms of Service constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”), and ClimaCast ("we," "us" or "our"), concerning your access to and use of the ClimaCast website and associated applications.</p>
+
+        <h2 id="section-2">2. Nature of the Service</h2>
+        <p>ClimaCast provides tailored severe weather intelligence and action plans based on public meteorological data. While we strive to process and deliver this data with absolute clarity and minimal latency, our service is fundamentally an advisory tool.</p>
+        
+        <div class="callout">
+          <svg class="callout-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+          <div class="callout-content">
+            <p><strong>Important Disclaimer:</strong> Weather is inherently unpredictable. We use the best available data from the Met Office and Environment Agency, but we cannot guarantee zero divergence from our localized models. You remain responsible for your own safety and travel decisions.</p>
+          </div>
+        </div>
+
+        <h2 id="section-3">3. Acceptable Use</h2>
+        <p>You agree not to misuse the ClimaCast platform. This includes, but is not limited to, the following prohibited activities:</p>
+        <ul>
+          <li>Attempting to scrape, reverse-engineer, or maliciously overload our weather API endpoints.</li>
+          <li>Redistributing our proprietary actionable decision chains (the "Plans") without explicit written permission.</li>
+          <li>Circumventing, disabling, or otherwise interfering with security-related features of the Site.</li>
+          <li>Using the service in any way that violates applicable UK laws or regulations.</li>
+        </ul>
+
+        <h2 id="section-4">4. Waitlist & Early Access</h2>
+        <p>During our beta phase, access may be restricted. Submitting your email to our waitlist gate grants you a position in the queue, but does not guarantee immediate access to the full platform dashboard. We reserve the right to admit users on a rolling basis to ensure infrastructure stability.</p>
+
+        <h2 id="section-5">5. Data Provision Limitations</h2>
+        <p>We reserve the right to modify or discontinue, temporarily or permanently, the service (or any part thereof) with or without notice. You agree that ClimaCast shall not be liable to you or to any third party for any modification, suspension, or discontinuance of the service.</p>
+        
+        <p>For further questions regarding these terms, please consult our <a href="https://help.climacast.uk">Help Centre</a> or contact our support team directly at <code>legal@climacast.uk</code>.</p>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="footer-system">
+    <div class="container">
+      <div class="footer-main-grid">
+        <div>
+          <img style="width: 128px;" src="https://climacast.uk/assets/icon.png" alt="ClimaCast Logo">
+          <p class="footer-brand-summary">Simple, jargon-free weather warnings designed to protect your day, your travel, and your home from unexpected disruptions.</p>
+        </div>
+        <div class="footer-nav-columns">
+          <div class="footer-column-group">
+            <h4>Features</h4>
+            <a href="https://climacast.uk/#how-it-works">How it Works</a>
+            <a href="https://climacast.uk/#features">Why it's different</a>
+          </div>
+          <div class="footer-column-group">
+            <h4>Help & Support</h4>
+            <a href="https://help.climacast.uk">Help Centre</a>
+            <a href="https://help.climacast.uk">Report an Issue</a>
+            <a href="https://status.climacast.uk">Status Page</a>
+          </div>
+          <div class="footer-column-group">
+            <h4>Legal</h4>
+            <a href="https://climacast.uk/legal/privacy">Privacy Policy</a>
+            <a href="https://climacast.uk/legal/terms">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-base-meta">
+        <p class="footer-copyright">© <span id="runtime-year"></span> ClimaCast. All rights reserved.</p>
+        <div class="footer-social-links">
+          <a href="https://about.climacast.uk">About</a>
+          <a href="https://help.climacast.uk">Help</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Year
+      const yearField = document.getElementById('runtime-year');
+      if (yearField) yearField.textContent = new Date().getFullYear();
+
+      // Simple Intersection Observer to highlight active TOC link based on scroll
+      const sections = document.querySelectorAll('.prose h2');
+      const navLinks = document.querySelectorAll('.toc-link');
+
+      if(sections.length > 0 && navLinks.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(link => {
+                link.classList.remove('is-active');
+                if (link.getAttribute('href') === `#${entry.target.id}`) {
+                  link.classList.add('is-active');
+                }
+              });
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+      }
+    });
+  </script>
+
+  <script id="climacast-shared-about-header-script">
+    (() => {
+      const setupSharedHeader = () => {
+        const menu = document.getElementById('nav-menu-links');
+        const currentToggle = document.getElementById('mobile-menu-trigger');
+        let toggle = currentToggle;
+
+        if (currentToggle) {
+          toggle = currentToggle.cloneNode(true);
+          currentToggle.replaceWith(toggle);
+        }
+
+        const dropdowns = Array.from(document.querySelectorAll('.header .nav-dropdown'));
+        const triggers = dropdowns.map((dropdown) => {
+          const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+          if (!trigger) return null;
+          const cleanTrigger = trigger.cloneNode(true);
+          trigger.replaceWith(cleanTrigger);
+          return cleanTrigger;
+        }).filter(Boolean);
+
+        const closeDropdowns = (exception = null) => {
+          dropdowns.forEach((dropdown) => {
+            if (dropdown === exception) return;
+            dropdown.classList.remove('is-open');
+            dropdown.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        };
+
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('is-active');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.textContent = isOpen ? '\u00d7' : '\u2630';
+            if (!isOpen) closeDropdowns();
+          });
+        }
+
+        triggers.forEach((trigger) => {
+          const dropdown = trigger.closest('.nav-dropdown');
+          if (!dropdown) return;
+          trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            const willOpen = !dropdown.classList.contains('is-open');
+            closeDropdowns(dropdown);
+            dropdown.classList.toggle('is-open', willOpen);
+            trigger.setAttribute('aria-expanded', String(willOpen));
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.header .nav-dropdown') && !event.target.closest('#mobile-menu-trigger')) {
+            closeDropdowns();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeDropdowns();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSharedHeader);
+      } else {
+        setupSharedHeader();
+      }
+    })();
+  </script>
+</body>
+</html>

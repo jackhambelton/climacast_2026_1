@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="ClimaCast 2026.1 Public Beta — eligibility, how to join, known issues, and frequently asked questions.">
+  <title>ClimaCast Labs — 2026.1 Public Beta</title>
+  <link rel="preconnect" href="https://api.climacast.uk" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'ClimaCast Sans';
+      src: url('https://api.climacast.uk/fonts/climacast-sans/ClimaCastSans.woff2') format('woff2');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+/* ── SYSTEM RESET & VARIABLES ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Premium Slate-Neutral Light Palette */
+      --bg: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-muted: #f1f5f9;
+
+      --border: rgba(15, 23, 42, 0.06);
+      --border-strong: rgba(15, 23, 42, 0.12);
+      --border-glow: rgba(15, 23, 42, 0.24);
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --text-dark: #ffffff;
+
+      /* Weather Severity System */
+      --amber: #b45309;
+      --amber-bg: rgba(245, 158, 11, 0.05);
+      --amber-border: rgba(245, 158, 11, 0.25);
+
+      --yellow: #e3c604;
+      --yellow-bg: rgba(234, 179, 8, 0.05);
+      --yellow-border: rgba(234, 179, 8, 0.25);
+
+      --red: #b91c1c;
+      --red-bg: rgba(239, 68, 68, 0.05);
+      --red-border: rgba(239, 68, 68, 0.25);
+
+      --green: #15803d;
+      --green-bg: rgba(22, 163, 74, 0.08);
+
+      --blue: #1d4ed8;
+      --blue-bg: rgba(59, 130, 246, 0.05);
+      --blue-border: rgba(59, 130, 246, 0.25);
+
+      /* Labs accent — violet to differentiate beta surfaces */
+      --labs: #6d28d9;
+      --labs-bg: rgba(109, 40, 217, 0.05);
+      --labs-border: rgba(109, 40, 217, 0.22);
+
+      /* Typography */
+      --heading: 'ClimaCast Sans', sans-serif;
+      --sans: 'ClimaCast Sans', sans-serif;
+      --mono: 'ClimaCast Sans', sans-serif;
+      --interactive: 'Inter', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--heading) !important;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+      background: none;
+      border: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ── LAYOUT UTILITIES ── */
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .container-sm {
+      width: min(720px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .flex-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* ── ACCESSIBILITY ── */
+    .skip-link {
+      position: absolute;
+      left: 24px;
+      top: -100px;
+      background: var(--text-primary);
+      color: var(--text-dark);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 9999;
+      transition: var(--transition-bounce);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
+    }
+
+    .skip-link:focus {
+      top: 24px;
+    }
+
+    /* ── INTERACTIVE PREMIUM BUTTONS ── */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--text-dark);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: scale(1.01);
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: scale(0.99);
+      box-shadow: none;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: var(--bg-surface);
+      border-color: var(--border-glow);
+      transform: scale(1.01);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    .btn-outline:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    .btn-ghost {
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover:not(:disabled) {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+      transform: scale(1.01);
+    }
+
+    .btn-ghost:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    .btn-nav {
+      height: 34px;
+      padding: 0 12px;
+      font-size: 12.5px;
+      background: rgba(15, 23, 42, 0.02);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .btn-nav:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    .btn-nav svg {
+      color: var(--text-muted);
+      transition: var(--transition-bounce);
+    }
+
+    .btn-nav:hover svg {
+      color: var(--text-primary);
+      transform: translateX(4px);
+    }
+
+    .btn-lg {
+      height: 48px;
+      padding: 0 24px;
+      font-size: 14px;
+      border-radius: var(--radius-md);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ── HEADER & STICKY NAV ── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      transition: transform 0.3s ease;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .brand:hover {
+      opacity: 0.8;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-trigger {
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .nav-dropdown-trigger:hover {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: max-content;
+      min-width: 320px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      display: grid;
+      gap: 16px;
+      z-index: 2000;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      padding-top: 20px;
+      margin-top: -8px;
+    }
+
+    .nav-dropdown-menu.mega-menu {
+      width: min(920px, 85vw);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      padding: 24px;
+    }
+
+    .nav-dropdown-menu.double-menu {
+      width: 620px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-col h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 6px;
+    }
+
+    .dropdown-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .dropdown-item:hover {
+      background: var(--bg-surface);
+    }
+
+    .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .dropdown-item:hover .dropdown-icon {
+      color: var(--text-primary);
+      background: #ffffff;
+    }
+
+    .dropdown-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .dropdown-item span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .dropdown-item .dropdown-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .dropdown-item:hover .dropdown-icon svg {
+      color: var(--text-primary);
+    }
+
+    .dropdown-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .nav-dropdown:hover .dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--text-primary);
+    }
+
+    /* ── LABS BADGE ── */
+    .labs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--labs-border);
+      background: var(--labs-bg);
+      color: var(--labs);
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb-bar {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-surface);
+    }
+
+    .breadcrumb-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 0;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .breadcrumb-row a:hover {
+      color: var(--text-primary);
+      text-decoration: underline;
+    }
+
+    .breadcrumb-row .sep {
+      color: var(--text-muted);
+    }
+
+    .breadcrumb-row .current {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 64px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow-bg {
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 350px;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle, rgba(109, 40, 217, 0.04) 0%, transparent 70%);
+      filter: blur(50px);
+    }
+
+    .page-header-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .version-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .version-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--labs-border);
+      background: var(--labs-bg);
+      color: var(--labs);
+      letter-spacing: 0.04em;
+    }
+
+    .status-chip {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .status-chip.live {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid rgba(21, 128, 61, 0.18);
+    }
+
+    .status-chip.testing {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+    }
+
+    .status-chip.soon {
+      background: var(--bg-muted);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-strong);
+    }
+
+    .page-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #0f172a 0%, #64748b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-desc {
+      max-width: 620px;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .page-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .meta-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 28px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .meta-strip strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ── SECTION FOUNDATION ── */
+    .section {
+      padding: clamp(48px, 8vw, 96px) 0;
+    }
+
+    .section-marker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .section-marker::before {
+      content: '';
+      width: 12px;
+      height: 1px;
+      background: var(--text-secondary);
+      transition: width 0.3s ease;
+    }
+
+    .section:hover .section-marker::before {
+      width: 24px;
+      background: var(--text-primary);
+    }
+
+    .section-headline {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .section-sub {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 620px;
+    }
+
+    /* ── TWO-COLUMN PAGE LAYOUT WITH STICKY TOC ── */
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 56px;
+    }
+
+    .faq-toc {
+      position: sticky;
+      top: 88px;
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .faq-toc-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      padding-left: 12px;
+    }
+
+    .faq-toc a {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-left: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .faq-toc a:hover {
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      border-left-color: var(--border-strong);
+    }
+
+    /* ── FAQ GROUPS ── */
+    .faq-group {
+      margin-bottom: 56px;
+      scroll-margin-top: 88px;
+    }
+
+    .faq-group-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-group-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .faq-group-count {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 4px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      color: var(--labs);
+    }
+
+    .faq-question-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      color: var(--text-secondary);
+      transition: var(--transition-bounce);
+      font-size: 13px;
+    }
+
+    .faq-item.is-open .faq-question-icon {
+      transform: rotate(45deg);
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-answer-inner {
+      padding: 0 4px 20px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    .faq-answer-inner p+p {
+      margin-top: 10px;
+    }
+
+    .faq-answer-inner code {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--bg-muted);
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── KNOWN ISSUES TABLE ── */
+    .issues-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .issues-table th,
+    .issues-table td {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .issues-table thead th {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      background: var(--bg-surface);
+    }
+
+    .issues-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .issues-table tbody tr:hover {
+      background: var(--bg-surface);
+    }
+
+    .issues-table td.issue-desc {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .issues-table td strong {
+      color: var(--text-primary);
+    }
+
+    .severity-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .severity-tag.minor {
+      background: var(--blue-bg);
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+    }
+
+    .severity-tag.moderate {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+    }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      display: flex;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      margin: 24px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .callout.labs-tone {
+      border-color: var(--labs-border);
+      background: var(--labs-bg);
+    }
+
+    .callout-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    .callout-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .callout strong {
+      color: var(--text-primary);
+    }
+
+    /* ── ELIGIBILITY STEPS ── */
+    .eligibility-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 1px solid var(--border-strong);
+      margin-left: 12px;
+    }
+
+    .eligibility-step {
+      position: relative;
+      padding: 0 0 28px 32px;
+    }
+
+    .eligibility-step:last-child {
+      padding-bottom: 0;
+    }
+
+    .eligibility-step::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 4px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--text-primary);
+    }
+
+    .eligibility-step-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .eligibility-step-body {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+
+    /* ── SYSTEM FOOTER ── */
+    .footer-system {
+      border-top: 1px solid var(--border);
+      padding: 80px 0 40px;
+      background: #ffffff;
+    }
+
+    .footer-main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand-summary {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 260px;
+      margin-top: 8px;
+    }
+
+    .footer-nav-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .footer-column-group h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    .footer-column-group a {
+      display: block;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+
+    .footer-column-group a:hover {
+      color: var(--text-primary);
+      transform: translateX(2px);
+    }
+
+    .footer-base-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-social-links a:hover {
+      color: var(--text-primary);
+      text-decoration: underline;
+    }
+
+    /* ── COOKIE ARCHITECTURE OVERLAY ── */
+    .cookie-overlay-panel {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: min(400px, calc(100% - 48px));
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    }
+
+    .cookie-overlay-panel.is-hiding {
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cookie-head-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .cookie-summary-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .cookie-summary-text a {
+      color: var(--text-primary);
+      text-decoration: underline;
+    }
+
+    .cookie-button-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .cookie-button-group .btn {
+      flex: 1;
+      height: 38px;
+      font-size: 12.5px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .faq-toc {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .faq-toc-label {
+        display: none;
+      }
+
+      .faq-toc a {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 14px;
+      }
+
+      .footer-main-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .issues-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+      }
+
+      .nav-menu.is-active {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-dropdown-menu,
+      .nav-dropdown-menu.mega-menu,
+      .nav-dropdown-menu.double-menu {
+        position: static;
+        transform: none !important;
+        width: 100% !important;
+        box-shadow: none;
+        border: none;
+        padding: 8px 12px;
+        display: none;
+        grid-template-columns: 1fr !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-dropdown:hover .nav-dropdown-menu {
+        display: grid;
+      }
+
+      .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .meta-strip {
+        gap: 8px 16px;
+      }
+    }
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    label,
+    .btn,
+    .btn-copy,
+    .btn-nav,
+    .btn-ghost,
+    .btn-outline,
+    .btn-primary,
+    .nav,
+    .nav a,
+    .nav button,
+    .nav-dropdown-trigger,
+    .nav-dropdown-menu,
+    .dropdown-item,
+    .dropdown-col h4,
+    .menu-toggle,
+    .status-chip,
+    .labs-pill,
+    .version-tag,
+    .severity-tag,
+    .warning-chip,
+    .meta-badge,
+    .pill-item,
+    .hero-badge,
+    .footer a,
+    .footer-system a,
+    .footer-links a,
+    .footer-social-links a,
+    .toc-link,
+    .faq-toc a,
+    .system-tab,
+    .step-dot,
+    .code-tile,
+    .form-input-element,
+    .cookie-button-group,
+    [onclick],
+    [tabindex],
+    [role='button'],
+    [role='tab'],
+    [role='menuitem'] {
+      font-family: var(--interactive);
+    }
+  </style>
+  <link rel="stylesheet" href="../editorial-theme.css?v=calm-simple-2026-06-23">
+  <style id="climacast-text-effects-standard">
+    /* Text effects: underline only. No colour or weight shifts for emphasis states. */
+    :where(.dim, .section-headline .dim, .section-heading em, .about-title .outline, .page-title .dim, .hero-title .dim, mark, em),
+    main :where(strong, b) {
+      color: inherit !important;
+      background: none !important;
+      font-weight: inherit !important;
+      font-style: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+      -webkit-text-stroke: 0 !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 0.08em !important;
+      text-underline-offset: 0.14em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link) {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 1px !important;
+      text-underline-offset: 0.22em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):hover,
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):focus-visible {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-color: currentColor !important;
+    }
+
+    :where(.dropdown-item:hover strong, .nav-dropdown-trigger:hover, .footer-column-group a:hover, .footer-social-links a:hover) {
+      color: inherit !important;
+      font-weight: inherit !important;
+    }
+  </style>
+
+  <style id="climacast-shared-about-header">
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      transition: transform 0.3s ease;
+    }
+
+    .header .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .header .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      width: 100%;
+    }
+
+    .header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .brand:hover {
+      opacity: 0.8;
+    }
+
+    .header .brand img {
+      width: 72px;
+      display: block;
+    }
+
+    .header button {
+      font: inherit;
+      background: none;
+      border: 0;
+    }
+
+    .header .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header .nav-dropdown {
+      position: relative;
+    }
+
+    .header .nav-dropdown-trigger {
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .header .nav-dropdown-trigger:hover,
+    .header .nav-dropdown.is-open .nav-dropdown-trigger {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .header .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: max-content;
+      min-width: 320px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      display: grid;
+      gap: 16px;
+      z-index: 2000;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      padding-top: 20px;
+      margin-top: -8px;
+    }
+
+    .header .nav-dropdown-menu.double-menu {
+      width: 620px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .header .nav-dropdown:hover .nav-dropdown-menu,
+    .header .nav-dropdown.is-open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .header .dropdown-col h4 {
+      font-family: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 6px;
+    }
+
+    .header .dropdown-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover {
+      background: var(--bg-surface);
+    }
+
+    .header .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover .dropdown-icon {
+      color: var(--text-primary);
+      background: #ffffff;
+    }
+
+    .header .dropdown-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .header .dropdown-item span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .header .dropdown-item .dropdown-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .header .nav-dropdown:hover .dropdown-chevron,
+    .header .nav-dropdown.is-open .dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--text-primary);
+    }
+
+    .header .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .header .btn-ghost {
+      color: var(--text-secondary);
+    }
+
+    .header .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .header .btn-nav {
+      background: var(--text-primary);
+      color: var(--bg-card);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .header .btn-nav:hover {
+      background: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    .header .btn-nav svg {
+      color: var(--text-muted);
+      transition: var(--transition-bounce);
+    }
+
+    .header .btn-nav:hover svg {
+      color: var(--bg-card);
+      transform: translateX(4px);
+    }
+
+    .header .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header .container {
+        width: min(100% - 32px, 1200px);
+      }
+
+      .header .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+      }
+
+      .header .nav-menu.is-active {
+        display: flex;
+      }
+
+      .header .nav-dropdown,
+      .header .nav-dropdown-trigger {
+        width: 100%;
+      }
+
+      .header .nav-dropdown-trigger {
+        justify-content: space-between;
+      }
+
+      .header .nav-dropdown-menu,
+      .header .nav-dropdown-menu.double-menu {
+        position: static;
+        transform: none !important;
+        width: 100% !important;
+        min-width: 0;
+        box-shadow: none;
+        border: none;
+        padding: 8px 12px;
+        display: none;
+        grid-template-columns: 1fr !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .header .nav-dropdown:hover .nav-dropdown-menu,
+      .header .nav-dropdown.is-open .nav-dropdown-menu {
+        display: grid;
+      }
+
+      .header .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .header .nav-actions .btn-nav {
+        height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .header .menu-toggle {
+        display: inline-flex;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to platform content</a>
+
+  <header class="header">
+    <div class="container">
+      <nav class="nav" id="global-navigation" aria-label="Global platform navigation">
+        <a class="brand" href="https://climacast.uk" aria-label="ClimaCast Homepage">
+          <img style="width: 72px;" src="https://climacast.uk/assets/icon.png" alt="ClimaCast">
+        </a>
+
+        <div class="nav-menu" id="nav-menu-links">
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              Platform
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu double-menu">
+              <div class="dropdown-col">
+                <h4>Product</h4>
+                <a href="https://about.climacast.uk/products/model-combinations/" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25M3 18.75A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75M3 18.75v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                    </svg>
+                  </div>
+                  <div><strong>Model Combinations</strong><span>See where leading forecasts agree and uncertainty remains.</span></div>
+                </a>
+                <a href="https://about.climacast.uk/#method" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 13.5 10.5 6.75l4.5 4.5 5.25-5.25M3.75 19.5h16.5" />
+                    </svg>
+                  </div>
+                  <div><strong>How it works</strong><span>The method behind each useful update.</span></div>
+                </a>
+              </div>
+              <div class="dropdown-col">
+                <h4>Explore</h4>
+                <a href="https://about.climacast.uk/#principles" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286Z" />
+                    </svg>
+                  </div>
+                  <div><strong>Product principles</strong><span>The rules ClimaCast is designed around.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              About
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <h4>ClimaCast</h4>
+                <a href="https://about.climacast.uk/#about" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11.25 11.25 11.25 16.5m0-8.25h.008v.008H11.25V8.25Zm9.75 3.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                  </div>
+                  <div><strong>Purpose</strong><span>Why clearer severe-weather information matters.</span></div>
+                </a>
+                <a href="https://about.climacast.uk/#facts" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-10m0 0L6.25 21" />
+                    </svg>
+                  </div>
+                  <div><strong>At a glance</strong><span>The product commitments in numbers.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              Resources
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="dropdown-chevron" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <div class="dropdown-col">
+                <h4>Support</h4>
+                <a href="https://help.climacast.uk" class="dropdown-item">
+                  <div class="dropdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                  </div>
+                  <div><strong>Help Centre</strong><span>Guides, account help and safety information.</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <a href="https://climacast.uk" class="btn btn-ghost">Sign in</a>
+          <a href="https://climacast.uk" class="btn btn-nav">
+            Create an Account
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <button class="menu-toggle" id="mobile-menu-trigger" aria-label="Toggle structural menu"
+            aria-expanded="false">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="breadcrumb-row">
+        <a href="https://climacast.uk">ClimaCast</a>
+        <span class="sep">/</span>
+        <a href="../index.html">Labs</a>
+        <span class="sep">/</span>
+        <span class="current">2026.1 Public Beta</span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="page-header">
+      <div class="hero-glow-bg"></div>
+      <div class="container">
+        <div class="page-header-inner">
+          <div class="version-tag-row">
+            <span class="version-tag">v2026.1</span>
+            <span class="status-chip testing">Public Beta</span>
+          </div>
+          <h1 class="page-title">ClimaCast 2026.1 Public Beta</h1>
+          <p class="page-desc">Everything you need to know about the 2026.1 Public Beta — who can join, how to switch it on, what's changed, and the issues we're already aware of. This page is updated as the beta progresses.</p>
+          <div class="page-actions">
+            <a href="../index.html#feedback" class="btn btn-primary btn-lg">Join the Beta</a>
+            <a href="#known-issues" class="btn btn-outline btn-lg">View known issues</a>
+          </div>
+          <div class="meta-strip">
+            <span>Status: <strong>Open to eligible users</strong></span>
+            <span>Phase: <strong>Public Beta</strong></span>
+            <span>Regions covered: <strong>13 UK regions</strong></span>
+            <span>Last updated: <strong>12 June 2026</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="faq-layout">
+          <nav class="faq-toc" aria-label="On this page">
+            <div class="faq-toc-label">On this page</div>
+            <a href="#eligibility">Eligibility</a>
+            <a href="#joining">Joining the beta</a>
+            <a href="#whats-new">What's new in 2026.1</a>
+            <a href="#known-issues">Known issues</a>
+            <a href="#feedback-data">Feedback & data</a>
+            <a href="#leaving">Leaving the beta</a>
+          </nav>
+
+          <div>
+            <!-- ELIGIBILITY -->
+            <div class="faq-group" id="eligibility">
+              <div class="faq-group-header">
+                <h2 class="faq-group-title">Eligibility</h2>
+                <span class="faq-group-count">4 questions</span>
+              </div>
+
+              <div class="callout labs-tone">
+                <div class="callout-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                  </svg>
+                </div>
+                <div><strong>Note:</strong> the 2026.1 Public Beta is open to anyone with a ClimaCast account in one of the 13 tracked UK regions. No invite code is required for this phase.</div>
+              </div>
+
+              <div class="eligibility-steps">
+                <div class="eligibility-step">
+                  <div class="eligibility-step-title">Who can join?</div>
+                  <p class="eligibility-step-body">Any ClimaCast account holder located in a tracked region can opt in from the Labs section of their account settings. An account is required because beta toggles and feedback are saved per user.</p>
+                </div>
+                <div class="eligibility-step">
+                  <div class="eligibility-step-title">Do I need to be in a specific region?</div>
+                  <p class="eligibility-step-body">All 13 tracked UK regions are included in 2026.1. Some features, such as Hyperlocal Flood Timing, are more refined in regions with denser flood-sensor coverage — this is shown in the feature description when you toggle it on.</p>
+                </div>
+                <div class="eligibility-step">
+                  <div class="eligibility-step-title">Is there a cost to join?</div>
+                  <p class="eligibility-step-body">No. ClimaCast Labs and the 2026.1 Public Beta are free, in line with ClimaCast's ad-free, free-at-point-of-use core alerts.</p>
+                </div>
+                <div class="eligibility-step">
+                  <div class="eligibility-step-title">Can businesses or organisations join?</div>
+                  <p class="eligibility-step-body">The 2026.1 Public Beta is currently aimed at individual account holders. If you're interested in organisational access, use the feedback form to let us know and we'll get in touch about future phases.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- JOINING -->
+            <div class="faq-group" id="joining">
+              <div class="faq-group-header">
+                <h2 class="faq-group-title">Joining the beta</h2>
+                <span class="faq-group-count">4 questions</span>
+              </div>
+
+              <div class="faq-item is-open">
+                <button class="faq-question" aria-expanded="true">
+                  How do I enable the 2026.1 Public Beta?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>From the main ClimaCast app, go to <code>Settings → Labs</code> and switch on "2026.1 Public Beta". This unlocks the Labs feature list on this site and enables beta toggles in your account.</p>
+                    <p>You can then turn individual beta features on or off independently — joining the beta itself does not switch every feature on automatically.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  Will joining affect my existing alerts?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>No. Your core severe weather alerts continue exactly as before. Beta features are additional layers shown alongside your existing alerts, not replacements for them.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  Can I choose which beta features to enable?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>Yes. Each feature listed under <a href="../index.html#beta-features">Beta Features</a> has its own toggle. You can enable just the ones that are useful to you and leave the rest off.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  Does the beta work on all devices?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>The 2026.1 Public Beta is available wherever you normally access ClimaCast. Some features, such as Voice Briefing, are still in earlier testing and may not be available on every device yet — this is noted against each feature.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- WHAT'S NEW -->
+            <div class="faq-group" id="whats-new">
+              <div class="faq-group-header">
+                <h2 class="faq-group-title">What's new in 2026.1</h2>
+                <span class="faq-group-count">3 questions</span>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  What's changed compared to the previous beta?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>2026.1 widens access from a closed group to all eligible account holders, and promotes Hyperlocal Flood Timing and Commute Impact Score from "Testing" to "Live" status based on feedback from earlier phases.</p>
+                    <p>Multi-Day Risk Outlook and Household Alert Sharing remain in "Testing" and are being rolled out gradually across regions.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  Where can I see the full list of beta features?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>The complete, current list — including status (Live, Testing, or Coming Soon) — is maintained on the <a href="../index.html#beta-features">Beta Features</a> page and reflects what's available in 2026.1.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  Is there a changelog for future beta versions?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>Future versions (e.g. 2026.2) will get their own page like this one. The <a href="../coming-soon/index.html">Roadmap</a> gives a general view of what's planned ahead of a formal release page.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- KNOWN ISSUES -->
+            <div class="faq-group" id="known-issues">
+              <div class="faq-group-header">
+                <h2 class="faq-group-title">Known issues</h2>
+                <span class="faq-group-count">Tracked for 2026.1</span>
+              </div>
+              <p class="section-sub" style="margin-bottom: 24px;">These are issues we're already aware of in the current beta build. If you run into something not listed here, please use the feedback form so we can investigate.</p>
+
+              <table class="issues-table">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Issue</th>
+                    <th>Severity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Multi-Day Risk Outlook</strong></td>
+                    <td class="issue-desc">Outlook occasionally flags a "likely disruption" day one day later than the day it actually affects. We're tuning the timing model.</td>
+                    <td><span class="severity-tag moderate">Moderate</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Household Alert Sharing</strong></td>
+                    <td class="issue-desc">Shared "leave by" times may not update instantly for other household members; a manual refresh of the alert feed resolves this.</td>
+                    <td><span class="severity-tag minor">Minor</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Commute Impact Score</strong></td>
+                    <td class="issue-desc">Score can briefly show as "Calculating" for newly added routes until the next scheduled data refresh, typically within 15 minutes.</td>
+                    <td><span class="severity-tag minor">Minor</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hyperlocal Flood Timing</strong></td>
+                    <td class="issue-desc">Coverage in rural areas with fewer flood sensors may show wider time ranges than urban areas. This reflects current data density, not a bug.</td>
+                    <td><span class="severity-tag minor">Minor</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Voice Briefing</strong></td>
+                    <td class="issue-desc">Not yet available — listed here for visibility ahead of its planned rollout in a later phase.</td>
+                    <td><span class="severity-tag minor">Minor</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- FEEDBACK & DATA -->
+            <div class="faq-group" id="feedback-data">
+              <div class="faq-group-header">
+                <h2 class="faq-group-title">Feedback & data</h2>
+                <span class="faq-group-count">2 questions</span>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  How do I report a problem with a beta feature?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>Use the feedback form on the <a href="../index.html#feedback">Labs page</a>, or the in-app prompt shown after a beta feature is used during a live weather event. Include the feature name and your region so we can investigate faster.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  Does using beta features change what data is collected?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>Enabling a beta feature may collect additional usage data specific to that feature (for example, whether a flood timing estimate matched what happened) so we can refine accuracy. This is covered in our Privacy Policy and only applies to features you've actively switched on.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- LEAVING -->
+            <div class="faq-group" id="leaving">
+              <div class="faq-group-header">
+                <h2 class="faq-group-title">Leaving the beta</h2>
+                <span class="faq-group-count">2 questions</span>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  Can I opt out at any time?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>Yes. Turn off individual features from their toggles, or switch off "2026.1 Public Beta" entirely in <code>Settings → Labs</code> to return to the standard ClimaCast experience.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                  What happens to my data if I leave?
+                  <span class="faq-question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>Your core alert settings and history are unaffected. Feedback you've already submitted helps us improve the features for everyone and isn't deleted, but no further beta-specific usage data is collected once you've opted out.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-system">
+    <div class="container">
+      <div class="footer-main-grid">
+        <div>
+          <img style="width: 128px;" src="https://climacast.uk/assets/icon.png">
+          <p class="footer-brand-summary">ClimaCast Labs is the early-access home for experimental features from ClimaCast — simple, jargon-free weather warnings designed to protect your day, your travel, and your home.</p>
+        </div>
+        <div class="footer-nav-columns">
+          <div class="footer-column-group">
+            <h4>Labs</h4>
+            <a href="../index.html#beta-features">Beta Features</a>
+            <a href="../coming-soon/index.html">Roadmap</a>
+            <a href="../index.html#feedback">Send Feedback</a>
+          </div>
+          <div class="footer-column-group">
+            <h4>Help & Support</h4>
+            <a href="https://help.climacast.uk">Help Centre</a>
+            <a href="https://help.climacast.uk">Report an Issue</a>
+            <a href="https://status.climacast.uk">Status Page</a>
+            <a href="https://help.climacast.uk">Contact Us</a>
+          </div>
+          <div class="footer-column-group">
+            <h4>Legal</h4>
+            <a href="https://climacast.uk/legal/privacy">Privacy Policy</a>
+            <a href="https://climacast.uk/legal/terms">Terms of Service</a>
+            <a href="#cookie-consent-module" id="cookie-preferences-trigger">Cookie Settings</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-base-meta">
+        <p class="footer-copyright">© <span id="runtime-year"></span> ClimaCast Labs. All rights reserved.
+        </p>
+        <div class="footer-social-links">
+          <a href="https://climacast.uk" rel="noopener">Main site</a>
+          <a href="https://about.climacast.uk" rel="noopener">About</a>
+          <a href="https://help.climacast.uk" rel="noopener">Help</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="cookie-consent-module" class="cookie-overlay-panel" role="dialog" aria-modal="true"
+    aria-labelledby="cookie-head" aria-describedby="cookie-desc" hidden>
+    <div>
+      <h3 id="cookie-head" class="cookie-head-title">We value your privacy</h3>
+    </div>
+    <div>
+      <p id="cookie-desc" class="cookie-summary-text">ClimaCast uses cookies to improve your experience and ensure our live weather updates run smoothly. You can read our <a href="https://climacast.uk/legal/privacy">Privacy Policy</a> to find out more.</p>
+    </div>
+    <div class="cookie-button-group">
+      <button class="btn btn-outline" id="cookie-reject-node">Essential Cookies Only</button>
+      <button class="btn btn-primary" id="cookie-approve-node">Accept All</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearField = document.getElementById('runtime-year');
+      if (yearField) yearField.textContent = new Date().getFullYear();
+
+      const mobileTrigger = document.getElementById('mobile-menu-trigger');
+      const targetMenuLinks = document.getElementById('nav-menu-links');
+
+      if (mobileTrigger && targetMenuLinks) {
+        mobileTrigger.addEventListener('click', () => {
+          const checkState = targetMenuLinks.classList.toggle('is-active');
+          mobileTrigger.setAttribute('aria-expanded', checkState);
+          mobileTrigger.textContent = checkState ? '✕' : '☰';
+        });
+      }
+
+      // FAQ accordion behaviour
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const inner = item.querySelector('.faq-answer-inner');
+
+        const setOpenState = (open) => {
+          item.classList.toggle('is-open', open);
+          question.setAttribute('aria-expanded', open);
+          answer.style.maxHeight = open ? inner.scrollHeight + 'px' : '0px';
+        };
+
+        // Initialise based on markup state
+        setOpenState(item.classList.contains('is-open'));
+
+        question.addEventListener('click', () => {
+          setOpenState(!item.classList.contains('is-open'));
+        });
+      });
+
+      // Recalculate open FAQ heights on resize (font reflow safety)
+      window.addEventListener('resize', () => {
+        document.querySelectorAll('.faq-item.is-open').forEach(item => {
+          const answer = item.querySelector('.faq-answer');
+          const inner = item.querySelector('.faq-answer-inner');
+          answer.style.maxHeight = inner.scrollHeight + 'px';
+        });
+      });
+
+      // Smooth-scroll TOC links account for sticky header offset via scroll-margin-top on groups
+      document.querySelectorAll('.faq-toc a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.getAttribute('href');
+          if (targetId && targetId.startsWith('#')) {
+            const target = document.querySelector(targetId);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+
+      const STORAGE_TOKEN = 'climacast_privacy_matrix';
+
+      const inspectCookieState = (key) => {
+        const rawMatch = document.cookie.split('; ').find(row => row.startsWith(key + '='));
+        return rawMatch ? rawMatch.split('=')[1] : null;
+      };
+
+      const commitCookieState = (key, value) => {
+        const contextDomain = location.hostname.split('.');
+        const apexDomain = contextDomain.length >= 2 ? '.' + contextDomain.slice(-2).join('.') : '';
+        document.cookie = `${key}=${value}; max-age=${31536000}; path=/;${apexDomain ? ' domain=' + apexDomain + ';' : ''} SameSite=Lax`;
+      };
+
+      const scrubActiveCookie = (name) => {
+        const primaryDomain = location.hostname.split('.');
+        const primaryApex = primaryDomain.length >= 2 ? '.' + primaryDomain.slice(-2).join('.') : '';
+        document.cookie = `${name}=; max-age=-1; path=/;`;
+        if (primaryApex) document.cookie = `${name}=; max-age=-1; path=/; domain=${primaryApex};`;
+      };
+
+      const distributeConsentState = (state) => {
+        if (state === 'authorized') {
+          document.dispatchEvent(new CustomEvent('analytics:active'));
+        } else {
+          ['_ga', '_gid', '_gat', '_fbp'].forEach(scrubActiveCookie);
+          document.dispatchEvent(new CustomEvent('analytics:suppressed'));
+        }
+      };
+
+      const modularCookieContainer = document.getElementById('cookie-consent-module');
+      const closeConsentInterface = () => {
+        modularCookieContainer.classList.add('is-hiding');
+        setTimeout(() => { modularCookieContainer.hidden = true; }, 300);
+      };
+      const clearConsentInterface = () => {
+        modularCookieContainer.classList.remove('is-hiding');
+        modularCookieContainer.hidden = false;
+      };
+
+      if (inspectCookieState(STORAGE_TOKEN)) {
+        distributeConsentState(inspectCookieState(STORAGE_TOKEN));
+      } else if (modularCookieContainer) {
+        clearConsentInterface();
+      }
+
+      document.getElementById('cookie-approve-node')?.addEventListener('click', () => {
+        commitCookieState(STORAGE_TOKEN, 'authorized'); distributeConsentState('authorized'); closeConsentInterface();
+      });
+
+      document.getElementById('cookie-reject-node')?.addEventListener('click', () => {
+        commitCookieState(STORAGE_TOKEN, 'suppressed'); distributeConsentState('suppressed'); closeConsentInterface();
+      });
+
+      document.getElementById('cookie-preferences-trigger')?.addEventListener('click', (event) => {
+        event.preventDefault(); clearConsentInterface();
+      });
+    });
+  </script>
+
+  <script id="climacast-shared-about-header-script">
+    (() => {
+      const setupSharedHeader = () => {
+        const menu = document.getElementById('nav-menu-links');
+        const currentToggle = document.getElementById('mobile-menu-trigger');
+        let toggle = currentToggle;
+
+        if (currentToggle) {
+          toggle = currentToggle.cloneNode(true);
+          currentToggle.replaceWith(toggle);
+        }
+
+        const dropdowns = Array.from(document.querySelectorAll('.header .nav-dropdown'));
+        const triggers = dropdowns.map((dropdown) => {
+          const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+          if (!trigger) return null;
+          const cleanTrigger = trigger.cloneNode(true);
+          trigger.replaceWith(cleanTrigger);
+          return cleanTrigger;
+        }).filter(Boolean);
+
+        const closeDropdowns = (exception = null) => {
+          dropdowns.forEach((dropdown) => {
+            if (dropdown === exception) return;
+            dropdown.classList.remove('is-open');
+            dropdown.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        };
+
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('is-active');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.textContent = isOpen ? '\u00d7' : '\u2630';
+            if (!isOpen) closeDropdowns();
+          });
+        }
+
+        triggers.forEach((trigger) => {
+          const dropdown = trigger.closest('.nav-dropdown');
+          if (!dropdown) return;
+          trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            const willOpen = !dropdown.classList.contains('is-open');
+            closeDropdowns(dropdown);
+            dropdown.classList.toggle('is-open', willOpen);
+            trigger.setAttribute('aria-expanded', String(willOpen));
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.header .nav-dropdown') && !event.target.closest('#mobile-menu-trigger')) {
+            closeDropdowns();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeDropdowns();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSharedHeader);
+      } else {
+        setupSharedHeader();
+      }
+    })();
+  </script>
+</body>
+
+</html>
