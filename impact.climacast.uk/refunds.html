@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ClimaCast Privacy Policy — how ClimaCast collects, uses, protects and shares personal data." name="description"/>
+<title>Refund Policy — ClimaCast</title>
+<link crossorigin="" href="https://api.climacast.uk" rel="preconnect"/>
+<link href="https://rsms.me" rel="preconnect"/>
+<link href="https://rsms.me/inter/inter.css" rel="stylesheet"/>
+<style>
+/* ── SYSTEM RESET & VARIABLES ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --heading: 'Inter', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --mono: 'Inter', sans-serif;
+      --interactive: 'Inter', sans-serif;
+      --font-features: "calt" 1, "frac" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv10" 1, "cv05" 1, "ss03" 1;
+      /* Premium Slate-Neutral Light Palette */
+      --bg: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-muted: #f1f5f9;
+
+      --border: rgba(15, 23, 42, 0.06);
+      --border-strong: rgba(15, 23, 42, 0.12);
+      --border-glow: rgba(15, 23, 42, 0.24);
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --text-dark: #ffffff;
+
+      /* Weather Severity System */
+      --amber: #b45309;
+      --amber-bg: rgba(245, 158, 11, 0.05);
+      --amber-border: rgba(245, 158, 11, 0.25);
+      --yellow: #e3c604;
+      --yellow-bg: rgba(234, 179, 8, 0.05);
+      --yellow-border: rgba(234, 179, 8, 0.25);
+      --red: #b91c1c;
+      --red-bg: rgba(239, 68, 68, 0.05);
+      --red-border: rgba(239, 68, 68, 0.25);
+      --green: #15803d;
+      --green-bg: rgba(22, 163, 74, 0.08);
+      --blue: #1d4ed8;
+      --blue-bg: rgba(59, 130, 246, 0.05);
+      --blue-border: rgba(59, 130, 246, 0.25);
+
+      /* Typography */
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+html,
+body {
+  font-family: var(--sans);
+  font-feature-settings: var(--font-features);
+}
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--heading) !important;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; background: none; border: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── LAYOUT UTILITIES ── */
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ── INTERACTIVE PREMIUM BUTTONS (Retained from Index) ── */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--text-dark);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    .btn-primary:hover:not(:disabled) { transform: scale(1.01); }
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    .btn-outline:hover:not(:disabled) {
+      background: var(--bg-surface);
+      border-color: var(--border-glow);
+      transform: scale(1.01);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+    }
+    .btn-ghost { color: var(--text-secondary); }
+    .btn-ghost:hover:not(:disabled) {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+      transform: scale(1.01);
+    }
+    .btn-nav {
+      height: 34px;
+      padding: 0 12px;
+      font-size: 12.5px;
+      background: rgba(15, 23, 42, 0.02);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-nav:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    /* ── HEADER & STICKY NAV (Retained from Index) ── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+    .brand:hover { opacity: 0.8; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+    /* ── ARTICLE ARCHITECTURE ── */
+    .article-hero {
+      padding: 80px 0 60px;
+      background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .article-hero-inner {
+      max-width: 800px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a { color: var(--text-secondary); transition: var(--transition); }
+    .breadcrumb a:hover { color: var(--text-primary); }
+
+    .article-title {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ── TWO-COLUMN DOCUMENT GRID ── */
+    .document-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+      padding-bottom: 120px;
+    }
+
+    /* ── STICKY SIDEBAR (TABLE OF CONTENTS) ── */
+    .toc-sidebar {
+      position: sticky;
+      top: 100px; /* Below header */
+      padding-right: 24px;
+      border-right: 1px solid var(--border);
+    }
+    
+    .toc-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toc-link {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      transition: var(--transition);
+      border-left: 2px solid transparent;
+      padding-left: 12px;
+      margin-left: -2px; /* Pull back to align with text */
+    }
+
+    .toc-link:hover, .toc-link.is-active {
+      color: var(--text-primary);
+      font-weight: 500;
+      border-left-color: var(--text-primary);
+    }
+
+    /* ── PROSE (THE READING EXPERIENCE) ── */
+    .prose {
+      max-width: 720px;
+      font-size: 16.5px; /* Larger for long-form reading */
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+
+    .prose h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin: 64px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 100px; /* Account for sticky header */
+    }
+
+    .prose h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+      scroll-margin-top: 100px;
+    }
+
+    .prose p {
+      margin-bottom: 24px;
+    }
+
+    .prose ul, .prose ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+
+    .prose li {
+      margin-bottom: 12px;
+      padding-left: 8px;
+    }
+    
+    .prose li::marker {
+      color: var(--text-muted);
+    }
+
+    .prose a {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 4px;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .prose a:hover {
+      text-decoration-color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .prose strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Elegant Callout/Info Box */
+    .prose .callout {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 32px 0;
+      display: flex;
+      gap: 16px;
+    }
+    
+    .callout-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      color: var(--text-primary);
+    }
+
+    .callout-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Embedded code/terminal styling */
+    .prose code {
+      font-family: var(--mono);
+      font-size: 13.5px;
+      background: var(--bg-surface);
+      padding: 3px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    /* ── FOOTER (Retained from Index) ── */
+    .footer-system {
+      border-top: 1px solid var(--border);
+      padding: 80px 0 40px;
+      background: #ffffff;
+    }
+    .footer-main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+    .footer-brand-summary {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 260px;
+      margin-top: 8px;
+    }
+    .footer-nav-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .footer-column-group h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .footer-column-group a {
+      display: block;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-column-group a:hover { color: var(--text-primary); transform: translateX(2px); }
+    .footer-base-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .footer-social-links { display: flex; gap: 20px; }
+    .footer-social-links a:hover { color: var(--text-primary); text-decoration: underline; }
+
+    /* ── RESPONSIVE ADAPTABILITY MATRIX ── */
+    @media (max-width: 900px) {
+      .document-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .toc-sidebar {
+        position: static;
+        border-right: none;
+        padding-right: 0;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .toc-link {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-main-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .nav-actions .btn-ghost { display: none; }
+    }
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    label,
+    .btn,
+    .btn-copy,
+    .btn-nav,
+    .btn-ghost,
+    .btn-outline,
+    .btn-primary,
+    .nav,
+    .nav a,
+    .nav button,
+    .nav-dropdown-trigger,
+    .nav-dropdown-menu,
+    .dropdown-item,
+    .dropdown-col h4,
+    .menu-toggle,
+    .status-chip,
+    .labs-pill,
+    .version-tag,
+    .severity-tag,
+    .warning-chip,
+    .meta-badge,
+    .pill-item,
+    .hero-badge,
+    .footer a,
+    .footer-system a,
+    .footer-links a,
+    .footer-social-links a,
+    .toc-link,
+    .faq-toc a,
+    .system-tab,
+    .step-dot,
+    .code-tile,
+    .form-input-element,
+    .cookie-button-group,
+    [onclick],
+    [tabindex],
+    [role='button'],
+    [role='tab'],
+    [role='menuitem'] {
+      font-family: var(--interactive);
+    }
+  </style>
+<link href="editorial-theme.css?v=calm-simple-2026-06-23" rel="stylesheet"/>
+<style id="climacast-text-effects-standard">
+    /* Text effects: underline only. No colour or weight shifts for emphasis states. */
+    :where(.dim, .section-headline .dim, .section-heading em, .about-title .outline, .page-title .dim, .hero-title .dim, mark, em),
+    main :where(strong, b) {
+      color: inherit !important;
+      background: none !important;
+      font-weight: inherit !important;
+      font-style: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+      -webkit-text-stroke: 0 !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 0.08em !important;
+      text-underline-offset: 0.14em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link) {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 1px !important;
+      text-underline-offset: 0.22em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):hover,
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):focus-visible {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-color: currentColor !important;
+    }
+
+    :where(.dropdown-item:hover strong, .nav-dropdown-trigger:hover, .footer-column-group a:hover, .footer-social-links a:hover) {
+      color: inherit !important;
+      font-weight: inherit !important;
+    }
+  </style>
+<style id="climacast-shared-about-header">
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      transition: transform 0.3s ease;
+    }
+
+    .header .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .header .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      width: 100%;
+    }
+
+    .header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .brand:hover {
+      opacity: 0.8;
+    }
+
+    .header .brand img {
+      width: 72px;
+      display: block;
+    }
+
+    .header button {
+      font: inherit;
+      font-feature-settings: var(--font-features);
+      background: none;
+      border: 0;
+    }
+
+    .header .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header .nav-dropdown {
+      position: relative;
+    }
+
+    .header .nav-dropdown-trigger {
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .header .nav-dropdown-trigger:hover,
+    .header .nav-dropdown.is-open .nav-dropdown-trigger {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .header .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: max-content;
+      min-width: 320px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      display: grid;
+      gap: 16px;
+      z-index: 2000;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      padding-top: 20px;
+      margin-top: -8px;
+    }
+
+    .header .nav-dropdown-menu.double-menu {
+      width: 620px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .header .nav-dropdown:hover .nav-dropdown-menu,
+    .header .nav-dropdown.is-open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .header .dropdown-col h4 {
+      font-family: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 6px;
+    }
+
+    .header .dropdown-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover {
+      background: var(--bg-surface);
+    }
+
+    .header .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover .dropdown-icon {
+      color: var(--text-primary);
+      background: #ffffff;
+    }
+
+    .header .dropdown-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .header .dropdown-item span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .header .dropdown-item .dropdown-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .header .nav-dropdown:hover .dropdown-chevron,
+    .header .nav-dropdown.is-open .dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--text-primary);
+    }
+
+    .header .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .header .btn-ghost {
+      color: var(--text-secondary);
+    }
+
+    .header .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .header .btn-nav {
+      background: var(--text-primary);
+      color: var(--bg-card);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .header .btn-nav:hover {
+      background: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    .header .btn-nav svg {
+      color: var(--text-muted);
+      transition: var(--transition-bounce);
+    }
+
+    .header .btn-nav:hover svg {
+      color: var(--bg-card);
+      transform: translateX(4px);
+    }
+
+    .header .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header .container {
+        width: min(100% - 32px, 1200px);
+      }
+
+      .header .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+      }
+
+      .header .nav-menu.is-active {
+        display: flex;
+      }
+
+      .header .nav-dropdown,
+      .header .nav-dropdown-trigger {
+        width: 100%;
+      }
+
+      .header .nav-dropdown-trigger {
+        justify-content: space-between;
+      }
+
+      .header .nav-dropdown-menu,
+      .header .nav-dropdown-menu.double-menu {
+        position: static;
+        transform: none !important;
+        width: 100% !important;
+        min-width: 0;
+        box-shadow: none;
+        border: none;
+        padding: 8px 12px;
+        display: none;
+        grid-template-columns: 1fr !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .header .nav-dropdown:hover .nav-dropdown-menu,
+      .header .nav-dropdown.is-open .nav-dropdown-menu {
+        display: grid;
+      }
+
+      .header .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .header .nav-actions .btn-nav {
+        height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .header .menu-toggle {
+        display: inline-flex;
+      }
+    }
+  </style>
+<!--
+    Publisher note: before publishing, confirm the legal operator/controller name, contact address,
+    processors, cookie banner, payment provider, retention workflow, under-18 settings and
+    privacy-rights request process. This draft should be reviewed before launch.
+  -->
+<style id="climacast-terms-prose-extensions">
+    .prose .terms-summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .prose .summary-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .prose .summary-card h3 {
+      font-size: 14px;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+      border: 0;
+      padding: 0;
+    }
+
+    .prose .summary-card p {
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .prose .legal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 14px;
+      line-height: 1.55;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+    }
+
+    .prose .legal-table th,
+    .prose .legal-table td {
+      text-align: left;
+      vertical-align: top;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prose .legal-table th {
+      width: 34%;
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      font-weight: 600;
+    }
+
+    .prose .legal-table tr:last-child th,
+    .prose .legal-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .prose .placeholder-note {
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      color: var(--text-secondary);
+      margin: 28px 0;
+    }
+
+    .prose .placeholder-note p {
+      margin-bottom: 12px;
+    }
+
+    .prose .placeholder-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose .legal-small {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .prose .terms-summary { grid-template-columns: 1fr; }
+      .prose .legal-table th,
+      .prose .legal-table td { display: block; width: 100%; }
+      .prose .legal-table td { border-top: 1px solid var(--border); }
+    }
+
+    /* ── READING PROGRESS BAR ── */
+    .reading-progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 5px;
+      background: rgba(15, 23, 42, 0.04);
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .reading-progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: #2f8f5b;
+      box-shadow: 0 0 16px rgba(180, 83, 9, 0.22);
+      transition: width 0.12s linear;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reading-progress-bar {
+        transition: none;
+      }
+    }
+
+  
+
+    .toc-sidebar {
+      max-height: calc(100vh - 120px);
+      overflow: auto;
+      scrollbar-width: thin;
+    }
+
+    .prose .section-note {
+      background: var(--blue-bg);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin: 28px 0;
+    }
+
+    .prose .section-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose .clause-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .prose .clause-card {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      padding: 18px 20px;
+    }
+
+    .prose .clause-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .prose .clause-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .prose .clause-grid { grid-template-columns: 1fr; }
+      .toc-sidebar { max-height: none; overflow: visible; }
+    }
+</style>
+</head>
+<body>
+<header class="header">
+<div class="container">
+<nav aria-label="Global platform navigation" class="nav" id="global-navigation">
+<a aria-label="ClimaCast Homepage" class="brand" href="https://climacast.uk">
+<img alt="ClimaCast" src="https://api.climacast.uk/logo/climacast-icon.svg" style="width: 72px;"/>
+</a>
+<div class="nav-menu" id="nav-menu-links">
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              Platform
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu double-menu">
+<div class="dropdown-col">
+<h4>Product</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/products/model-combinations/">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25M3 18.75A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75M3 18.75v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Model Combinations</strong><span>See where leading forecasts agree and uncertainty remains.</span></div>
+</a>
+<a class="dropdown-item" href="https://about.climacast.uk/#method">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 13.5 10.5 6.75l4.5 4.5 5.25-5.25M3.75 19.5h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>How it works</strong><span>The method behind each useful update.</span></div>
+</a>
+</div>
+<div class="dropdown-col">
+<h4>Explore</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/#principles">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Product principles</strong><span>The rules ClimaCast is designed around.</span></div>
+</a>
+</div>
+</div>
+</div>
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              About
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu">
+<div class="dropdown-col">
+<h4>ClimaCast</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/#about">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.25 11.25 11.25 16.5m0-8.25h.008v.008H11.25V8.25Zm9.75 3.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Purpose</strong><span>Why clearer severe-weather information matters.</span></div>
+</a>
+<a class="dropdown-item" href="https://about.climacast.uk/#facts">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-10m0 0L6.25 21" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>At a glance</strong><span>The product commitments in numbers.</span></div>
+</a>
+</div>
+</div>
+</div>
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              Resources
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu">
+<div class="dropdown-col">
+<h4>Support</h4>
+<a class="dropdown-item" href="https://help.climacast.uk">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Help Centre</strong><span>Guides, account help and safety information.</span></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="nav-actions">
+<a class="btn btn-ghost" href="https://climacast.uk">Sign in</a>
+<a class="btn btn-nav" href="https://climacast.uk">
+            Create an Account
+            <svg aria-hidden="true" fill="none" height="12" viewbox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</a>
+<button aria-expanded="false" aria-label="Toggle structural menu" class="menu-toggle" id="mobile-menu-trigger">☰</button>
+</div>
+</nav>
+</div>
+<div aria-hidden="true" class="reading-progress">
+<div class="reading-progress-bar" id="reading-progress-bar"></div>
+</div>
+</header>
+<main id="main-content">
+    
+    <div class="article-hero">
+      <div class="container">
+        <div class="article-hero-inner">
+          <div class="breadcrumb">
+            <a href="https://climacast.uk">ClimaCast</a> 
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            <a href="https://climacast.uk/legal">Legal</a>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            Refund Policy
+          </div>
+          <h1 class="article-title">Refund Policy</h1>
+          <div class="article-meta">
+            <span class="meta-badge">Last updated: 26 June 2026</span>
+            <span>Approx. 22 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container document-grid">
+      
+      <aside class="toc-sidebar">
+        <div class="toc-title">On this page</div>
+        <nav class="toc-nav">
+          <a href="#section-1" class="toc-link is-active">1. About this Refund Policy</a>
+          <a href="#section-2" class="toc-link">2. Who this policy applies to</a>
+          <a href="#section-3" class="toc-link">3. Operator and billing details</a>
+          <a href="#section-4" class="toc-link">4. Plain-English summary</a>
+          <a href="#section-5" class="toc-link">5. Products covered by this policy</a>
+          <a href="#section-6" class="toc-link">6. Free plans, free trials and beta access</a>
+          <a href="#section-7" class="toc-link">7. Subscriptions and recurring billing</a>
+          <a href="#section-8" class="toc-link">8. One-off purchases and non-recurring payments</a>
+          <a href="#section-9" class="toc-link">9. Fourteen-day cancellation rights</a>
+          <a href="#section-10" class="toc-link">10. Immediate digital access</a>
+          <a href="#section-11" class="toc-link">11. When refunds will usually be approved</a>
+          <a href="#section-12" class="toc-link">12. When refunds may be refused</a>
+          <a href="#section-13" class="toc-link">13. Partial refunds and account credits</a>
+          <a href="#section-14" class="toc-link">14. Refunds for downtime and service interruptions</a>
+          <a href="#section-15" class="toc-link">15. Refunds for forecast or alert issues</a>
+          <a href="#section-16" class="toc-link">16. Upgrades, downgrades and plan changes</a>
+          <a href="#section-17" class="toc-link">17. Discounts, coupons and promotions</a>
+          <a href="#section-18" class="toc-link">18. Duplicate accounts and duplicate charges</a>
+          <a href="#section-19" class="toc-link">19. Unauthorised payments</a>
+          <a href="#section-20" class="toc-link">20. Payment failures and failed renewals</a>
+          <a href="#section-21" class="toc-link">21. Chargebacks and payment disputes</a>
+          <a href="#section-22" class="toc-link">22. API plans and usage-based billing</a>
+          <a href="#section-23" class="toc-link">23. Business, school and organisational purchases</a>
+          <a href="#section-24" class="toc-link">24. Refunds involving under-18 users</a>
+          <a href="#section-25" class="toc-link">25. Taxes, VAT and currency issues</a>
+          <a href="#section-26" class="toc-link">26. How to request a refund</a>
+          <a href="#section-27" class="toc-link">27. How refunds are paid</a>
+          <a href="#section-28" class="toc-link">28. Access after refund or cancellation</a>
+          <a href="#section-29" class="toc-link">29. Account credits, goodwill and exceptions</a>
+          <a href="#section-30" class="toc-link">30. Abuse, fraud and misuse</a>
+          <a href="#section-31" class="toc-link">31. Complaints and escalation</a>
+          <a href="#section-32" class="toc-link">32. Changes to this Refund Policy</a>
+          <a href="#section-33" class="toc-link">33. Refund checklist before launch</a>
+          <a href="#section-34" class="toc-link">34. Contact</a>
+        </nav>
+      </aside>
+
+      <article class="prose">
+        <p>This Refund Policy explains how ClimaCast handles refunds, cancellations, credits, duplicate charges, trial conversions, subscription renewals, billing mistakes and payment disputes. It is written for a UK-facing digital weather-information service and should be read alongside the ClimaCast Terms of Service and Privacy Policy.</p>
+
+        <div class="callout">
+          <svg class="callout-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+          <div class="callout-content">
+            <p><strong>Important:</strong> ClimaCast is a digital service. Refunds for digital services, subscriptions and immediate online access can depend on what was shown at checkout, whether the service has started, whether you are a consumer or business user, and what rights apply under law. Nothing in this policy removes legal rights that cannot be excluded.</p>
+          </div>
+        </div>
+
+        <div class="placeholder-note">
+          <p><strong>Publication note:</strong> before publishing this page, replace all square-bracket placeholders, including the legal operator, payment processor, support email, legal email, cancellation route and billing-portal details.</p>
+          <p>This policy is a strong starting point, but it should be checked against the exact payment flow used by ClimaCast. A refund policy should match the real checkout, subscription settings, trial wording, payment provider and support process.</p>
+        </div>
+
+
+        <h2 id="section-1">1. About this Refund Policy</h2>
+        <p>This Refund Policy explains when ClimaCast may provide refunds, credits, cancellations, adjustments or billing corrections for paid services. It is designed to sit alongside the ClimaCast Terms of Service, Privacy Policy, Cookie Policy and any plan-specific checkout information shown before purchase.</p>
+        <p>ClimaCast is primarily a digital weather-information and decision-support service. That matters because refunds for online services, subscriptions and digital content do not always work in the same way as refunds for physical goods. Some rights depend on whether you are a consumer or a business user, whether the service has already started, whether digital access was supplied immediately, whether the issue is a change of mind or a fault, and what information was shown at checkout.</p>
+        <p>This policy is intended to be clear rather than aggressive. If ClimaCast makes a billing mistake, fails to provide access, charges the wrong amount, duplicates a payment, or supplies a paid feature in a materially defective way, we should deal with it properly. At the same time, paying for access to a digital forecast, alert, dashboard, API or subscription does not create a guarantee that the weather will behave as expected, that every alert will be perfect, or that every forecast disagreement will result in a refund.</p>
+        <p>Where the law gives you stronger rights than this policy, the law takes priority. Nothing in this Refund Policy limits consumer rights that cannot legally be excluded or reduced. Where this policy gives a goodwill option, such as discretionary account credit, that does not mean the same outcome will be available in every case.</p>
+
+        <h2 id="section-2">2. Who this policy applies to</h2>
+        <p>This policy applies to users who purchase, renew, trial, upgrade, downgrade or otherwise pay for a ClimaCast plan, subscription, API package, Labs feature, account add-on, data export, professional-use feature or other paid digital service. It also applies where a payment is attempted but fails, where a payment is disputed, or where a billing record needs to be corrected.</p>
+        <p>If you use ClimaCast for personal, household or family purposes, you may be a consumer. If you use ClimaCast for a company, school, charity, local group, event, club, developer project, business operation, consultancy or other organisation, you may be using it as an organisational or business user. Different legal rights and refund expectations may apply depending on which category you fall into.</p>
+        <p>If an organisation pays for access and then distributes accounts or seats to staff, volunteers, students, members or contractors, the paying organisation is normally the customer for refund purposes. Individual invited users may be able to request support, but refunds, cancellations and billing changes will usually need to be requested by the billing owner or authorised administrator.</p>
+        <p>If a child or young person uses ClimaCast, purchases should be handled by a parent, guardian or responsible adult unless a specific arrangement has been made. ClimaCast may refuse, reverse, review or require adult confirmation for payments that appear to have been made without proper authority.</p>
+
+        <h2 id="section-3">3. Operator and billing details</h2>
+        <p>Refund requests can only be handled accurately if ClimaCast publishes clear operator and billing details. Before this page is published, the square-bracket placeholders below must be replaced with the real details of the person, business or company operating ClimaCast.</p>
+        <p>The legal operator is the person or organisation that takes responsibility for selling the paid service. If ClimaCast uses a merchant-of-record provider or payment processor, that provider may appear on bank statements, invoices, checkout receipts or refund confirmations. In that situation, the provider may process the money movement, while ClimaCast remains responsible for explaining the service, plan features and support route unless a separate checkout notice says otherwise.</p>
+        <p>Users should keep order confirmations, receipts, invoice numbers, account emails and billing-portal links. These details help us identify payments quickly and avoid asking for sensitive payment information that we do not need.</p>
+        <p>ClimaCast should not ask users to send full card numbers, bank passwords, one-time passcodes or unnecessary identity documents by email. If identity or payment verification is required, it should be handled through the relevant payment provider, billing portal or secure support process.</p>
+
+        <h2 id="section-4">4. Plain-English summary</h2>
+        <p>This section is a summary only. The detailed sections below explain how refunds and cancellations work in more specific situations.</p>
+        <p>If you were charged twice, charged the wrong amount, paid but did not receive access, or were charged after a properly completed cancellation, you should contact us and we will investigate. If the charge was genuinely incorrect, the normal outcome should be a refund, reversal, credit or correction.</p>
+        <p>If you simply change your mind after buying a digital subscription or receiving immediate access, your refund rights may depend on the checkout wording, whether you are a consumer, whether the statutory cancellation period applies, whether you agreed to immediate supply, and how much of the service has already been provided.</p>
+        <p>Forecast disagreement, weather uncertainty, a missed weather event, a warning that changes later, or a user deciding they no longer need severe-weather information will not automatically create a refund right. ClimaCast sells access to a digital information service; it does not sell guaranteed weather outcomes.</p>
+
+        <h2 id="section-5">5. Products covered by this policy</h2>
+        <p>This policy may cover ClimaCast Plus, ClimaCast Pro, ClimaCast Labs, API access, developer plans, saved-location add-ons, alert-volume add-ons, data exports, professional-use features, beta subscriptions, business accounts, educational access, one-off digital purchases and any other paid digital product offered by ClimaCast.</p>
+        <p>Each product may have its own plan description, usage limits, renewal period, trial terms, cancellation route and refund notes. Where a plan-specific page gives a more generous refund promise than this policy, the more generous promise should apply for that plan. Where a plan-specific page is less clear than this policy, we will interpret it reasonably and in line with applicable law.</p>
+        <p>Some ClimaCast features may be free, experimental, bundled, promotional or included as part of another plan. If no separate price was paid for a feature, a problem with that specific feature may not create a cash refund, but it may still justify support, bug fixing, feature removal, plan credit, goodwill credit or other action depending on the situation.</p>
+        <p>If ClimaCast later sells physical goods, merchandise, printed materials, hardware, sensors or weather-station equipment, those items should have their own returns policy. This Refund Policy is written mainly for digital services and digital content.</p>
+
+        <h2 id="section-6">6. Free plans, free trials and beta access</h2>
+        <p>Free plans do not normally create refund rights because no payment is taken for the free access itself. If a free user later upgrades to a paid plan, this policy applies from the point at which a paid order, trial conversion, renewal or charge is created.</p>
+        <p>Free trials must be explained clearly before sign-up. If a trial will convert into a paid subscription, the checkout flow should state the trial length, the renewal price, the date or conditions on which charging begins, and how to cancel before being charged. Users are responsible for cancelling before the stated deadline if they do not want the paid plan.</p>
+        <p>If a trial converts into a paid plan because the user did not cancel in time, that does not automatically mean a refund is due. However, ClimaCast may consider refunds or credits where the trial information was unclear, a cancellation attempt failed due to our error, a renewal reminder required by law was not provided, the payment was unauthorised, or another legal or fairness reason applies.</p>
+        <p>Beta or Labs access may be unstable, incomplete or experimental. If beta access is free, no refund is normally available. If beta access is paid, the checkout page should clearly say that the feature is experimental, and refunds should be assessed by looking at what was promised, what was supplied, what failed, and what rights the user has under law.</p>
+
+        <h2 id="section-7">7. Subscriptions and recurring billing</h2>
+        <p>Many ClimaCast paid plans may be subscriptions. A subscription is a recurring arrangement where access continues for a billing period, such as monthly or annually, until cancelled or ended according to the plan terms. The renewal period, price and cancellation method should be shown before checkout.</p>
+        <p>Cancelling a subscription normally stops future renewals. It does not always refund the current billing period. For example, if a user buys a monthly plan, uses it for part of the month, and then cancels, the normal outcome may be continued access until the end of that month rather than a cash refund for the unused days. Annual plans may work similarly unless the checkout page or applicable law says otherwise.</p>
+        <p>ClimaCast should make cancellation reasonably accessible. Users should not have to send repeated emails, wait through unnecessary retention steps, or contact support only during narrow hours if an online cancellation route is available. If a user cancels correctly through the provided route, we should not continue charging them after the cancellation takes effect.</p>
+        <p>Where subscription law changes or introduces extra renewal notices, cooling-off periods, online cancellation routes or refund duties, ClimaCast should update this policy and its billing flows to comply. This policy is intended to work with current UK consumer law and with future subscription-specific rules where they apply.</p>
+
+        <h2 id="section-8">8. One-off purchases and non-recurring payments</h2>
+        <p>ClimaCast may offer one-off purchases, such as a data export, report, event briefing, paid download, extended forecast pack, API credit bundle, map layer, educational resource or special access pass. These are different from subscriptions because they do not automatically renew unless the checkout page clearly says otherwise.</p>
+        <p>A one-off digital purchase may be refundable if the product was not supplied, was materially different from the description, was supplied to the wrong account because of our error, was charged incorrectly, or did not work in a way that amounts to a legal defect. A one-off purchase is not automatically refundable just because the user no longer wants it after delivery or because the weather situation later changes.</p>
+        <p>If a one-off purchase gives immediate access to digital content, the checkout process should explain any cancellation-right consequences. For example, if a consumer agrees to immediate access and acknowledges that cancellation rights may be affected, a change-of-mind refund may be limited once supply begins.</p>
+        <p>If a one-off purchase is partly service-based, such as a custom briefing or manual analysis, refunds may depend on how much work has already been performed. If no work has started and cancellation is requested quickly, a refund may be more likely. If work has been completed or delivered, the refund position may be different.</p>
+
+        <h2 id="section-9">9. Fourteen-day cancellation rights</h2>
+        <p>UK consumers who buy online or at a distance may have a 14-day cancellation period for many purchases. The exact rules depend on whether the contract is for goods, services, digital content, a subscription, a mixed product, or something excluded from the standard cancellation regime.</p>
+        <p>For digital services and digital content, cancellation rights can be affected if the consumer asks for immediate supply or access before the 14-day period ends. If the law requires ClimaCast to obtain consent, acknowledgement or confirmation before immediate supply changes cancellation rights, the checkout flow should do so clearly and in a way the user can save or refer back to.</p>
+        <p>If ClimaCast fails to give required cancellation information, the user may have longer or stronger cancellation rights than this policy would otherwise suggest. We should not rely on vague wording, hidden links or confusing checkout design to reduce a user’s rights. The safer approach is to show cancellation information clearly before purchase and confirm it by email after purchase.</p>
+        <p>This policy does not attempt to list every statutory exception or rule. Instead, it states ClimaCast’s intention to apply the correct legal cancellation rights for the product being sold and to resolve unclear cases reasonably.</p>
+
+        <h2 id="section-10">10. Immediate digital access</h2>
+        <p>ClimaCast’s paid products are likely to involve immediate digital access. A user may receive instant dashboard access, saved-location tools, model-comparison views, paid alert settings, API keys, data exports, email briefing features, Labs tools or other online features shortly after payment.</p>
+        <p>Immediate access is useful, but it affects refund analysis. If a user receives the digital benefit straight away, uses paid features, downloads data, generates outputs, sends API requests or receives paid alerts, it may be unfair and legally unnecessary to treat the purchase as if nothing was supplied. In some cases, a refund may be refused, reduced or replaced with a proportionate refund or account credit.</p>
+        <p>Where the law requires an explicit acknowledgement before a consumer loses or limits cancellation rights for immediate digital content, ClimaCast should collect that acknowledgement in the checkout flow and include it in the order confirmation. Without the correct acknowledgement, the user may keep cancellation rights that ClimaCast expected to be limited.</p>
+        <p>Immediate access does not remove rights relating to faulty digital content, services not provided with reasonable care and skill, misleading descriptions, unauthorised payments, duplicate charges or other legally protected situations.</p>
+
+        <h2 id="section-11">11. When refunds will usually be approved</h2>
+        <p>A refund will usually be approved where ClimaCast confirms that a payment was taken incorrectly and no lawful reason exists to keep it. Examples include duplicate charges, wrong-price charges, charges after an effective cancellation, paid access not being activated due to our fault, or a payment taken from the wrong account because of a ClimaCast billing error.</p>
+        <p>A refund may also be approved where a paid feature was materially misdescribed at checkout, where a paid plan failed to include an important advertised feature, where a user was unable to access the paid service for a substantial period because of a ClimaCast-controlled issue, or where a support review shows that the product supplied was not reasonably close to what was purchased.</p>
+        <p>We may approve refunds where required by consumer law, payment-provider rules, card-network rules, court or regulator decisions, or any separate written agreement with the customer. We may also approve goodwill refunds where not legally required, especially for first-time users, genuine confusion, accessibility issues, severe hardship, accidental duplicate accounts, or honest mistakes reported promptly.</p>
+        <p>Where a refund is approved, we may remove paid access, reduce plan limits, revoke API keys, cancel associated add-ons, remove generated outputs from paid areas, or end the relevant subscription. Refunds are not intended to let users keep paid access without payment unless the law requires that outcome.</p>
+
+        <h2 id="section-12">12. When refunds may be refused</h2>
+        <p>A refund may be refused where the service was supplied as described, the user received the paid access, the charge was authorised, the cancellation deadline passed, the user simply changed their mind, or the user no longer needs the service after a weather event has passed.</p>
+        <p>Refunds may also be refused where the complaint is really about forecast uncertainty rather than a service fault. Weather forecasts and warning interpretations can change. A storm may miss an area, intensify, weaken, arrive earlier, arrive later, or affect a different place from the one expected. That uncertainty is part of weather information and does not automatically mean the paid service was defective.</p>
+        <p>We may refuse refunds where a user breaches the Terms of Service, abuses support, scrapes or overloads the API, shares account access against plan limits, attempts payment fraud, files an unreasonable chargeback, uses ClimaCast for prohibited high-risk purposes, or tries to obtain repeated free access by subscribing and refunding.</p>
+        <p>A refusal should not be used to avoid genuine legal rights. If a user has a statutory right to a refund, a billing correction, or a price reduction, that right applies regardless of the examples in this policy.</p>
+
+        <h2 id="section-13">13. Partial refunds and account credits</h2>
+        <p>Not every problem requires a full refund. Depending on the issue, a proportionate refund, account credit, extra subscription time, plan extension, corrected invoice, feature replacement, free downgrade, support intervention or other remedy may be more appropriate.</p>
+        <p>For example, if an annual subscription has a temporary issue affecting one feature for a limited period, a full refund for the whole year may be disproportionate. A credit, extension or partial refund may better reflect the amount of the service affected. If the core paid service was unavailable for a substantial period, a larger remedy may be appropriate.</p>
+        <p>Account credits are not the same as cash refunds. Credits may be usable only within ClimaCast, may expire if stated, may not be transferable, and may not be redeemable for cash unless required by law. We should explain credit terms clearly when offering them.</p>
+        <p>Where the law requires a cash refund to the original payment method, we will not replace it with credit unless the user agrees or the law allows that approach.</p>
+
+        <h2 id="section-14">14. Refunds for downtime and service interruptions</h2>
+        <p>ClimaCast may experience planned maintenance, provider outages, API failures, database issues, email delivery problems, DNS issues, hosting incidents, dashboard bugs, degraded performance or other service interruptions. Some interruptions are within our control; others are caused by third-party infrastructure or upstream data providers.</p>
+        <p>Short interruptions, maintenance windows, minor display bugs, slow loading, isolated email delays or temporary degradation will not usually justify a refund. Digital services can experience occasional operational issues, and paid access does not mean that every feature will be available every second of every day.</p>
+        <p>A refund, credit or extension may be considered where a paid user loses access to an important paid feature for a significant period, where the outage is caused by ClimaCast’s systems rather than the user’s device or internet connection, and where the issue materially reduces the value of the paid plan. The remedy will depend on the length, severity, affected features and plan type.</p>
+        <p>Where ClimaCast publishes a status page or incident report, that information may be used to assess refund requests. However, a status page is not a promise that every outage creates a refund, and the absence of a public incident does not automatically mean that a user’s support report is invalid.</p>
+
+        <h2 id="section-15">15. Refunds for forecast or alert issues</h2>
+        <p>ClimaCast provides weather information, explanations and decision-support tools. It does not guarantee that a specific weather event will happen, that a specific impact will occur, that a warning will be issued, that a warning will not change, or that every local effect will be captured perfectly.</p>
+        <p>A forecast being wrong is not automatically a refundable fault. Weather forecasting involves uncertainty, model disagreement, local variation, changing observations, timing shifts and evolving official warnings. ClimaCast may explain risk accurately based on available information at the time, even if the eventual weather outcome differs from the most likely scenario.</p>
+        <p>Refunds may be considered if the issue is not ordinary weather uncertainty but a ClimaCast service failure. Examples could include paid alerts not being sent at all because of a confirmed ClimaCast system fault, a saved location being ignored due to a bug, a paid briefing showing stale data as live, or a paid feature using the wrong region because of a processing error.</p>
+        <p>Users should always check official sources for safety-critical decisions. A refund request will not be treated as proof that ClimaCast caused a travel loss, property loss, school closure issue, event disruption or other consequential loss. Those questions are dealt with under the Terms of Service and applicable law, not only this Refund Policy.</p>
+
+        <h2 id="section-16">16. Upgrades, downgrades and plan changes</h2>
+        <p>If a user upgrades from one paid plan to another, ClimaCast may charge the difference immediately, apply a pro-rata adjustment, start a new billing cycle, or follow the payment provider’s upgrade process. The checkout or billing portal should explain the effect before the upgrade is confirmed.</p>
+        <p>If a user downgrades, the downgrade may take effect immediately or at the end of the current billing period, depending on the billing system and plan design. A downgrade does not automatically create a refund for the remaining days of the higher plan unless the checkout flow, billing portal, support team or law says otherwise.</p>
+        <p>If a plan change causes access to be reduced, API limits lowered, saved locations limited, alert frequency changed or features removed, the user is responsible for checking the plan-change summary before confirming. Where ClimaCast makes the change confusing or applies the wrong plan, we should correct the account and consider any appropriate refund or credit.</p>
+        <p>If a user accidentally upgrades, reports it promptly, and has not used the upgraded features, ClimaCast may choose to reverse the change or provide a goodwill adjustment. Repeated accidental upgrades or upgrade-use-refund patterns may be refused.</p>
+
+        <h2 id="section-17">17. Discounts, coupons and promotions</h2>
+        <p>ClimaCast may offer launch discounts, student-style promotions, beta discounts, annual-plan discounts, coupons, referral credits, free months, regional offers or limited-time pricing. Each promotion may have its own eligibility rules, expiry date, renewal price and restrictions.</p>
+        <p>If a user forgets to apply a coupon before checkout, ClimaCast is not always required to refund the difference. We may apply the discount manually as a goodwill gesture if the request is prompt, the coupon was valid at the time of purchase, and the payment provider allows the adjustment.</p>
+        <p>If a promotional plan renews at a standard price, that renewal is not refundable solely because the first period was discounted, provided the renewal price was clearly shown before purchase or in the subscription terms. If the renewal price was not shown clearly enough, we will review the request fairly and in line with consumer law.</p>
+        <p>Promotional credits usually have no cash value unless expressly stated. A discount or credit cannot normally be exchanged for money, transferred to another user, sold, combined with other promotions, or applied retrospectively after it expires.</p>
+
+        <h2 id="section-18">18. Duplicate accounts and duplicate charges</h2>
+        <p>Duplicate charges can happen if a user creates more than one account, subscribes using different email addresses, retries checkout, uses multiple payment methods, or accidentally starts two subscriptions. If you believe this has happened, contact support with the billing email, account email, receipt details and approximate dates.</p>
+        <p>Where ClimaCast can confirm that duplicate paid subscriptions were created accidentally for the same user and substantially the same use, we may cancel one subscription and refund or credit the duplicate period. The outcome may depend on whether both accounts were used, whether API requests were made, whether alerts were delivered, and how quickly the issue was reported.</p>
+        <p>If duplicate accounts were used to bypass plan limits, share access, increase API usage, avoid rate limits, obtain multiple trial periods or exploit promotions, we may refuse a refund and may suspend or merge accounts according to the Terms of Service.</p>
+        <p>Users should not dispute duplicate charges through a bank before contacting ClimaCast unless there is a genuine unauthorised-payment concern or support is not responding reasonably. Chargebacks can create extra fees and account restrictions, so direct support is usually the faster route for accidental duplicates.</p>
+
+        <h2 id="section-19">19. Unauthorised payments</h2>
+        <p>If you believe a payment was unauthorised, made without permission, made by a child without appropriate adult involvement, made after account compromise, or otherwise fraudulent, contact ClimaCast and your payment provider promptly. Do not include full card numbers, bank passwords or one-time codes in your message.</p>
+        <p>ClimaCast may investigate by checking account activity, billing events, login records, IP/device signals, subscription history, support messages and payment-provider information. We may suspend the account while the issue is investigated to prevent further charges or misuse.</p>
+        <p>If a payment was genuinely unauthorised and ClimaCast is able to reverse or refund it, we will normally remove the related paid access. If a payment is handled entirely by a merchant-of-record or app-store provider, the refund may need to be requested through that provider’s process.</p>
+        <p>False unauthorised-payment claims are serious. We may refuse service, suspend accounts, preserve records, challenge chargebacks and take other appropriate action where we reasonably believe a user has falsely claimed fraud to obtain free access.</p>
+
+        <h2 id="section-20">20. Payment failures and failed renewals</h2>
+        <p>A failed payment is not a refund because no successful charge may have occurred. However, failed payments can still create confusion if a bank shows a pending authorisation, temporary hold or failed attempt. These pending entries are usually released by the payment provider or bank rather than refunded by ClimaCast.</p>
+        <p>If a renewal payment fails, ClimaCast may retry the payment, ask the user to update their payment method, apply a grace period, reduce access to a free plan, suspend paid features, cancel the subscription, or follow the payment provider’s failed-payment workflow.</p>
+        <p>If a user updates their card after a failed payment and is then charged, the charge will normally be treated as a valid renewal unless the subscription had already been cancelled or the payment was taken incorrectly. Users should cancel the plan, not only remove a card, if they want to stop future billing.</p>
+        <p>Where a failed-payment retry causes an unexpected duplicate charge or renewal after a confirmed cancellation, ClimaCast should investigate and correct the billing record if the charge was not valid.</p>
+
+        <h2 id="section-21">21. Chargebacks and payment disputes</h2>
+        <p>A chargeback is a formal payment dispute raised through a bank, card issuer or payment provider. Users should use chargebacks for genuine unauthorised payments, unresolved billing errors or serious disputes, not as a shortcut when a normal refund request is available.</p>
+        <p>If a chargeback is opened, ClimaCast may lose the ability to issue a normal refund while the payment provider reviews the dispute. We may need to submit records such as order confirmations, login history, cancellation records, access logs, support messages, invoice details and plan descriptions.</p>
+        <p>Opening a chargeback may result in immediate suspension of paid access, cancellation of the subscription, revocation of API keys, account review or restriction of future purchases. This is not a punishment for genuine disputes; it is a practical way to prevent ongoing access while payment status is uncertain.</p>
+        <p>If the dispute is resolved in the user’s favour, the payment provider may return the funds according to its process. If the dispute is resolved in ClimaCast’s favour, the subscription or account status will depend on whether the plan remains active, whether charges are up to date, and whether the relationship can continue safely.</p>
+
+        <h2 id="section-22">22. API plans and usage-based billing</h2>
+        <p>API plans may involve fixed subscriptions, usage allowances, metered billing, request bundles, overage fees, webhook volume, data-export limits or developer access. API usage is more easily consumed at scale, so refund analysis may consider how many requests were made, what data was accessed, and whether the API credentials were used.</p>
+        <p>If an API user pays for a plan and immediately consumes a large amount of request volume, downloads data, runs integrations or uses paid endpoints, a change-of-mind refund may be refused or reduced. If the API did not work as described, returned materially incorrect data because of a ClimaCast-controlled issue, or was unavailable for a significant period, a refund or credit may be considered.</p>
+        <p>Users are responsible for securing API keys, setting usage limits, monitoring integrations and preventing runaway scripts. ClimaCast will not normally refund usage caused by the user’s own code, leaked keys, infinite loops, repeated polling, failure to cache, or integrations that ignore rate-limit guidance.</p>
+        <p>If ClimaCast changes API pricing, endpoints, rate limits or access rules, we will try to give reasonable notice where practical. Refunds for API changes will depend on the plan terms, the notice given, the severity of the change and any separate written agreement.</p>
+
+        <h2 id="section-23">23. Business, school and organisational purchases</h2>
+        <p>Business and organisational users may not have the same cancellation rights as individual consumers. If a school, company, charity, event organiser, local group, developer, freelancer or public body buys ClimaCast for organisational use, refunds will usually be handled according to the contract, invoice, order form, plan terms or written agreement.</p>
+        <p>Where an organisation buys a subscription, the person approving the purchase is responsible for checking that they have authority, budget approval and the correct billing details. Refunds may be refused where an authorised organisational buyer later says they changed their mind, chose the wrong plan, failed to get internal approval, or did not use the service as much as expected.</p>
+        <p>We may still provide organisational refunds or credits for duplicate invoices, incorrect charges, failed access, material service defects, obvious billing errors or goodwill reasons. Larger business or API plans may need a separate service agreement with more specific credit, support and termination provisions.</p>
+        <p>If ClimaCast is used in a school or youth setting, the organisation should make sure that purchases, accounts, student access and data protection responsibilities are properly authorised. Refunds will normally be handled through the billing contact, not individual students.</p>
+
+        <h2 id="section-24">24. Refunds involving under-18 users</h2>
+        <p>If a user under 18 makes a payment, ClimaCast may require involvement from a parent, guardian or responsible adult before processing refunds, continuing the subscription, or making account changes. This is especially important where a payment method belongs to an adult or where the purchase relates to a recurring subscription.</p>
+        <p>Where a child or young person makes an unauthorised purchase using someone else’s payment method, the account holder or payment-method owner should contact ClimaCast promptly. We will consider the timing, account activity, feature usage, checkout clarity, age signals, and whether paid access has already been used.</p>
+        <p>ClimaCast may cancel the plan, refund the charge, remove paid access, restrict the account, or require adult approval for future purchases. The appropriate outcome will depend on the circumstances and the legal rights of the payment-method owner and user.</p>
+        <p>Young users should not try to hide subscriptions or payment issues from a responsible adult. Billing problems are easier to fix when reported early and honestly.</p>
+
+        <h2 id="section-25">25. Taxes, VAT and currency issues</h2>
+        <p>Prices may include or exclude VAT depending on how ClimaCast is operated, whether it is VAT-registered, the customer location, the payment processor, and the product type. The checkout page, invoice or receipt should explain the total price payable before the order is placed.</p>
+        <p>If a tax amount is calculated incorrectly because of a billing setup error, ClimaCast or the payment provider may correct the invoice and refund or collect the difference where lawful. If a user enters incorrect billing information, such as the wrong country, tax status or business details, the refund position may depend on the payment provider’s tax rules and whether the invoice can be corrected.</p>
+        <p>Currency conversion, bank fees, foreign transaction charges and exchange-rate movements are normally controlled by the user’s bank or payment provider. If ClimaCast refunds the original charge, the user may receive a slightly different amount in their local currency because exchange rates or bank fees have changed. ClimaCast does not normally refund bank-imposed fees unless required by law or caused by our error.</p>
+        <p>If ClimaCast later sells outside the UK, additional tax and refund requirements may apply. This policy should be reviewed before international expansion.</p>
+
+        <h2 id="section-26">26. How to request a refund</h2>
+        <p>To request a refund, use the billing portal if one is available or contact ClimaCast support at [support@climacast.uk]. If the request concerns a legal cancellation right, unauthorised payment or formal complaint, you may also contact [legal@climacast.uk].</p>
+        <p>A useful refund request should include the account email, billing email if different, order number or invoice number, payment date, amount, plan name, reason for the request, cancellation date if relevant, and any screenshots that show the billing issue. Do not send full card numbers, bank passwords, security codes or one-time passcodes.</p>
+        <p>We may ask for more information if we cannot identify the payment or understand the issue. If the payment was made through a third-party merchant, app store or payment provider, we may direct you to that provider’s refund process, because we may not be able to issue the refund ourselves.</p>
+        <p>Refund requests should be made promptly. Delayed requests are harder to verify, especially where account access has continued, API usage has occurred, receipts have been lost, or the payment provider’s refund window has closed.</p>
+
+        <h2 id="section-27">27. How refunds are paid</h2>
+        <p>Where a cash refund is approved, it will normally be returned to the original payment method through the payment provider. This helps reduce fraud and avoids sending money to a different person from the original payer.</p>
+        <p>If the original payment method is closed, expired or unavailable, the payment provider may still be able to route the refund through the card network or bank. If that is not possible, we may ask the provider what alternatives are available. ClimaCast should not request unnecessary bank details by ordinary email.</p>
+        <p>Refund timing depends on the payment provider, bank, card issuer, currency and payment method. ClimaCast may mark a refund as issued before the user’s bank displays it. Users should allow normal bank processing time before assuming a refund has failed.</p>
+        <p>Where the law requires refunds within a particular deadline, ClimaCast will aim to comply with that deadline. Where no specific legal deadline applies, we will still aim to process approved refunds without unreasonable delay.</p>
+
+        <h2 id="section-28">28. Access after refund or cancellation</h2>
+        <p>If a subscription is cancelled but not refunded, paid access may continue until the end of the current billing period. If a refund is issued for the current billing period, paid access may end immediately or be reduced to a free plan unless we say otherwise.</p>
+        <p>If a refund relates to an API plan, ClimaCast may revoke API keys, reduce rate limits, disable webhooks, stop exports, remove paid endpoints or end access to developer dashboards. Users should export any permitted account information before cancelling if they need it and if the plan allows export.</p>
+        <p>If a refund is issued for a purchase that included generated outputs, reports, downloadable files or paid data, ClimaCast may restrict future access to those outputs where technically possible and legally appropriate. However, users remain responsible for copies they have already downloaded or distributed.</p>
+        <p>Cancellation does not automatically delete the user’s account or personal data. Account deletion and privacy requests are handled under the Privacy Policy, not this Refund Policy, although the two processes may happen at the same time if requested.</p>
+
+        <h2 id="section-29">29. Account credits, goodwill and exceptions</h2>
+        <p>ClimaCast may sometimes offer account credits, extra months, partial refunds, plan extensions, coupon codes or other goodwill remedies even when a cash refund is not legally required. Goodwill remedies are intended to resolve genuine problems fairly without turning every inconvenience into a full refund.</p>
+        <p>Offering goodwill in one case does not mean ClimaCast must offer the same outcome in every case. Refund decisions can depend on timing, plan type, use of features, legal status, account history, support history, payment-provider rules and the nature of the issue.</p>
+        <p>Goodwill may be refused where a user is abusive, dishonest, repeatedly subscribes and requests refunds, exploits promotions, files false chargebacks, breaches API rules, shares accounts against plan limits or uses ClimaCast in a prohibited way.</p>
+        <p>Support staff should apply this policy consistently and politely. Users should not need to argue aggressively to receive a refund that is clearly due.</p>
+
+        <h2 id="section-30">30. Abuse, fraud and misuse</h2>
+        <p>Refund systems can be abused. ClimaCast may refuse refunds, suspend accounts, block future purchases, revoke API keys or challenge disputes where we reasonably believe a user is attempting fraud, free access abuse, promotion abuse, account sharing, plan-limit evasion, scripted trial creation or repeated use-and-refund behaviour.</p>
+        <p>Examples include creating multiple accounts to claim repeated free trials, using paid data and then claiming non-use, leaking API keys and requesting refund of resulting usage, disputing valid charges without contacting support, or falsely claiming that an authorised payment was fraudulent.</p>
+        <p>ClimaCast may keep records necessary to investigate billing abuse, defend disputes, comply with legal obligations and protect the service. These records should be handled according to the Privacy Policy and retained only for appropriate periods.</p>
+        <p>This section does not affect genuine consumer rights. A user who has a real billing problem, unauthorised payment or statutory cancellation right should contact support and will not be treated as abusive merely for asking.</p>
+
+        <h2 id="section-31">31. Complaints and escalation</h2>
+        <p>If you disagree with a refund decision, you can ask for the request to be reviewed. A review should explain whether the decision is based on the checkout terms, subscription status, cancellation timing, service usage, legal rights, payment-provider rules or another reason.</p>
+        <p>When escalating, provide any extra evidence that was not included in the first request. Useful evidence may include cancellation confirmations, support messages, receipts, screenshots of checkout wording, proof of duplicate charge, evidence of inability to access the account, or payment-provider records.</p>
+        <p>If the issue concerns statutory consumer rights, say so clearly. ClimaCast should not treat a legal-rights complaint as a simple goodwill request. Where appropriate, users may seek advice from Citizens Advice, Trading Standards, a payment provider, their bank or another appropriate body.</p>
+        <p>If the dispute involves personal data rather than money, such as account deletion, data access, email preferences or privacy rights, it should be handled under the Privacy Policy and data-protection process.</p>
+
+        <h2 id="section-32">32. Changes to this Refund Policy</h2>
+        <p>ClimaCast may update this Refund Policy as the product develops, as paid plans change, as payment providers change, as consumer law changes, or as new features such as API billing, business plans, add-ons or Labs subscriptions are introduced.</p>
+        <p>The updated policy will normally apply to purchases made after the effective date of the updated version. For existing subscriptions, changes may apply from the next renewal or as otherwise permitted by law and the Terms of Service. We should not use policy changes to remove refund rights that already existed for a past purchase.</p>
+        <p>If a change materially affects cancellation or refund rights for active paid users, ClimaCast should give appropriate notice where required or where it is fair to do so. Notice may be given by email, dashboard notice, billing-page update, account message or another reasonable method.</p>
+        <p>The version date at the top of the page should be updated whenever meaningful changes are made. ClimaCast should keep older versions where needed to resolve disputes about which terms applied at the time of purchase.</p>
+
+        <h2 id="section-33">33. Refund checklist before launch</h2>
+        <p>Before publishing this policy, ClimaCast should confirm the legal operator, contact emails, payment provider, merchant-of-record status, cancellation route, billing portal, refund approval workflow, order-confirmation wording, checkout cancellation wording, VAT/tax status and Privacy Policy links.</p>
+        <p>ClimaCast should test the full customer journey: sign-up, trial start, trial cancellation, paid conversion, subscription cancellation, upgrade, downgrade, failed payment, duplicate payment, refund, account deletion and support escalation. A policy is only useful if the product flow matches it.</p>
+        <p>The checkout page should clearly state the price, billing period, renewal rules, plan limits, cancellation method, refund conditions, immediate-access wording and any trial conversion date. Users should receive a confirmation email or durable record after purchase.</p>
+        <p>Because ClimaCast may be used by young people and involves weather-safety information, the refund process should be calm, clear and easy to understand. It should avoid pressure tactics, hidden cancellation routes or confusing legal language.</p>
+
+        <h2 id="section-34">34. Contact</h2>
+        <p>For ordinary refund requests, billing corrections and cancellation questions, contact [support@climacast.uk]. For formal legal notices, statutory cancellation requests, unresolved billing complaints or consumer-rights issues, contact [legal@climacast.uk].</p>
+        <p>When contacting us, include enough information for us to identify the payment, but do not send full card numbers, bank login details, security codes or one-time passwords. If we need you to verify payment details, we will try to use a secure payment-provider or billing-portal process.</p>
+        <p>If your payment was made through a third-party provider, merchant of record or app store, the refund may need to be requested through that provider. We will explain this where relevant, but we may not be able to override a third-party refund decision.</p>
+        <p>This policy was last updated on 26 June 2026. The public version should be reviewed before launch and whenever ClimaCast changes its billing model, payment provider, subscription terms or legal operator.</p>
+      </article>
+
+    </div>
+  </main>
+<footer class="footer-system">
+<div class="container">
+<div class="footer-main-grid">
+<div>
+<img alt="ClimaCast Logo" src="https://api.climacast.uk/logo/climacast-icon.svg" style="width: 128px;"/>
+<p class="footer-brand-summary">Simple, jargon-free weather warnings designed to protect your day, your travel, and your home from unexpected disruptions.</p>
+</div>
+<div class="footer-nav-columns">
+<div class="footer-column-group">
+<h4>Features</h4>
+<a href="https://climacast.uk/#how-it-works">How it Works</a>
+<a href="https://climacast.uk/#features">Why it's different</a>
+</div>
+<div class="footer-column-group">
+<h4>Help &amp; Support</h4>
+<a href="https://help.climacast.uk">Help Centre</a>
+<a href="https://help.climacast.uk">Report an Issue</a>
+<a href="https://status.climacast.uk">Status Page</a>
+</div>
+<div class="footer-column-group">
+<h4>Legal</h4>
+<a href="https://climacast.uk/legal/privacy">Privacy Policy</a>
+<a href="https://climacast.uk/legal/terms">Terms of Service</a>
+            <a href="https://climacast.uk/legal/refunds">Refund Policy</a>
+</div>
+</div>
+</div>
+<div class="footer-base-meta">
+<p class="footer-copyright">© <span id="runtime-year"></span> ClimaCast. All rights reserved.</p>
+<div class="footer-social-links">
+<a href="https://about.climacast.uk">About</a>
+<a href="https://help.climacast.uk">Help</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Year
+      const yearField = document.getElementById('runtime-year');
+      if (yearField) yearField.textContent = new Date().getFullYear();
+
+      // Reading progress bar
+      const progressBar = document.getElementById('reading-progress-bar');
+      const updateReadingProgress = () => {
+        if (!progressBar) return;
+        const documentElement = document.documentElement;
+        const scrollableDistance = documentElement.scrollHeight - window.innerHeight;
+        const currentScroll = window.scrollY || documentElement.scrollTop || 0;
+        const progress = scrollableDistance > 0
+          ? Math.min(100, Math.max(0, (currentScroll / scrollableDistance) * 100))
+          : 0;
+
+        progressBar.style.width = `${progress}%`;
+        progressBar.setAttribute('aria-valuenow', String(Math.round(progress)));
+      };
+
+      updateReadingProgress();
+      window.addEventListener('scroll', updateReadingProgress, { passive: true });
+      window.addEventListener('resize', updateReadingProgress);
+
+      // Simple Intersection Observer to highlight active TOC link based on scroll
+      const sections = document.querySelectorAll('.prose h2');
+      const navLinks = document.querySelectorAll('.toc-link');
+
+      if(sections.length > 0 && navLinks.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(link => {
+                link.classList.remove('is-active');
+                if (link.getAttribute('href') === `#${entry.target.id}`) {
+                  link.classList.add('is-active');
+                }
+              });
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+      }
+    });
+  </script>
+<script id="climacast-shared-about-header-script">
+    (() => {
+      const setupSharedHeader = () => {
+        const menu = document.getElementById('nav-menu-links');
+        const currentToggle = document.getElementById('mobile-menu-trigger');
+        let toggle = currentToggle;
+
+        if (currentToggle) {
+          toggle = currentToggle.cloneNode(true);
+          currentToggle.replaceWith(toggle);
+        }
+
+        const dropdowns = Array.from(document.querySelectorAll('.header .nav-dropdown'));
+        const triggers = dropdowns.map((dropdown) => {
+          const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+          if (!trigger) return null;
+          const cleanTrigger = trigger.cloneNode(true);
+          trigger.replaceWith(cleanTrigger);
+          return cleanTrigger;
+        }).filter(Boolean);
+
+        const closeDropdowns = (exception = null) => {
+          dropdowns.forEach((dropdown) => {
+            if (dropdown === exception) return;
+            dropdown.classList.remove('is-open');
+            dropdown.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        };
+
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('is-active');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.textContent = isOpen ? '\u00d7' : '\u2630';
+            if (!isOpen) closeDropdowns();
+          });
+        }
+
+        triggers.forEach((trigger) => {
+          const dropdown = trigger.closest('.nav-dropdown');
+          if (!dropdown) return;
+          trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            const willOpen = !dropdown.classList.contains('is-open');
+            closeDropdowns(dropdown);
+            dropdown.classList.toggle('is-open', willOpen);
+            trigger.setAttribute('aria-expanded', String(willOpen));
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.header .nav-dropdown') && !event.target.closest('#mobile-menu-trigger')) {
+            closeDropdowns();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeDropdowns();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSharedHeader);
+      } else {
+        setupSharedHeader();
+      }
+    })();
+  </script>
+</body>
+</html>

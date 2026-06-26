@@ -8,20 +8,12 @@
     content="ClimaCast — UK severe weather intelligence. Clear decisions, not just descriptions.">
   <title>ClimaCast — Severe Weather Intelligence</title>
 
-  <link rel="preconnect" href="https://api.climacast.uk" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="http://api.climacast.uk" crossorigin>
+  <link rel="preconnect" href="https://rsms.me">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
   <style>
-    @font-face {
-      font-family: 'ClimaCast Sans';
-      src: url('https://api.climacast.uk/fonts/climacast-sans/ClimaCastSans.woff2') format('woff2');
-      font-weight: 300 900;
-      font-style: normal;
-      font-display: swap;
-    }
-    /* ── SYSTEM RESET & VARIABLES ── */
+/* ── SYSTEM RESET & VARIABLES ── */
     *,
     *::before,
     *::after {
@@ -31,6 +23,11 @@
     }
 
     :root {
+      --heading: 'Inter', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --mono: 'Inter', sans-serif;
+      --interactive: 'Inter', sans-serif;
+      --font-features: "calt" 1, "frac" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv10" 1, "cv05" 1, "ss03" 1;
       /* Premium Slate-Neutral Light Palette */
       --bg: #ffffff;
       --bg-surface: #f8fafc;
@@ -67,10 +64,6 @@
       --blue-border: rgba(59, 130, 246, 0.25);
 
       /* Typography */
-      --heading: 'ClimaCast Sans', sans-serif;
-      --sans: 'ClimaCast Sans', sans-serif;
-      --mono: 'ClimaCast Sans', sans-serif;
-      --interactive: 'Inter', sans-serif;
 
       --radius-sm: 8px;
       --radius-md: 12px;
@@ -80,6 +73,12 @@
       --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
+html,
+body {
+  font-family: var(--sans);
+  font-feature-settings: var(--font-features);
+}
 
     html {
       scroll-behavior: smooth;
@@ -113,6 +112,7 @@
     button,
     input {
       font: inherit;
+      font-feature-settings: var(--font-features);
       background: none;
       border: none;
     }
@@ -1897,6 +1897,309 @@
     }
   </style>
   <link rel="stylesheet" href="editorial-theme.css?v=calm-simple-2026-06-23">
+  <style id="climacast-homepage-alignment">
+    .home-hero {
+      min-height: min(760px, calc(100vh - 65px));
+      display: flex;
+      align-items: center;
+      padding: clamp(86px, 11vw, 142px) 0 clamp(76px, 9vw, 118px);
+      border-bottom: 1px solid var(--about-line);
+      background:
+        linear-gradient(rgba(18, 48, 35, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 48, 35, 0.035) 1px, transparent 1px),
+        radial-gradient(circle at 84% 14%, rgba(216, 237, 165, 0.5), transparent 24%),
+        linear-gradient(135deg, #fbfcf8 0%, var(--about-paper) 72%, #edf4ec 100%);
+      background-size: 44px 44px, 44px 44px, auto, auto;
+    }
+
+    .home-hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+      gap: clamp(40px, 8vw, 110px);
+      align-items: end;
+    }
+
+    .home-hero .hero-inner {
+      max-width: 800px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .hero-kicker,
+    .metric-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero-kicker {
+      margin-bottom: 22px;
+    }
+
+    .home-hero .hero-title {
+      max-width: 800px;
+      margin-bottom: 26px;
+      font-size: clamp(52px, 8vw, 98px);
+      line-height: 0.96;
+      letter-spacing: -0.058em;
+      color: var(--about-ink);
+      text-wrap: balance;
+    }
+
+    .home-hero .hero-desc {
+      max-width: 610px;
+      margin: 0 0 34px;
+      color: var(--text-secondary);
+      font-size: clamp(17px, 1.65vw, 20px);
+      line-height: 1.65;
+    }
+
+    .home-hero .hero-actions {
+      justify-content: flex-start;
+      margin: 0;
+    }
+
+    .home-signal-panel {
+      position: relative;
+      padding: clamp(22px, 3vw, 32px);
+      border: 1px solid var(--about-line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 18px 18px 0 rgba(18, 48, 35, 0.06);
+      backdrop-filter: blur(14px);
+    }
+
+    .signal-panel-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 34px;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .signal-status {
+      color: var(--about-green);
+    }
+
+    .signal-title {
+      max-width: 310px;
+      margin-bottom: 18px;
+      color: var(--about-ink);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .signal-copy {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .signal-list {
+      display: grid;
+      gap: 0;
+      margin-top: 28px;
+      border-top: 1px solid var(--about-line);
+    }
+
+    .signal-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--about-line);
+    }
+
+    .signal-index {
+      color: var(--about-green);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .signal-item-title {
+      margin-bottom: 4px;
+      color: var(--about-ink);
+      font-weight: 700;
+    }
+
+    .signal-item-copy {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .performance-metrics {
+      padding: 0;
+      color: #fff;
+      background: var(--about-ink);
+      border: 0;
+    }
+
+    .performance-metrics .metrics-container {
+      gap: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .performance-metrics .metric-tile {
+      min-height: 220px;
+      padding: clamp(24px, 3.6vw, 42px);
+      border: 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .performance-metrics .metric-num {
+      color: var(--about-signal);
+      font-size: clamp(42px, 6vw, 72px);
+      letter-spacing: -0.06em;
+    }
+
+    .performance-metrics .metric-label {
+      margin-bottom: 18px;
+      color: rgba(255, 255, 255, 0.38);
+    }
+
+    .performance-metrics .metric-desc {
+      max-width: 250px;
+      color: rgba(255, 255, 255, 0.66);
+    }
+
+    .home-section-copy {
+      max-width: 740px !important;
+      padding-top: 0 !important;
+      color: var(--text-secondary);
+      font-family: var(--heading) !important;
+      font-size: clamp(22px, 2.8vw, 36px) !important;
+      line-height: 1.18 !important;
+      letter-spacing: -0.04em !important;
+    }
+
+    .section-intro-grid {
+      align-items: start;
+    }
+
+    .bento-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--about-line);
+      border-left: 1px solid var(--about-line);
+    }
+
+    .bento-card,
+    .bento-grid .span-3,
+    .bento-grid .span-4,
+    .bento-grid .span-5,
+    .bento-grid .span-7,
+    .bento-grid .span-8 {
+      grid-column: auto !important;
+    }
+
+    .bento-card {
+      min-height: 340px;
+      border: 0;
+      border-right: 1px solid var(--about-line);
+      border-bottom: 1px solid var(--about-line);
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .bento-card:hover {
+      transform: none;
+      box-shadow: none;
+      background: var(--about-paper);
+    }
+
+    .bento-title {
+      max-width: 360px;
+    }
+
+    .panel-bg {
+      background: var(--about-cloud);
+    }
+
+    .comparison-container,
+    .sequence-row {
+      gap: 18px;
+    }
+
+    .comparison-column,
+    .sequence-node {
+      border-radius: 8px;
+      box-shadow: none;
+    }
+
+    .conversion-zone {
+      background:
+        linear-gradient(90deg, rgba(18, 48, 35, 0.08) 1px, transparent 1px),
+        var(--about-signal);
+      background-size: 46px 46px;
+    }
+
+    .conversion-cluster {
+      max-width: 820px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .conversion-headline {
+      max-width: 780px;
+      color: var(--about-ink);
+    }
+
+    @media (max-width: 960px) {
+      .home-hero-layout,
+      .bento-grid,
+      .comparison-container,
+      .sequence-row,
+      .metrics-container {
+        grid-template-columns: 1fr;
+      }
+
+      .home-signal-panel {
+        max-width: 620px;
+      }
+
+      .performance-metrics .metric-tile {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .home-hero {
+        padding: 70px 0 62px;
+      }
+
+      .home-hero .hero-title {
+        font-size: clamp(48px, 15vw, 72px);
+      }
+
+      .home-signal-panel,
+      .comparison-column,
+      .sequence-node {
+        border-radius: 8px;
+      }
+
+      .signal-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+  </style>
   <style id="climacast-text-effects-standard">
     /* Text effects: underline only. No colour or weight shifts for emphasis states. */
     :where(.dim, .section-headline .dim, .section-heading em, .about-title .outline, .page-title .dim, .hero-title .dim, mark, em),
@@ -1982,6 +2285,7 @@
 
     .header button {
       font: inherit;
+      font-feature-settings: var(--font-features);
       background: none;
       border: 0;
     }
@@ -2267,7 +2571,7 @@
     <div class="container">
       <nav class="nav" id="global-navigation" aria-label="Global platform navigation">
         <a class="brand" href="https://climacast.uk" aria-label="ClimaCast Homepage">
-          <img style="width: 72px;" src="https://climacast.uk/assets/icon.png" alt="ClimaCast">
+          <img style="width: 72px;" src="https://api.climacast.uk/logo/climacast-icon.svg" alt="ClimaCast">
         </a>
 
         <div class="nav-menu" id="nav-menu-links">
@@ -2398,20 +2702,53 @@
   </header>
 
   <main id="main-content">
-    <section class="hero">
+    <section class="hero home-hero">
       <div class="hero-grid-bg"></div>
       <div class="hero-glow-bg"></div>
-      <div class="container">
+      <div class="container home-hero-layout">
         <div class="hero-inner">
-          <h1 class="hero-title"> Severe weather.<br>Clear decisions.</h1>
-          <p class="hero-desc"> Weather alerts can be overwhelming. ClimaCast cuts through the noise, giving you simple,
-            structured updates so you can protect what matters most: your time and your plans. </p>
+          <div class="hero-kicker">ClimaCast severe weather intelligence</div>
+          <h1 class="hero-title">Decide what to do before the weather disrupts your day.</h1>
+          <p class="hero-desc">ClimaCast turns official warnings and live context into calm, practical updates for the
+            moments when a forecast alone is not enough.</p>
           <div class="hero-actions">
-            <a href="#waitlist-gate" class="btn btn-primary btn-lg"> Get Started for Free </a>
+            <a href="#waitlist-gate" class="btn btn-primary btn-lg">Create an Account</a>
             <a href="#features" class="btn btn-outline btn-lg">Learn more about ClimaCast</a>
           </div>
         </div>
-
+        <aside class="home-signal-panel" aria-label="Example ClimaCast severe weather update">
+          <div class="signal-panel-meta">
+            <span>Impact update</span>
+            <span class="signal-status">Live-ready</span>
+          </div>
+          <h2 class="signal-title">Heavy rain expected to affect the evening commute.</h2>
+          <p class="signal-copy">A plain-language update that moves from warning to action: timing, likely impact,
+            and the safest adjustment to make.</p>
+          <div class="signal-list">
+            <div class="signal-item">
+              <div class="signal-index">01</div>
+              <div>
+                <div class="signal-item-title">Leave earlier</div>
+                <div class="signal-item-copy">Allow 30-45 extra minutes on exposed road and rail routes.</div>
+              </div>
+            </div>
+            <div class="signal-item">
+              <div class="signal-index">02</div>
+              <div>
+                <div class="signal-item-title">Watch the peak</div>
+                <div class="signal-item-copy">The highest disruption risk is between 18:00 and 21:00.</div>
+              </div>
+            </div>
+            <div class="signal-item">
+              <div class="signal-index">03</div>
+              <div>
+                <div class="signal-item-title">Recheck before travel</div>
+                <div class="signal-item-copy">Updates stay focused on what changes your next decision.</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
 
     </section>
 
@@ -2419,24 +2756,24 @@
       <div class="container">
         <div class="metrics-container">
           <div class="metric-tile">
+            <div class="metric-label">Reading goal</div>
             <div class="metric-num">&lt;5s</div>
-            <div class="metric-desc">We've designed our platform to give you the essential information about a weather
-              warning in under 5 seconds.
-            </div>
+            <div class="metric-desc">Essential warning information shaped to be understood at a glance.</div>
           </div>
           <div class="metric-tile">
+            <div class="metric-label">Attention model</div>
             <div class="metric-num">100%</div>
-            <div class="metric-desc">A 100% ad-free experience. You'll never find a 3rd-party advert on our site, except where
-              we're advertising different features on our website.</div>
+            <div class="metric-desc">No third-party adverts competing with severe-weather information.</div>
           </div>
           <div class="metric-tile">
+            <div class="metric-label">Coverage layer</div>
             <div class="metric-num">13</div>
-            <div class="metric-desc">13 main UK regions tracked. We go more in-depth per region for a warning in a smaller
-              area.</div>
+            <div class="metric-desc">Main UK regions tracked, with deeper context when a warning narrows.</div>
           </div>
           <div class="metric-tile">
+            <div class="metric-label">Noise target</div>
             <div class="metric-num">0</div>
-            <div class="metric-desc">0 speculation. To-the-point alerts, always.</div>
+            <div class="metric-desc">No drama, filler, or speculation. Only the signal a decision needs.</div>
           </div>
         </div>
       </div>
@@ -2446,21 +2783,19 @@
       <div class="container">
         <div class="section-intro-grid scroll-reveal">
           <div>
-            <div class="section-marker">Key Features</div>
-            <h2 class="section-headline">Designed for calm clarity.<br><span class="dim">Stripped of all
-                junk.</span></h2>
+            <div class="section-marker">Product Shape</div>
+            <h2 class="section-headline">Built for the moment weather becomes a decision.</h2>
           </div>
-          <p style="max-width: 780px; font-family: var(--heading); font-size: clamp(25px, 3vw, 42px); line-height: 1.16; letter-spacing: -0.045em;" class="section-paragraph">ClimaCast gives you the exact information you need most when severe weather
-            threatens to ruin your day, your travel, or your plans.</p>
+          <p class="section-paragraph home-section-copy">When conditions change quickly, ClimaCast keeps the important
+            signal close to the surface: what is happening, who it affects, and what to do next.</p>
         </div>
         <div class="bento-grid scroll-reveal delay-1">
           <article class="bento-card span-5 flex-col">
             <div>
-              <div class="bento-meta">Actionable Insights</div>
-              <h3 class="bento-title">Know exactly how to adjust your day, instantly.</h3>
-              <p class="bento-body">ClimaCast skips the generic percentage forecasts to show you real-world impacts.
-                Find out exactly when the worst weather will hit, how long it will last, and the best actions to take.
-              </p>
+              <div class="bento-meta">Impact first</div>
+              <h3 class="bento-title">Start with what changes for you.</h3>
+              <p class="bento-body">ClimaCast translates warnings into likely disruption, timing, and practical action
+                before you have to interpret a technical forecast.</p>
             </div>
             <div class="embedded-demo-stack" aria-hidden="true">
               <div class="demo-card-blueprint amber-tint">
@@ -2472,10 +2807,10 @@
           </article>
           <article class="bento-card span-4">
             <div class="giant-stat">13</div>
-            <div class="bento-meta">Local coverage</div>
-            <h3 class="bento-title">Built around you.</h3>
-            <p class="bento-body">Get deeply localised tracking tailored specifically to the UK's unique regional
-              weather patterns, commuter bottlenecks, and high-risk travel corridors.</p>
+            <div class="bento-meta">Local context</div>
+            <h3 class="bento-title">Regional warnings, practical places.</h3>
+            <p class="bento-body">Updates are shaped around UK regions, common travel pressure points, and the places
+              where severe weather usually becomes disruptive.</p>
             <div class="pill-collection">
               <span class="pill-item">London</span>
               <span class="pill-item">North Wales</span>
@@ -2493,10 +2828,10 @@
                   d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
               </svg>
             </div>
-            <div class="bento-meta">Simple Design</div>
-            <h3 class="bento-title">Zero stress. No clutter.</h3>
-            <p class="bento-body">Built for hectic mornings and stressful commutes. Open the website, see the issue, and
-              make your decision in a matter of seconds.</p>
+            <div class="bento-meta">Low-noise interface</div>
+            <h3 class="bento-title">Quiet enough to trust quickly.</h3>
+            <p class="bento-body">The experience keeps hierarchy simple: what is happening, when it matters, and what
+              to do next.</p>
           </article>
         </div>
       </div>
@@ -2507,20 +2842,18 @@
         <div class="section-intro-grid scroll-reveal">
           <div>
             <div class="section-marker">The ClimaCast Difference</div>
-            <h2 class="section-headline">The same weather data.<br><span class="dim">Fundamentally different
-                clarity.</span></h2>
+            <h2 class="section-headline">The same warning can produce a clearer next step.</h2>
           </div>
-          <p style="max-width: 780px; font-family: var(--heading); font-size: clamp(25px, 3vw, 42px); line-height: 1.16; letter-spacing: -0.045em;" class="section-paragraph">Standard weather warnings leave you to do the guesswork. ClimaCast cuts through
-            the jargon, turning confusing alerts into simple, straightforward advice for your day.</p>
+          <p class="section-paragraph home-section-copy">ClimaCast does not replace official warnings. It turns them
+            into a calmer, more useful layer for everyday decisions.</p>
         </div>
         <div class="comparison-container scroll-reveal delay-1">
           <div class="comparison-column legacy">
             <div class="column-header">Standard Weather Warning</div>
             <div class="column-content">
-              <div class="code-block-view">⚠ Yellow rain warning active. 40–60mm of baseline accumulation anticipated
-                across regional subdivisions of SE England. Isolated structural spots may register 80mm. Convective
-                systems will yield high precipitation rates. Localized flooding vectors remain plausible. Temporal
-                Range: 15:00 Tuesday to 23:00 Tuesday.</div>
+              <div class="code-block-view">Yellow rain warning active. 40-60mm of rain expected across parts of South
+                East England. Isolated spots may see more. Local flooding and travel disruption are possible between
+                15:00 and 23:00.</div>
             </div>
           </div>
           <div class="comparison-column modern">
@@ -2530,7 +2863,7 @@
                 <div class="chain-node">
                   <div class="node-index">01</div>
                   <div>
-                    <div class="node-title">Leave 30–45 minutes early for your evening commute</div>
+                    <div class="node-title">Leave 30-45 minutes early for your evening commute</div>
                     <div class="node-body">Heavy downpours mean the A21, A20, and Dartford Crossing are highly likely to
                       suffer from severe surface water and surface flooding. Delays are expected to build from 18:00.
                     </div>
@@ -2564,31 +2897,29 @@
         <div class="section-intro-grid scroll-reveal">
           <div>
             <div class="section-marker">How It Works</div>
-            <h2 class="section-headline">From raw data to your daily plan.<br><span class="dim">Step by step.</span>
-            </h2>
+            <h2 class="section-headline">From warning feed to decision layer.</h2>
           </div>
-          <p style="max-width: 780px; font-family: var(--heading); font-size: clamp(25px, 3vw, 42px); line-height: 1.16; letter-spacing: -0.045em;" class="section-paragraph">How we instantly turn complicated government weather feeds and transit data into
-            clear, stress-free updates.</p>
+          <p class="section-paragraph home-section-copy">The product is designed around a simple sequence: detect the
+            risk, understand the likely impact, then publish the clearest action.</p>
         </div>
         <div class="sequence-row scroll-reveal delay-1">
           <div class="sequence-node">
-            <div class="node-step-label">01 / Monitor</div>
-            <div class="node-heading">24/7 Live Tracking</div>
-            <p class="node-description">Our system constantly monitors official sources—including the Met Office, the
-              Environment Agency, and live transport updates—catching every single warning the second it is issued.</p>
+            <div class="node-step-label">01 / Observe</div>
+            <div class="node-heading">Warnings and live context</div>
+            <p class="node-description">Official weather sources, environmental feeds, and travel signals are watched
+              for the changes most likely to affect daily plans.</p>
           </div>
           <div class="sequence-node">
-            <div class="node-step-label">02 / Analyse</div>
-            <div class="node-heading">Real-World Impact Matching</div>
-            <p class="node-description">We don't just pass the warning along. We automatically compare the weather data
-              against local train timetables, peak rush-hour traffic patterns, and known flood zones to find out exactly
-              how your day will be affected.</p>
+            <div class="node-step-label">02 / Interpret</div>
+            <div class="node-heading">Risk becomes plain language</div>
+            <p class="node-description">The warning is translated into timing, likely disruption, confidence, and the
+              places where the impact matters most.</p>
           </div>
           <div class="sequence-node">
             <div class="node-step-label">03 / Deliver</div>
-            <div class="node-heading">Simple, Actionable Plans</div>
-            <p class="node-description">We push a clean, jargon-free summary straight to your screen. No complicated
-              maps to decipher and no confusing percentages—just the exact facts you need to move safely.</p>
+            <div class="node-heading">A concise next step</div>
+            <p class="node-description">The update stays short, specific, and calm, so the next action is easier to
+              understand under pressure.</p>
           </div>
         </div>
       </div>
@@ -2599,8 +2930,8 @@
       <div class="container">
         <div class="conversion-cluster scroll-reveal">
           <div class="section-marker" style="margin-bottom:12px;">Join ClimaCast</div>
-          <h2 class="conversion-headline">Stay one step ahead of the weather.</h2>
-          <a href="#waitlist-gate" class="btn btn-primary btn-lg"> Create an Account </a>
+          <h2 class="conversion-headline">Open ClimaCast before the weather decides your day for you.</h2>
+          <a href="#waitlist-gate" class="btn btn-primary btn-lg">Create an Account</a>
           <p class="form-response-label" id="waitlist-response-message" role="status" aria-live="polite"></p>
         </div>
       </div>
@@ -2611,7 +2942,7 @@
     <div class="container">
       <div class="footer-main-grid">
         <div>
-          <img style="width: 128px;" src="https://climacast.uk/assets/icon.png">
+          <img style="width: 128px;" src="https://api.climacast.uk/logo/climacast-icon.svg">
           <p class="footer-brand-summary">Simple, jargon-free weather warnings designed to protect your day, your
             travel, and your home from unexpected disruptions.</p>
         </div>

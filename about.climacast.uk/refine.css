@@ -1,4 +1,11 @@
+@import url('https://rsms.me/inter/inter.css');
+
 :root {
+  --heading: 'Inter', sans-serif;
+  --sans: 'Inter', sans-serif;
+  --mono: 'Inter', sans-serif;
+  --interactive: 'Inter', sans-serif;
+  --font-features: "calt" 1, "frac" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv10" 1, "cv05" 1, "ss03" 1;
   --about-ink: #10271c;
   --about-cloud: #e7f0ea;
   --about-paper: #f4f7f2;
@@ -9,6 +16,12 @@
   --text-secondary: #44594c;
   --text-muted: #6f8076;
   --border-glow: rgba(47, 143, 91, 0.28);
+}
+
+html,
+body {
+  font-family: var(--sans);
+  font-feature-settings: var(--font-features);
 }
 
 ::selection {
@@ -61,6 +74,7 @@ button:focus-visible {
   border: 0;
   background: transparent;
   font: inherit;
+  font-feature-settings: var(--font-features);
 }
 
 .nav-dropdown.is-open .nav-dropdown-menu {

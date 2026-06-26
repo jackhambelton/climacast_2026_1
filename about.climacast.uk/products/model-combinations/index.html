@@ -5,19 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="ClimaCast Model Combinations shows where leading weather models agree, differ and point to the most likely outcome.">
   <title>Model Combinations — ClimaCast</title>
-  <link rel="preconnect" href="https://api.climacast.uk" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="http://api.climacast.uk" crossorigin>
+
+  <link rel="preconnect" href="https://rsms.me">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
   <style>
-    @font-face {
-      font-family: 'ClimaCast Sans';
-      src: url('https://api.climacast.uk/fonts/climacast-sans/ClimaCastSans.woff2') format('woff2');
-      font-weight: 300 900;
-      font-style: normal;
-      font-display: swap;
-    }
 *,
     *::before,
     *::after {
@@ -27,6 +20,11 @@
     }
 
     :root {
+      --heading: 'Inter', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --mono: 'Inter', sans-serif;
+      --interactive: 'Inter', sans-serif;
+      --font-features: "calt" 1, "frac" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv10" 1, "cv05" 1, "ss03" 1;
       --bg: #ffffff;
       --bg-surface: #f8fafc;
       --bg-card: #ffffff;
@@ -37,9 +35,6 @@
       --text-secondary: #475569;
       --text-muted: #94a3b8;
       --text-dark: #ffffff;
-      --heading: 'ClimaCast Sans', sans-serif;
-      --sans: 'ClimaCast Sans', sans-serif;
-      --interactive: 'Inter', sans-serif;
       --radius-sm: 8px;
       --radius-md: 12px;
       --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -53,6 +48,12 @@
       --line: rgba(16, 39, 28, 0.16);
       --muted: #66776d;
     }
+
+html,
+body {
+  font-family: var(--sans);
+  font-feature-settings: var(--font-features);
+}
 
     html {
       scroll-behavior: smooth;
@@ -95,6 +96,7 @@
     button {
       color: inherit;
       font: inherit;
+      font-feature-settings: var(--font-features);
       background: none;
       border: 0;
     }
@@ -1840,6 +1842,7 @@
 
     .header button {
       font: inherit;
+      font-feature-settings: var(--font-features);
       background: none;
       border: 0;
     }
@@ -2124,7 +2127,7 @@
     <div class="container">
       <nav class="nav" id="global-navigation" aria-label="Global platform navigation">
         <a class="brand" href="https://climacast.uk" aria-label="ClimaCast Homepage">
-          <img style="width: 72px;" src="https://climacast.uk/assets/icon.png" alt="ClimaCast">
+          <img style="width: 72px;" src="https://api.climacast.uk/logo/climacast-icon.svg" alt="ClimaCast">
         </a>
 
         <div class="nav-menu" id="nav-menu-links">
@@ -2333,7 +2336,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
-        <div class="footer-brand"><img src="https://climacast.uk/assets/icon.png" alt="ClimaCast"><p>Clear, proportionate severe-weather information for the decisions people make every day.</p></div>
+        <div class="footer-brand"><img src="https://api.climacast.uk/logo/climacast-icon.svg" alt="ClimaCast"><p>Clear, proportionate severe-weather information for the decisions people make every day.</p></div>
         <div class="footer-links">
           <div><h3>Product</h3><a href="#capabilities">Capabilities</a><a href="#main-content">Overview</a></div>
           <div><h3>ClimaCast</h3><a href="https://about.climacast.uk">About</a><a href="https://climacast.uk">Main site</a><a href="https://labs.climacast.uk">Labs</a></div>

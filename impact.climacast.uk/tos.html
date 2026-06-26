@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ClimaCast — UK severe weather intelligence. Clear decisions, not just descriptions." name="description"/>
+<title>Terms of Service — ClimaCast</title>
+<link crossorigin="" href="https://api.climacast.uk" rel="preconnect"/>
+<link href="https://rsms.me" rel="preconnect"/>
+<link href="https://rsms.me/inter/inter.css" rel="stylesheet"/>
+<style>
+/* ── SYSTEM RESET & VARIABLES ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --heading: 'Inter', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --mono: 'Inter', sans-serif;
+      --interactive: 'Inter', sans-serif;
+      --font-features: "calt" 1, "frac" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv10" 1, "cv05" 1, "ss03" 1;
+      /* Premium Slate-Neutral Light Palette */
+      --bg: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-muted: #f1f5f9;
+
+      --border: rgba(15, 23, 42, 0.06);
+      --border-strong: rgba(15, 23, 42, 0.12);
+      --border-glow: rgba(15, 23, 42, 0.24);
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --text-dark: #ffffff;
+
+      /* Weather Severity System */
+      --amber: #b45309;
+      --amber-bg: rgba(245, 158, 11, 0.05);
+      --amber-border: rgba(245, 158, 11, 0.25);
+      --yellow: #e3c604;
+      --yellow-bg: rgba(234, 179, 8, 0.05);
+      --yellow-border: rgba(234, 179, 8, 0.25);
+      --red: #b91c1c;
+      --red-bg: rgba(239, 68, 68, 0.05);
+      --red-border: rgba(239, 68, 68, 0.25);
+      --green: #15803d;
+      --green-bg: rgba(22, 163, 74, 0.08);
+      --blue: #1d4ed8;
+      --blue-bg: rgba(59, 130, 246, 0.05);
+      --blue-border: rgba(59, 130, 246, 0.25);
+
+      /* Typography */
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+html,
+body {
+  font-family: var(--sans);
+  font-feature-settings: var(--font-features);
+}
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--heading) !important;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; background: none; border: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── LAYOUT UTILITIES ── */
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ── INTERACTIVE PREMIUM BUTTONS (Retained from Index) ── */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--text-dark);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    .btn-primary:hover:not(:disabled) { transform: scale(1.01); }
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    .btn-outline:hover:not(:disabled) {
+      background: var(--bg-surface);
+      border-color: var(--border-glow);
+      transform: scale(1.01);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+    }
+    .btn-ghost { color: var(--text-secondary); }
+    .btn-ghost:hover:not(:disabled) {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+      transform: scale(1.01);
+    }
+    .btn-nav {
+      height: 34px;
+      padding: 0 12px;
+      font-size: 12.5px;
+      background: rgba(15, 23, 42, 0.02);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-nav:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    /* ── HEADER & STICKY NAV (Retained from Index) ── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+    .brand:hover { opacity: 0.8; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+    /* ── ARTICLE ARCHITECTURE ── */
+    .article-hero {
+      padding: 80px 0 60px;
+      background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .article-hero-inner {
+      max-width: 800px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a { color: var(--text-secondary); transition: var(--transition); }
+    .breadcrumb a:hover { color: var(--text-primary); }
+
+    .article-title {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ── TWO-COLUMN DOCUMENT GRID ── */
+    .document-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+      padding-bottom: 120px;
+    }
+
+    /* ── STICKY SIDEBAR (TABLE OF CONTENTS) ── */
+    .toc-sidebar {
+      position: sticky;
+      top: 100px; /* Below header */
+      padding-right: 24px;
+      border-right: 1px solid var(--border);
+    }
+    
+    .toc-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toc-link {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      transition: var(--transition);
+      border-left: 2px solid transparent;
+      padding-left: 12px;
+      margin-left: -2px; /* Pull back to align with text */
+    }
+
+    .toc-link:hover, .toc-link.is-active {
+      color: var(--text-primary);
+      font-weight: 500;
+      border-left-color: var(--text-primary);
+    }
+
+    /* ── PROSE (THE READING EXPERIENCE) ── */
+    .prose {
+      max-width: 720px;
+      font-size: 16.5px; /* Larger for long-form reading */
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+
+    .prose h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin: 64px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 100px; /* Account for sticky header */
+    }
+
+    .prose h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+      scroll-margin-top: 100px;
+    }
+
+    .prose p {
+      margin-bottom: 24px;
+    }
+
+    .prose ul, .prose ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+
+    .prose li {
+      margin-bottom: 12px;
+      padding-left: 8px;
+    }
+    
+    .prose li::marker {
+      color: var(--text-muted);
+    }
+
+    .prose a {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 4px;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .prose a:hover {
+      text-decoration-color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .prose strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Elegant Callout/Info Box */
+    .prose .callout {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 32px 0;
+      display: flex;
+      gap: 16px;
+    }
+    
+    .callout-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      color: var(--text-primary);
+    }
+
+    .callout-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Embedded code/terminal styling */
+    .prose code {
+      font-family: var(--mono);
+      font-size: 13.5px;
+      background: var(--bg-surface);
+      padding: 3px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    /* ── FOOTER (Retained from Index) ── */
+    .footer-system {
+      border-top: 1px solid var(--border);
+      padding: 80px 0 40px;
+      background: #ffffff;
+    }
+    .footer-main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+    .footer-brand-summary {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 260px;
+      margin-top: 8px;
+    }
+    .footer-nav-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .footer-column-group h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .footer-column-group a {
+      display: block;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-column-group a:hover { color: var(--text-primary); transform: translateX(2px); }
+    .footer-base-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .footer-social-links { display: flex; gap: 20px; }
+    .footer-social-links a:hover { color: var(--text-primary); text-decoration: underline; }
+
+    /* ── RESPONSIVE ADAPTABILITY MATRIX ── */
+    @media (max-width: 900px) {
+      .document-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .toc-sidebar {
+        position: static;
+        border-right: none;
+        padding-right: 0;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .toc-link {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-main-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .nav-actions .btn-ghost { display: none; }
+    }
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    label,
+    .btn,
+    .btn-copy,
+    .btn-nav,
+    .btn-ghost,
+    .btn-outline,
+    .btn-primary,
+    .nav,
+    .nav a,
+    .nav button,
+    .nav-dropdown-trigger,
+    .nav-dropdown-menu,
+    .dropdown-item,
+    .dropdown-col h4,
+    .menu-toggle,
+    .status-chip,
+    .labs-pill,
+    .version-tag,
+    .severity-tag,
+    .warning-chip,
+    .meta-badge,
+    .pill-item,
+    .hero-badge,
+    .footer a,
+    .footer-system a,
+    .footer-links a,
+    .footer-social-links a,
+    .toc-link,
+    .faq-toc a,
+    .system-tab,
+    .step-dot,
+    .code-tile,
+    .form-input-element,
+    .cookie-button-group,
+    [onclick],
+    [tabindex],
+    [role='button'],
+    [role='tab'],
+    [role='menuitem'] {
+      font-family: var(--interactive);
+    }
+  </style>
+<link href="editorial-theme.css?v=calm-simple-2026-06-23" rel="stylesheet"/>
+<style id="climacast-text-effects-standard">
+    /* Text effects: underline only. No colour or weight shifts for emphasis states. */
+    :where(.dim, .section-headline .dim, .section-heading em, .about-title .outline, .page-title .dim, .hero-title .dim, mark, em),
+    main :where(strong, b) {
+      color: inherit !important;
+      background: none !important;
+      font-weight: inherit !important;
+      font-style: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+      -webkit-text-stroke: 0 !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 0.08em !important;
+      text-underline-offset: 0.14em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link) {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 1px !important;
+      text-underline-offset: 0.22em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):hover,
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):focus-visible {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-color: currentColor !important;
+    }
+
+    :where(.dropdown-item:hover strong, .nav-dropdown-trigger:hover, .footer-column-group a:hover, .footer-social-links a:hover) {
+      color: inherit !important;
+      font-weight: inherit !important;
+    }
+  </style>
+<style id="climacast-shared-about-header">
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      transition: transform 0.3s ease;
+    }
+
+    .header .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .header .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      width: 100%;
+    }
+
+    .header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .brand:hover {
+      opacity: 0.8;
+    }
+
+    .header .brand img {
+      width: 72px;
+      display: block;
+    }
+
+    .header button {
+      font: inherit;
+      font-feature-settings: var(--font-features);
+      background: none;
+      border: 0;
+    }
+
+    .header .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header .nav-dropdown {
+      position: relative;
+    }
+
+    .header .nav-dropdown-trigger {
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .header .nav-dropdown-trigger:hover,
+    .header .nav-dropdown.is-open .nav-dropdown-trigger {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .header .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: max-content;
+      min-width: 320px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      display: grid;
+      gap: 16px;
+      z-index: 2000;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      padding-top: 20px;
+      margin-top: -8px;
+    }
+
+    .header .nav-dropdown-menu.double-menu {
+      width: 620px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .header .nav-dropdown:hover .nav-dropdown-menu,
+    .header .nav-dropdown.is-open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .header .dropdown-col h4 {
+      font-family: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 6px;
+    }
+
+    .header .dropdown-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover {
+      background: var(--bg-surface);
+    }
+
+    .header .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover .dropdown-icon {
+      color: var(--text-primary);
+      background: #ffffff;
+    }
+
+    .header .dropdown-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .header .dropdown-item span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .header .dropdown-item .dropdown-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .header .nav-dropdown:hover .dropdown-chevron,
+    .header .nav-dropdown.is-open .dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--text-primary);
+    }
+
+    .header .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .header .btn-ghost {
+      color: var(--text-secondary);
+    }
+
+    .header .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .header .btn-nav {
+      background: var(--text-primary);
+      color: var(--bg-card);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .header .btn-nav:hover {
+      background: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    .header .btn-nav svg {
+      color: var(--text-muted);
+      transition: var(--transition-bounce);
+    }
+
+    .header .btn-nav:hover svg {
+      color: var(--bg-card);
+      transform: translateX(4px);
+    }
+
+    .header .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header .container {
+        width: min(100% - 32px, 1200px);
+      }
+
+      .header .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+      }
+
+      .header .nav-menu.is-active {
+        display: flex;
+      }
+
+      .header .nav-dropdown,
+      .header .nav-dropdown-trigger {
+        width: 100%;
+      }
+
+      .header .nav-dropdown-trigger {
+        justify-content: space-between;
+      }
+
+      .header .nav-dropdown-menu,
+      .header .nav-dropdown-menu.double-menu {
+        position: static;
+        transform: none !important;
+        width: 100% !important;
+        min-width: 0;
+        box-shadow: none;
+        border: none;
+        padding: 8px 12px;
+        display: none;
+        grid-template-columns: 1fr !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .header .nav-dropdown:hover .nav-dropdown-menu,
+      .header .nav-dropdown.is-open .nav-dropdown-menu {
+        display: grid;
+      }
+
+      .header .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .header .nav-actions .btn-nav {
+        height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .header .menu-toggle {
+        display: inline-flex;
+      }
+    }
+  </style>
+<!--
+    Publisher note: before publishing, confirm the legal operator name, business/contact address,
+    payment provider wording, refund workflow and privacy-policy links. This draft is a strong
+    starting point, but it should be reviewed by a qualified UK legal professional before launch.
+  -->
+<style id="climacast-terms-prose-extensions">
+    .prose .terms-summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .prose .summary-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .prose .summary-card h3 {
+      font-size: 14px;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+      border: 0;
+      padding: 0;
+    }
+
+    .prose .summary-card p {
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .prose .legal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 14px;
+      line-height: 1.55;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+    }
+
+    .prose .legal-table th,
+    .prose .legal-table td {
+      text-align: left;
+      vertical-align: top;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prose .legal-table th {
+      width: 34%;
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      font-weight: 600;
+    }
+
+    .prose .legal-table tr:last-child th,
+    .prose .legal-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .prose .placeholder-note {
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      color: var(--text-secondary);
+      margin: 28px 0;
+    }
+
+    .prose .placeholder-note p {
+      margin-bottom: 12px;
+    }
+
+    .prose .placeholder-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose .legal-small {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .prose .terms-summary { grid-template-columns: 1fr; }
+      .prose .legal-table th,
+      .prose .legal-table td { display: block; width: 100%; }
+      .prose .legal-table td { border-top: 1px solid var(--border); }
+    }
+
+    /* ── READING PROGRESS BAR ── */
+    .reading-progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 5px;
+      background: rgba(15, 23, 42, 0.04);
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .reading-progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: #2f8f5b;
+      box-shadow: 0 0 16px rgba(180, 83, 9, 0.22);
+      transition: width 0.12s linear;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reading-progress-bar {
+        transition: none;
+      }
+    }
+
+  
+
+    .toc-sidebar {
+      max-height: calc(100vh - 120px);
+      overflow: auto;
+      scrollbar-width: thin;
+    }
+
+    .prose .section-note {
+      background: var(--blue-bg);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin: 28px 0;
+    }
+
+    .prose .section-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose .clause-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .prose .clause-card {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      padding: 18px 20px;
+    }
+
+    .prose .clause-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .prose .clause-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .prose .clause-grid { grid-template-columns: 1fr; }
+      .toc-sidebar { max-height: none; overflow: visible; }
+    }
+</style>
+</head>
+<body>
+<header class="header">
+<div class="container">
+<nav aria-label="Global platform navigation" class="nav" id="global-navigation">
+<a aria-label="ClimaCast Homepage" class="brand" href="https://climacast.uk">
+<img alt="ClimaCast" src="https://api.climacast.uk/logo/climacast-icon.svg" style="width: 72px;"/>
+</a>
+<div class="nav-menu" id="nav-menu-links">
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              Platform
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu double-menu">
+<div class="dropdown-col">
+<h4>Product</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/products/model-combinations/">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25M3 18.75A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75M3 18.75v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Model Combinations</strong><span>See where leading forecasts agree and uncertainty remains.</span></div>
+</a>
+<a class="dropdown-item" href="https://about.climacast.uk/#method">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 13.5 10.5 6.75l4.5 4.5 5.25-5.25M3.75 19.5h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>How it works</strong><span>The method behind each useful update.</span></div>
+</a>
+</div>
+<div class="dropdown-col">
+<h4>Explore</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/#principles">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Product principles</strong><span>The rules ClimaCast is designed around.</span></div>
+</a>
+</div>
+</div>
+</div>
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              About
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu">
+<div class="dropdown-col">
+<h4>ClimaCast</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/#about">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.25 11.25 11.25 16.5m0-8.25h.008v.008H11.25V8.25Zm9.75 3.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Purpose</strong><span>Why clearer severe-weather information matters.</span></div>
+</a>
+<a class="dropdown-item" href="https://about.climacast.uk/#facts">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-10m0 0L6.25 21" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>At a glance</strong><span>The product commitments in numbers.</span></div>
+</a>
+</div>
+</div>
+</div>
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              Resources
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu">
+<div class="dropdown-col">
+<h4>Support</h4>
+<a class="dropdown-item" href="https://help.climacast.uk">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Help Centre</strong><span>Guides, account help and safety information.</span></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="nav-actions">
+<a class="btn btn-ghost" href="https://climacast.uk">Sign in</a>
+<a class="btn btn-nav" href="https://climacast.uk">
+            Create an Account
+            <svg aria-hidden="true" fill="none" height="12" viewbox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</a>
+<button aria-expanded="false" aria-label="Toggle structural menu" class="menu-toggle" id="mobile-menu-trigger">☰</button>
+</div>
+</nav>
+</div>
+<div aria-hidden="true" class="reading-progress">
+<div class="reading-progress-bar" id="reading-progress-bar"></div>
+</div>
+</header>
+<main id="main-content">
+<div class="article-hero">
+<div class="container">
+<div class="article-hero-inner">
+<div class="breadcrumb">
+<a href="https://climacast.uk">ClimaCast</a>
+<svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="12"><path d="M9 18l6-6-6-6"></path></svg>
+<a href="https://climacast.uk/legal">Legal</a>
+<svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="12"><path d="M9 18l6-6-6-6"></path></svg>
+            Terms of Service
+          </div>
+<h1 class="article-title">Terms of Service</h1>
+<div class="article-meta">
+<span class="meta-badge">Last updated: 26 June 2026</span>
+<span>Approx. 26 min read</span>
+</div>
+</div>
+</div>
+</div>
+<div class="container document-grid">
+<aside class="toc-sidebar">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav"><a class="toc-link is-active" href="#section-1">1. Agreement and scope of these Terms</a>
+<a class="toc-link" href="#section-2">2. Operator details and legal notices</a>
+<a class="toc-link" href="#section-3">3. Summary only</a>
+<a class="toc-link" href="#section-4">4. Definitions</a>
+<a class="toc-link" href="#section-5">5. Eligibility, authority and account responsibility</a>
+<a class="toc-link" href="#section-6">6. Accounts, passwords and security</a>
+<a class="toc-link" href="#section-7">7. Under-18s, parents and guardians</a>
+<a class="toc-link" href="#section-8">8. What ClimaCast provides</a>
+<a class="toc-link" href="#section-9">9. Weather safety and official sources</a>
+<a class="toc-link" href="#section-10">10. Forecast, warning and data limitations</a>
+<a class="toc-link" href="#section-11">11. Alerts, notifications and timing</a>
+<a class="toc-link" href="#section-12">12. Locations, saved places, maps and personalisation</a>
+<a class="toc-link" href="#section-13">13. Beta features, Labs and waitlists</a>
+<a class="toc-link" href="#section-14">14. Plans, subscriptions and trials</a>
+<a class="toc-link" href="#section-15">15. Prices, taxes and payment processing</a>
+<a class="toc-link" href="#section-16">16. Renewals, cancellation and refunds</a>
+<a class="toc-link" href="#section-17">17. UK consumer rights and digital services</a>
+<a class="toc-link" href="#section-18">18. Acceptable use</a>
+<a class="toc-link" href="#section-19">19. API access, integrations and automation</a>
+<a class="toc-link" href="#section-20">20. Embeds, sharing, public display and media use</a>
+<a class="toc-link" href="#section-21">21. User content, submissions and feedback</a>
+<a class="toc-link" href="#section-22">22. ClimaCast content, intellectual property and branding</a>
+<a class="toc-link" href="#section-23">23. Third-party data, services, links and attribution</a>
+<a class="toc-link" href="#section-24">24. Availability, maintenance and support</a>
+<a class="toc-link" href="#section-25">25. Changes to ClimaCast or these Terms</a>
+<a class="toc-link" href="#section-26">26. Security testing and responsible disclosure</a>
+<a class="toc-link" href="#section-27">27. Privacy, cookies, data retention and export</a>
+<a class="toc-link" href="#section-28">28. AI, automation and generated explanations</a>
+<a class="toc-link" href="#section-29">29. Schools, educational, business and organisational use</a>
+<a class="toc-link" href="#section-30">30. High-risk uses and professional reliance</a>
+<a class="toc-link" href="#section-31">31. Suspension, restriction and termination</a>
+<a class="toc-link" href="#section-32">32. Disclaimers</a>
+<a class="toc-link" href="#section-33">33. Liability</a>
+<a class="toc-link" href="#section-34">34. Complaints, disputes and governing law</a>
+<a class="toc-link" href="#section-35">35. General legal terms, contact and version control</a>
+</nav>
+</aside>
+<article class="prose">
+
+        <p>These Terms of Service explain the rules that apply when you access or use ClimaCast. They are intended to cover ClimaCast’s public website, dashboard, accounts, weather briefings, severe-weather summaries, email alerts, beta features, Labs features, paid plans, APIs, integrations, documentation and support services.</p>
+        <p>They are written for a UK-facing weather-information service, so they place extra emphasis on safety, official sources, forecast uncertainty, paid digital services, younger users, privacy, account security and responsible use. They are deliberately more detailed than a simple website notice, because ClimaCast may be used in situations where people are planning travel, school, work, outdoor events, household preparation or business operations around changing weather conditions.</p>
+
+        <div class="callout">
+          <svg class="callout-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+          <div class="callout-content">
+            <p><strong>Important safety notice:</strong> ClimaCast is an information, explanation and decision-support service. It is not an emergency service, not a replacement for 999, not a public authority, and not the official source of UK weather warnings or flood warnings. In severe, dangerous or fast-changing conditions, you should check and follow official sources, including the Met Office, Environment Agency, Natural Resources Wales, SEPA, local authorities, transport operators, schools, employers and emergency services.</p>
+          </div>
+        </div>
+        
+        <h2 id="section-1">1. Agreement and scope of these Terms</h2>
+<p>These Terms form a legally binding agreement between you and the ClimaCast operator identified in section 2. By accessing ClimaCast, viewing the website, creating an account, joining a waitlist, subscribing to a plan, using an API key, receiving an alert, testing a Labs feature, requesting support or otherwise using any part of the service, you agree to follow these Terms.</p>
+        <p>If you do not agree with these Terms, you must not use ClimaCast. If you have already created an account and no longer agree with the Terms, you should stop using the service, cancel any paid plan if applicable, and contact us if you need help closing your account or exporting information that is available for export.</p>
+        <p>These Terms apply to the public ClimaCast website, the signed-in dashboard, account areas, saved locations, email alerts, severe-weather briefings, model-comparison tools, maps, API endpoints, documentation, beta or Labs features, help centre content, status pages, paid features, free features and any related services that link to these Terms.</p>
+        <p>Additional terms may apply to particular features. For example, a paid plan may have a plan description, a beta feature may have a Labs notice, the API may have rate limits and technical documentation, and the Privacy Policy will explain how personal data is handled. If another document clearly says it overrides these Terms for a specific issue, that document will apply to that issue only.</p>
+        <p>If you use ClimaCast on behalf of a business, school, club, charity, local group, public body or other organisation, you confirm that you have authority to accept these Terms for that organisation. In that situation, “you” includes both you personally and the organisation where the context allows.</p>
+
+        <h2 id="section-2">2. Operator details and legal notices</h2>
+<p>ClimaCast must be operated by a clearly identified legal person or organisation. This matters because users need to know who provides the service, who takes payment, who handles support, who receives legal notices and who is responsible for complying with consumer, privacy and trading rules.</p>
+        <table class="legal-table">
+          <tr><th>Trading name</th><td>ClimaCast</td></tr>
+          <tr><th>Support email</th><td>support@climacast.uk</td></tr>
+          <tr><th>Legal notices email</th><td>support@climacast.uk</td></tr>
+          <tr><th>Payment processor</th><td>Stripe    </td></tr>
+          <tr><th>Primary territory</th><td>United Kingdom, unless a plan, notice or agreement says otherwise.</td></tr>
+        </table>
+        <p>References to “ClimaCast”, “we”, “us” and “our” mean the operator listed above. References to “you” and “your” mean the person, account holder, subscriber, visitor, developer, organisation or other user accessing ClimaCast.</p>
+        <p>You should use the support email for ordinary account, billing, cancellation, technical or product questions. You should use the legal notices email for formal notices, intellectual-property issues, complaints that require legal attention, responsible disclosure reports, or correspondence about these Terms.</p>
+        <p>We may verify notices before acting on them. For example, we may ask for evidence that you control an account, own a domain, represent an organisation, hold the relevant rights, or are authorised to act for someone else. We may reject or delay requests where the identity, authority or legal basis is unclear.</p>
+
+        <h2 id="section-3">3. Summary only</h2>
+<p>This section gives a plain-English overview of the most important points. It is included to make the Terms easier to understand, but it does not replace the full legal text. If this summary conflicts with the detailed sections below, the detailed sections will apply.</p>
+        <div class="terms-summary">
+          <div class="summary-card"><h3>Official sources come first</h3><p>ClimaCast can help explain weather risk, but official warnings, emergency instructions and public-authority updates must be treated as the priority.</p></div>
+          <div class="summary-card"><h3>Forecasts are uncertain</h3><p>Weather information can be wrong, delayed, incomplete, localised, misread, affected by third-party outages or overtaken by fast-changing conditions.</p></div>
+          <div class="summary-card"><h3>Accounts must be protected</h3><p>You are responsible for your login details, account activity, saved locations, notification settings, API keys and team access where applicable.</p></div>
+          <div class="summary-card"><h3>Paid plans must be clear</h3><p>Prices, renewal periods, trials, cancellation methods, refunds and important plan limits should be shown before you subscribe or pay.</p></div>
+          <div class="summary-card"><h3>Misuse is not allowed</h3><p>No scraping, overloading, reverse engineering, reselling, impersonation, abuse, unlawful use, security bypassing or misleading public display.</p></div>
+          <div class="summary-card"><h3>Your rights remain</h3><p>Nothing in these Terms removes rights that cannot lawfully be excluded, including relevant UK consumer and data-protection rights.</p></div>
+        </div>
+        <p>The safest way to think about ClimaCast is as a clear explanation layer over weather information, not as a command system or emergency warning authority. You can use it to understand context, compare risk signals and plan sensibly, but you should not treat it as a guarantee that severe weather will or will not affect you.</p>
+        <p>The most important practical rule is simple: if weather could affect safety, travel, property, school, work, events, pets, health or money, do not rely on ClimaCast alone. Check official sources, use common sense, and follow instructions from the organisations responsible for the situation you are in.</p>
+
+        <h2 id="section-4">4. Definitions</h2>
+<p>The following definitions help make these Terms easier to read. They apply unless the context clearly means something different. Words in the singular include the plural where appropriate, and the other way round.</p>
+        <table class="legal-table">
+          <tr><th>“Account”</th><td>An account, profile, login, dashboard access, beta account, subscriber account, team account or API account used to access ClimaCast.</td></tr>
+          <tr><th>“Alerts”</th><td>Email, dashboard, notification, message, webhook or other warning-style update sent, shown or made available by ClimaCast.</td></tr>
+          <tr><th>“API”</th><td>Any application programming interface, feed, endpoint, webhook, data file, token, key, integration or machine-readable service made available by ClimaCast.</td></tr>
+          <tr><th>“Beta” or “Labs”</th><td>Experimental, pre-release, test, invite-only, waitlist, prototype or preview features that may be incomplete, unstable or subject to change.</td></tr>
+          <tr><th>“Content”</th><td>Text, graphics, maps, code, designs, forecasts, summaries, risk explanations, action plans, icons, logos, data compilations, emails, documentation and other materials on or from ClimaCast.</td></tr>
+          <tr><th>“Official Sources”</th><td>Public authorities, weather agencies, flood agencies, transport bodies, emergency services, schools, employers, venue operators, local authorities and other organisations with official responsibility for safety, warnings or operational decisions.</td></tr>
+          <tr><th>“Plan”</th><td>A free, paid, beta, Plus, Pro, business, API, trial, educational or other access tier for ClimaCast.</td></tr>
+          <tr><th>“Service”</th><td>ClimaCast websites, dashboards, alerts, APIs, documentation, accounts, Labs features, emails, support, status pages and related services.</td></tr>
+          <tr><th>“User Content”</th><td>Anything you submit, upload, send, draw, import, write, label, configure or otherwise provide to ClimaCast.</td></tr>
+        </table>
+        <p>References to “including” or “for example” are not exhaustive. They introduce examples, not complete lists. Where these Terms say that we “may” do something, that means we are allowed to do it but are not required to do it in every case.</p>
+        <p>Where a section refers to “safety-critical”, “high-risk” or “professional reliance”, it means situations where a wrong, late or missing weather update could reasonably contribute to harm, major disruption, legal consequences, financial loss, property damage or operational failure.</p>
+
+        <h2 id="section-5">5. Eligibility, authority and account responsibility</h2>
+<p>You may use ClimaCast only if you can lawfully do so and only in a way that complies with these Terms. You must provide accurate information when creating an account, subscribing to a plan, requesting support, submitting billing details, joining a waitlist, using the API or asking for access to a restricted feature.</p>
+        <p>You must not create an account using someone else’s details, pretend to represent an organisation you do not represent, use a false identity, use misleading billing information, or hide the real person or organisation responsible for the account. Where we reasonably suspect that account information is inaccurate or unauthorised, we may ask for clarification, verification or correction.</p>
+        <p>If you are using ClimaCast for an organisation, you are responsible for making sure that the organisation’s users follow these Terms. This includes staff, contractors, volunteers, students, members, developers, agencies and anyone else who accesses ClimaCast through the organisation’s account, API key, shared dashboard, exported data or integration.</p>
+        <p>You are responsible for choosing the correct plan for your use case. A personal or free plan may not include commercial use, high-volume alerts, API redistribution, public display, team access, white-labelling, customer-facing use or operational reliance. If you are unsure whether a use is allowed, you should ask before relying on it.</p>
+        <p>We may refuse, suspend, limit or close access where we reasonably believe that an account is unauthorised, inaccurate, fraudulent, abusive, high-risk, unlawful, harmful to ClimaCast, harmful to users, likely to breach these Terms, or likely to create unacceptable legal, security or operational risk.</p>
+
+        <h2 id="section-6">6. Accounts, passwords and security</h2>
+<p>You are responsible for maintaining the confidentiality of your login details, passwords, authentication methods, recovery codes, devices, sessions, API keys, access tokens and team invitations. You must not share paid account access, API keys or login credentials unless your plan expressly allows shared or team access.</p>
+        <p>You should use a strong password, keep your email account secure, sign out on shared devices, review account access periodically, and enable any additional security features we make available. If you use a password manager, single sign-on provider, passkey or third-party login method, you are responsible for keeping that third-party account secure too.</p>
+        <p>You are responsible for activity on your account unless the activity was caused by our failure to apply reasonable security measures. This includes activity by team members, invited users, connected applications, scripts, integrations, API clients and anyone who gains access because credentials or keys were shared, leaked or not properly protected.</p>
+        <p>You must tell us promptly if you believe your account, password, email, device, API key, payment method or integration has been compromised. We may reset passwords, revoke sessions, rotate API keys, disable integrations, require verification, suspend access or take other steps to protect the service, your account or other users.</p>
+        <p>You must not bypass authentication, access controls, paywalls, beta restrictions, usage limits, geographic restrictions, security tools, bot protections or technical safeguards. You must not test security controls except through a responsible disclosure process or other written permission from us.</p>
+
+        <h2 id="section-7">7. Under-18s, parents and guardians</h2>
+<p>ClimaCast may be useful to families, students, schools and younger users, but accounts, subscriptions, payments, location-based features and data protection can be more complicated when a user is under 18. These Terms are designed so that younger users can understand the safety limits of ClimaCast while still involving an appropriate adult where needed.</p>
+        <p>If you are under 18, you should use ClimaCast with the involvement of a parent, guardian or responsible adult where the service involves paid subscriptions, account management, API access, precise location personalisation, business use, public display, school use, event planning, safety-related decisions or any situation where money or serious consequences are involved.</p>
+        <p>If you are under 13, you must not create an account or provide personal data to ClimaCast unless we have obtained consent from a person with parental responsibility where required by law. We may restrict, refuse or close accounts where we believe age requirements, consent requirements or child-safety expectations are not being met.</p>
+        <p>Parents and guardians who allow a child to use ClimaCast are responsible for supervising that use, explaining that forecasts are not guarantees, checking official sources during severe weather, and making sure the child does not use ClimaCast for unsafe decisions, public redistribution, payments without permission or misuse of alerts and data.</p>
+        <p>Where ClimaCast is likely to be accessed by children, we may use child-friendly explanations, privacy-protective defaults, reduced data collection, clearer safety notices, restricted communications, limited profiling or additional review before offering certain features. These steps do not make ClimaCast an emergency service or remove the need for adult judgement.</p>
+
+        <h2 id="section-8">8. What ClimaCast provides</h2>
+<p>ClimaCast provides weather-related information designed to make severe-weather risk easier to understand. Depending on your plan and the features available at the time, this may include weather summaries, severe-weather briefings, model-comparison views, warning explainers, local impact notes, flood-risk context, travel-disruption context, household preparation prompts, dashboard views, email alerts, maps, saved locations, API access, documentation and Labs features.</p>
+        <p>ClimaCast may combine, reformat, summarise, compare, classify, prioritise or explain information from multiple sources. The purpose is to make complex weather information clearer, more structured and more useful for everyday planning. For example, ClimaCast may help a user understand why a warning matters, what impacts are possible, which time window appears most relevant, and what ordinary precautions might be sensible.</p>
+        <p>ClimaCast does not control the weather, does not create official government warnings, does not operate emergency infrastructure, does not guarantee a particular weather outcome, and does not make decisions for public authorities, schools, employers, transport operators or event organisers. Those organisations may have their own obligations, thresholds and procedures.</p>
+        <p>Unless we agree otherwise in writing, ClimaCast is provided for general information, planning and decision support. It is not designed for aviation, maritime navigation, emergency-command decisions, medical decisions, life-critical operations, legal compliance, insurance underwriting, construction safety, event safety certification, public evacuation decisions or other safety-critical uses.</p>
+        <p>Features may change as ClimaCast develops. We may add, remove, redesign, rename, limit, pause or replace features where necessary for accuracy, safety, cost, licensing, performance, security, product direction, legal compliance or operational reasons.</p>
+
+        <h2 id="section-9">9. Weather safety and official sources</h2>
+<p>Weather can create risks to life, health, travel, property, pets, utilities, events, schools, workplaces and public services. You remain responsible for your own safety decisions and for checking official information before making decisions that could matter. ClimaCast is intended to support awareness, not to replace judgement or official instructions.</p>
+        <p>You must not rely on ClimaCast as your only source of information in dangerous, uncertain or fast-changing conditions. You should check the relevant official services for your location and situation, including weather warnings, flood warnings, local authority updates, transport operator updates, school or workplace announcements, venue information, emergency-service advice and any instructions given by people responsible for the site or activity.</p>
+        <p>If there is any conflict between ClimaCast and an official warning, official instruction, emergency message, venue decision, school closure notice, transport notice or public authority update, you should treat the official information as the priority. ClimaCast may lag behind, simplify, misread or fail to include information that an official source has already published.</p>
+        <p>ClimaCast action plans, suggested steps, impact notes and preparation prompts are general suggestions. They may not be suitable for your property, route, health, accessibility needs, age, pets, school, workplace, event, local drainage, transport options, building type or family circumstances. You should adapt any suggestion to your real situation.</p>
+        <p>If there is an immediate risk to life, injury, fire, flooding, structural danger, trapped people, dangerous roads, serious medical risk or another emergency, contact the appropriate emergency services. Do not wait for ClimaCast to update, confirm, escalate or explain the situation.</p>
+
+        <h2 id="section-10">10. Forecast, warning and data limitations</h2>
+<p>Weather forecasting is inherently uncertain. Forecasts, warnings, observations and impact estimates can change quickly, and conditions can differ significantly over short distances because of terrain, coastlines, urban effects, drainage, exposure, elevation, river catchments, storm tracks, local convection, soil saturation, infrastructure and the exact timing of weather systems.</p>
+        <p>ClimaCast may be wrong, delayed, unavailable, incomplete, out of date, affected by third-party outages, affected by API restrictions, affected by bugs, affected by model uncertainty, affected by data-source changes, or affected by human or automated interpretation errors. Information shown as current may still have collection, publication, caching, processing, indexing, moderation, queueing or delivery delays.</p>
+        <p>Forecasts and warnings are not promises. A high-risk signal does not guarantee that severe impacts will happen at your exact location, and a lower-risk signal does not guarantee that you are safe. Small changes in temperature, wind direction, storm track, rainfall intensity, timing, ground conditions or local infrastructure can change the outcome significantly.</p>
+        <p>Examples of limitations include warning areas that do not perfectly match your street or route, highly localised impacts that are not captured by regional summaries, flood data that does not cover every type of flooding, model agreement that does not guarantee an outcome, model disagreement that does not remove risk, and maps or polygons that are simplified or approximate.</p>
+        <p>Flood information can be especially complex. River, sea, groundwater, surface-water, drainage, sewer, reservoir and coastal flooding may be monitored or reported differently, and not every source covers every type of flooding. A property or road can be affected even where no alert appears for that precise place, and some official services may tell you to check local councils for certain flood types.</p>
+        <p>ClimaCast may use automated systems to classify, summarise or highlight risk. Automation can help with speed and clarity, but it can also misunderstand context, overstate confidence, miss edge cases, duplicate old information or fail to recognise that a source has changed meaning. You should treat automated summaries as an aid, not a final authority.</p>
+        <p>You must use judgement and check official sources before making decisions that could affect safety, money, property, work, travel, school, events, vulnerable people, pets or business operations. Where the consequence of being wrong would be serious, you should seek suitable expert or official advice rather than relying on ClimaCast.</p>
+
+        <h2 id="section-11">11. Alerts, notifications and timing</h2>
+<p>ClimaCast may provide alerts by email, web dashboard, account notification, API response, webhook or other channels. Alerts are intended to support awareness and planning. They are not guaranteed emergency notifications and should not be treated as the only way you will learn about severe weather.</p>
+        <p>We do not guarantee that any alert will be sent, received, read, delivered instantly, delivered in the correct order, delivered without duplication, or delivered before a weather impact occurs. Delivery can be affected by internet access, device settings, spam filters, email providers, browser restrictions, server load, third-party systems, data-source delays, scheduled maintenance, rate limits and other factors outside our control.</p>
+        <p>An alert may be based on information available to ClimaCast at the time it is generated. Later information may change the risk level, affected area, timing, confidence or suggested action. We may not always send a correction, downgrade, all-clear, update or reminder for every change.</p>
+        <p>You are responsible for keeping your contact details accurate, choosing suitable notification settings, checking spam or junk folders where necessary, maintaining access to your email or device, and using official warning services where safety matters. If you disable notifications, unsubscribe, block our emails, mistype your address or lose access to your account, you may miss important updates.</p>
+        <p>We may change, pause, throttle, delay, batch or stop alerts where necessary for safety, accuracy, deliverability, anti-abuse, infrastructure protection, legal compliance, product improvement or cost control. We may also limit repeated alerts to avoid overwhelming users, even if conditions remain active.</p>
+
+        <h2 id="section-12">12. Locations, saved places, maps and personalisation</h2>
+<p>Some ClimaCast features may use a postcode, town, selected area, saved place, route, map location, approximate IP-derived location, warning region, polygon or manually drawn area to personalise information. You are responsible for checking that saved places, selected areas, routes and alert settings are correct.</p>
+        <p>Location-based information can be approximate. A postcode, boundary, warning polygon, flood area, county, region, catchment, user-drawn area or map tile may not accurately represent the exact conditions at your property, school, workplace, event venue, route or destination. A small distance can matter, especially near rivers, coastlines, hills, exposed roads, bridges, valleys, urban drainage systems or storm cells.</p>
+        <p>You must not use ClimaCast maps, polygons, areas or generated boundaries as survey-grade, engineering-grade, legal, cadastral, navigation, emergency-planning or insurance-grade data unless we explicitly agree otherwise in a separate written contract. They are visual and explanatory tools, not professional mapping products.</p>
+        <p>If you draw, upload or save locations, routes or areas, you are responsible for making sure you have the right to use that information and that it does not expose another person’s private location unnecessarily. You should avoid saving or sharing precise information about someone else’s home, school, workplace or routine unless there is a lawful and appropriate reason.</p>
+        <p>Where we process personal data connected to location, we will handle it according to our Privacy Policy. Location personalisation may depend on your settings, browser permissions, account preferences, device configuration and the accuracy of information you provide.</p>
+
+        <h2 id="section-13">13. Beta features, Labs and waitlists</h2>
+<p>ClimaCast Labs, beta releases, previews, prototypes, waitlists, experiments and early-access features may be incomplete, unstable, inaccurate, unavailable, changed without notice or removed entirely. They may contain bugs, unfinished designs, limited documentation, test data, incorrect labels, temporary limits or experimental logic.</p>
+        <p>Access to a beta, waitlist or invite-only feature does not guarantee permanent access, public launch, feature completion, a particular support level, pricing, uptime, compatibility or migration to a final product. We may admit users gradually, prioritise certain testers, close sign-ups, revoke invitations, reset data, change feature names, modify limits or discontinue a beta feature.</p>
+        <p>Beta features should be used with extra caution because they may not have the same testing, monitoring, resilience, documentation or support as stable features. You should not use Labs features for safety-critical decisions, public emergency messaging, business-critical workflows, contractual commitments or paid customer-facing services unless we explicitly agree otherwise in writing.</p>
+        <p>If we ask for feedback, bug reports, screenshots, examples or suggestions, you grant us permission to use that feedback to improve ClimaCast without owing you payment, credit or ownership unless we separately agree otherwise in writing. You should not include confidential, sensitive or personal information in feedback unless it is necessary and appropriate.</p>
+        <p>You must not present beta features as final, guaranteed, official, emergency-grade, endorsed by a public authority, or suitable for safety-critical use. If you share screenshots or descriptions of beta features, you should make clear that they are experimental where that would avoid misleading others.</p>
+
+        <h2 id="section-14">14. Plans, subscriptions and trials</h2>
+<p>ClimaCast may offer free plans, paid plans, subscriptions, trials, usage-based plans, API plans, promotional discounts, educational access, business plans or one-off purchases. The features, limits and prices of each plan should be shown before checkout or in the relevant plan description.</p>
+        <p>Paid access begins when we confirm your order, activate your account, or otherwise provide the relevant digital service, unless the checkout flow says otherwise. Plan features may include limits such as saved places, alert frequency, API requests, seats, account users, regions, model views, dashboard features, export rights, historical lookback, email volume, commercial-use rights or support level.</p>
+        <p>If your plan includes a free trial or launch discount, the trial length, discount amount, renewal price and cancellation deadline should be shown before you subscribe. You are responsible for cancelling before the stated deadline if you do not want the paid plan after the trial or discount period.</p>
+        <p>Some features may be available only on higher plans or may be subject to fair-use limits even if no exact number is displayed. Fair-use limits are intended to prevent abuse, unexpected infrastructure costs, degraded performance or use that is far beyond the purpose of the plan.</p>
+        <p>You must not bypass plan limits by creating duplicate accounts, sharing access, rotating API keys, disguising usage, reselling personal access, using automation to avoid restrictions, or splitting one organisation’s use across multiple personal accounts. We may move, limit or suspend an account where usage does not match the plan selected.</p>
+
+        <h2 id="section-15">15. Prices, taxes and payment processing</h2>
+<p>Prices should be shown clearly before checkout. Unless stated otherwise, prices are in pounds sterling and include or exclude VAT as indicated at checkout. You are responsible for any taxes, duties, bank charges, currency conversion fees, card fees or other charges that apply to your purchase, except where the law requires us or our payment provider to handle them.</p>
+        <p>Payments may be processed by a third-party payment provider. We may not store full card details ourselves. The payment provider may apply its own terms, privacy notices, fraud checks, chargeback rules, identity checks, tax handling and payment-method restrictions.</p>
+        <p>You must provide accurate billing details and keep your payment method up to date. If a payment fails, we may retry the payment, ask you to update your payment method, reduce access, suspend paid features, end the subscription or recover unpaid amounts where lawful and reasonable.</p>
+        <p>We may correct obvious pricing errors. If a price shown to you is clearly incorrect, we may cancel the order and refund any amount paid, unless we choose to honour the incorrect price. We will not treat a checkout error, display bug or accidental zero price as a permanent entitlement to paid features.</p>
+        <p>Invoices, receipts and billing records may be issued by us or by the payment provider. If you need a particular invoice detail for a school, business, parent, guardian or organisation, you should provide accurate billing information before purchase or contact support promptly after purchase.</p>
+
+        <h2 id="section-16">16. Renewals, cancellation and refunds</h2>
+<p>If your plan is a subscription, it may renew automatically at the interval shown at checkout, such as monthly or annually, unless you cancel before the renewal date. The checkout or billing page should explain the renewal period, renewal price and cancellation method before you subscribe.</p>
+        <p>You can cancel a subscription by using the account settings, billing portal, payment-provider cancellation flow, or another cancellation method we make available. Cancellation normally stops future renewals. It does not automatically refund charges already paid unless the plan description, checkout terms, these Terms or applicable law requires a refund.</p>
+        <p>If you cancel during a paid billing period, you may continue to have access until the end of that period unless the checkout flow, plan description or law says otherwise. We may offer pro-rata refunds, goodwill credits or account credits, but we are not required to do so unless required by law or expressly promised.</p>
+        <p>If a free trial converts into a paid subscription, the trial terms should explain when payment will begin and how to cancel before being charged. You should not assume that deleting the app, ignoring emails, not using the service, unsubscribing from marketing emails or cancelling a card automatically cancels the subscription.</p>
+        <p>Where a refund is requested, we may need enough information to identify the account, payment, purchaser and reason for the request. Refunds may be returned to the original payment method where possible, and processing times may depend on the payment provider or bank.</p>
+
+        <h2 id="section-17">17. UK consumer rights and digital services</h2>
+<p>If you are a consumer in the UK, you have legal rights that cannot be excluded by these Terms. Nothing in these Terms limits those rights. This includes rights relating to services performed with reasonable care and skill and rights relating to digital content where applicable.</p>
+        <p>For many online purchases, consumers may have a 14-day cancellation period. However, cancellation rights can work differently for services, subscriptions and digital content, especially where you ask for immediate access or where digital content is supplied before the cancellation period ends. The checkout flow should explain any relevant cancellation right, consent to immediate supply, acknowledgement and refund consequences.</p>
+        <p>If ClimaCast is defective, unavailable or not as described in a way that matters legally, you may have rights to repair, replacement, repeat performance, price reduction, refund or other remedies depending on the issue and the law that applies. These Terms do not remove those rights.</p>
+        <p>Because ClimaCast provides weather information, a forecast being different from the weather that actually happens does not automatically mean the service is defective. Forecast uncertainty is an expected limitation of weather services. A valid complaint is more likely to involve issues such as paid features not being provided, materially misleading plan descriptions, unreasonable service failures, or digital content not matching what was promised.</p>
+        <p>If you believe your consumer rights have been affected, contact support with details of the account, plan, payment, issue, dates and the outcome you are requesting. We will consider the request in light of the Terms, the plan description, the evidence available and applicable law.</p>
+
+        <h2 id="section-18">18. Acceptable use</h2>
+<p>You must use ClimaCast lawfully, responsibly and in accordance with these Terms. You must not use the service in a way that harms ClimaCast, other users, official sources, data providers, infrastructure, the public, emergency services, or the reliability of weather information.</p>
+        <p>You must not scrape, crawl, copy, harvest, mirror, bulk download, reverse engineer, overload, stress test, attack, disrupt, bypass limits, bypass paywalls, bypass security controls, or use automated access except where permitted by the API documentation, robots.txt, written permission or the relevant plan.</p>
+        <p>You must not use ClimaCast to mislead people about weather risk, impersonate ClimaCast or an official body, create fake warnings, cause panic, hide official safety advice, promote unsafe behaviour, target abuse at individuals, distribute malware, violate intellectual-property rights, or break laws or regulations that apply to you.</p>
+        <p>You must not use ClimaCast to make or support unlawful discrimination, harassment, stalking, doxxing, privacy invasion, fraud, spam, phishing, unauthorised surveillance, or misuse of another person’s location or contact details. You must not upload or submit content that is unlawful, abusive, malicious, misleading, infringing or harmful.</p>
+        <p>We may investigate suspected misuse and take proportionate action, including warnings, rate limits, feature restrictions, account suspension, API-key revocation, content removal, billing review, termination or reporting to appropriate authorities where necessary.</p>
+
+        <h2 id="section-19">19. API access, integrations and automation</h2>
+<p>If ClimaCast provides API access, feeds, webhooks, embeddable components, data files or integrations, they are subject to these Terms, the applicable plan, technical documentation, rate limits, attribution requirements and any additional API terms we publish. API access is permission, not ownership of the data or systems.</p>
+        <p>You must keep API keys, tokens and secrets confidential. You must not expose them in public repositories, client-side code, browser bundles, screenshots, logs, shared documents or public forums. If a key is leaked, you must revoke or rotate it promptly and tell us if the leak may affect ClimaCast or other users.</p>
+        <p>You must not use automated access to exceed rate limits, bypass paid tiers, avoid attribution, reconstruct restricted datasets, resell access, create competing bulk data services, interfere with other users, or place unreasonable load on ClimaCast infrastructure. We may limit, throttle, suspend, rotate or revoke API access at any time for security, abuse, licensing, cost or reliability reasons.</p>
+        <p>Integrations must display ClimaCast information accurately and must not remove important warnings, disclaimers, timestamps, source notes, confidence indicators or safety notices where doing so would be misleading. If your integration makes ClimaCast information visible to other people, you are responsible for making sure the context is not deceptive.</p>
+        <p>Unless your plan or a written agreement allows it, API access is for your own permitted use and not for resale, sublicensing, public redistribution, mass reproduction, archival, model training, commercial weather-data products or use as the core dataset of another service.</p>
+
+        <h2 id="section-20">20. Embeds, sharing, public display and media use</h2>
+<p>ClimaCast may allow certain information to be shared, embedded, screenshotted, quoted or displayed publicly. This permission is limited, revocable and subject to these Terms, any branding rules, attribution requirements, plan limits and safety notices that apply to the feature.</p>
+        <p>If you share ClimaCast information publicly, you must not present it as an official warning, emergency instruction, government notice, Met Office product, Environment Agency product or public-authority decision. You must preserve relevant context, such as timestamps, affected areas, uncertainty, source notes and links to official sources where available.</p>
+        <p>You must not edit ClimaCast content in a way that changes its meaning, exaggerates or downplays risk, hides safety warnings, removes limitations, implies endorsement, or makes outdated information appear current. If you share a screenshot, you should avoid cropping out the date, time, area, risk label or important disclaimers where that would mislead people.</p>
+        <p>Journalists, creators, community groups and organisations may refer to ClimaCast for commentary, but must not imply partnership, sponsorship, approval or official status unless we have agreed in writing. We may ask you to correct, remove or update public uses that are inaccurate, unsafe, infringing, abusive or commercially inappropriate.</p>
+        <p>Embedding or sharing ClimaCast content does not transfer ownership of the content, data, branding, design or underlying systems. We may withdraw sharing functionality, change embed rules or require attribution where necessary.</p>
+
+        <h2 id="section-21">21. User content, submissions and feedback</h2>
+<p>You may submit information to ClimaCast, such as saved locations, routes, preferences, feedback, support messages, bug reports, screenshots, uploaded files, map selections, labels, comments, organisation details or integration settings. This is “User Content”.</p>
+        <p>You keep ownership of your User Content, but you grant ClimaCast a licence to use it as needed to provide, secure, operate, support, improve, debug, analyse and develop the service. This licence includes the right to store, process, display, transmit, format, copy and adapt User Content for those purposes.</p>
+        <p>You must have the rights and permissions needed to submit User Content. You must not submit confidential, sensitive, unlawful, infringing, malicious, misleading or excessive information unless it is necessary and appropriate for the feature or support request. You should avoid submitting personal data about other people unless you have a lawful and fair reason to do so.</p>
+        <p>If you send ideas, suggestions, feature requests, bug reports or other feedback, we may use them without paying you, crediting you or treating the feedback as confidential, unless we have separately agreed otherwise in writing. This helps us improve ClimaCast without creating ownership disputes over product ideas.</p>
+        <p>We may remove, restrict, delete, anonymise or refuse User Content where we reasonably believe it breaches these Terms, creates risk, is technically harmful, is unlawful, is not needed, is excessive, or affects the rights or safety of others.</p>
+
+        <h2 id="section-22">22. ClimaCast content, intellectual property and branding</h2>
+<p>ClimaCast and its content are protected by intellectual-property and other laws. This includes the ClimaCast name, logos, icons, visual design, layouts, text, code, documentation, summaries, action-plan formats, map styling, risk explanations, data compilations, UI components and other original materials.</p>
+        <p>Subject to these Terms, we grant you a limited, personal, revocable, non-exclusive, non-transferable licence to access and use ClimaCast for the purposes allowed by your plan. This licence does not allow you to copy, resell, sublicense, scrape, mirror, reverse engineer, rebrand, white-label, bulk download, train models on, or create a competing service from ClimaCast content unless we expressly allow it.</p>
+        <p>You must not use ClimaCast branding in a way that suggests partnership, sponsorship, endorsement, official status or approval unless we have agreed in writing. You must not register domains, social handles, trademarks, app names, products or organisations that are confusingly similar to ClimaCast or that impersonate the service.</p>
+        <p>Some materials used by ClimaCast may come from third parties or open-source projects. Those materials may have their own licences, attribution rules or restrictions. Nothing in these Terms gives you broader rights in third-party material than ClimaCast itself has.</p>
+        <p>We reserve all rights not expressly granted. If you want to use ClimaCast content, branding, screenshots, maps or data beyond ordinary personal use, you should contact us for permission.</p>
+
+        <h2 id="section-23">23. Third-party data, services, links and attribution</h2>
+<p>ClimaCast may rely on, link to, display, process or summarise information from third-party sources, including weather data providers, public authorities, map providers, hosting providers, email providers, analytics providers, payment processors, authentication services, status-page services and other suppliers.</p>
+        <p>Third-party services are not controlled by ClimaCast. They may change, fail, restrict access, impose rate limits, alter licensing terms, update formats, remove datasets, provide inaccurate information, suffer outages or require additional attribution. Those changes may affect ClimaCast features, accuracy, cost, availability or performance.</p>
+        <p>Links to third-party websites are provided for convenience, source checking, safety context or user support. A link does not mean that ClimaCast controls, endorses or accepts responsibility for that third party. You should read the third party’s terms, privacy notices and safety information where relevant.</p>
+        <p>Where third-party attribution is required, you must not remove, hide or alter it. If you display ClimaCast content publicly or through an integration, you may also need to display attribution to ClimaCast and to relevant data providers. We may update attribution requirements as provider requirements change.</p>
+        <p>We are not responsible for losses, errors or delays caused by third-party data or services except where the law does not allow us to exclude responsibility. However, we will try to design ClimaCast in a way that makes major source limitations visible where reasonably practical.</p>
+
+        <h2 id="section-24">24. Availability, maintenance and support</h2>
+<p>We aim to keep ClimaCast reliable, but we do not guarantee uninterrupted access, perfect uptime, instant updates or error-free operation. The service may be affected by maintenance, upgrades, bugs, third-party outages, hosting issues, high traffic, abuse, security incidents, data-source disruption, payment-provider issues or events outside our reasonable control.</p>
+        <p>We may perform planned or emergency maintenance. Where practical, we may use a status page, banner, email, dashboard notice or other channel to explain significant incidents or planned downtime. However, we are not required to provide advance notice for urgent maintenance, security fixes or changes needed to protect the service.</p>
+        <p>Support availability depends on your plan and the nature of the issue. Free users may receive limited or community-style support, while paid or business plans may receive higher-priority support if stated in the plan description. Unless we agree otherwise in writing, support does not include emergency weather advice, legal advice, professional consultancy or guaranteed response times.</p>
+        <p>You should report bugs, billing issues, security concerns or serious inaccuracies with enough detail for us to investigate. Useful details may include your account email, affected location, feature, screenshot, time, device, browser, plan and what you expected to happen.</p>
+        <p>We may not be able to resolve every issue, especially where the problem comes from a third-party data source, user device, browser setting, email provider, payment provider, official-source delay or an unsupported use case.</p>
+
+        <h2 id="section-25">25. Changes to ClimaCast or these Terms</h2>
+<p>ClimaCast will change over time. We may add, remove, rename, redesign, limit, pause, discontinue or replace features, plans, pricing, limits, data sources, providers, integrations, APIs, documentation or support processes. We may do this for product improvement, safety, reliability, cost, licensing, compliance, security, user feedback or business reasons.</p>
+        <p>We may update these Terms from time to time. If changes are minor, editorial, clarifying or administrative, we may publish the updated Terms without additional notice. If changes materially affect your rights, obligations, paid plan, renewal, cancellation rights or permitted use, we will take reasonable steps to notify you, such as by email, dashboard notice or prominent website notice.</p>
+        <p>The “last updated” date shows when the Terms were most recently changed. Your continued use of ClimaCast after updated Terms take effect means you accept the updated Terms. If you do not agree to a material change, you should stop using ClimaCast and cancel any subscription before the change affects your renewal, where applicable.</p>
+        <p>Changes to features or data sources may happen faster than formal Terms updates, especially where weather data, official sources, API dependencies or safety considerations require urgent changes. We will try to keep important user-facing descriptions accurate, but temporary differences may occur during releases or incidents.</p>
+        <p>Where the law requires a particular notice period, consent, cancellation right or renewal process, we will apply that requirement where it applies to you.</p>
+
+        <h2 id="section-26">26. Security testing and responsible disclosure</h2>
+<p>We welcome responsible reports about genuine security issues, but you must not carry out testing that harms users, disrupts ClimaCast, accesses data you are not authorised to access, degrades availability, bypasses payment controls, or breaks the law.</p>
+        <p>Unless we have given written permission, you must not perform denial-of-service testing, social engineering, phishing, malware use, physical attacks, credential stuffing, automated vulnerability scanning at high volume, destructive testing, data exfiltration, spam, or attempts to access another user’s account or personal data.</p>
+        <p>If you discover a suspected vulnerability, you should report it to [security@climacast.uk] or the legal notices email with enough detail to reproduce the issue safely. You should not publicly disclose the issue until we have had a reasonable opportunity to investigate and fix it, unless the law requires otherwise.</p>
+        <p>We may restrict, suspend or block activity that appears to be harmful, even if you intended to help. Acting responsibly means keeping testing minimal, stopping when you identify a problem, avoiding access to data, and giving us clear information without causing unnecessary risk.</p>
+        <p>We do not promise a bug bounty, payment, public credit or reward unless we separately publish a programme that says so. We may still thank responsible reporters where appropriate.</p>
+
+        <h2 id="section-27">27. Privacy, cookies, data retention and export</h2>
+<p>Our Privacy Policy explains how we collect, use, store and share personal data. This may include account details, contact details, saved locations, preferences, alert settings, billing references, support messages, device information, logs, analytics data and information connected to your use of ClimaCast.</p>
+        <p>Our Cookie Policy explains how cookies and similar technologies may be used for essential functionality, security, preferences, analytics, performance, authentication, billing and product improvement. Some cookies may be necessary for the service to work, while others may require consent depending on their purpose and the law that applies.</p>
+        <p>We may retain information for as long as needed to provide the service, maintain accounts, comply with legal obligations, resolve disputes, prevent abuse, secure the service, maintain billing records, investigate incidents, improve features or enforce these Terms. Retention periods may differ depending on the type of information and the reason it is held.</p>
+        <p>You may have rights to access, correct, delete, restrict, object to or export certain personal data, depending on the law that applies and the context. Some information may need to be retained for legal, security, billing or abuse-prevention reasons even after an account is closed.</p>
+        <p>Deleting your account or cancelling a subscription may remove access to dashboard features, saved locations, plan history and alert settings. It may not automatically delete all backups, logs, invoices, support records, legal records or information that we must keep for legitimate reasons.</p>
+
+        <h2 id="section-28">28. AI, automation and generated explanations</h2>
+<p>ClimaCast may use automated systems, algorithms, rule-based processing, statistical methods, model comparison, natural-language generation or AI-assisted tools to classify, summarise, explain or prioritise weather information. These tools are intended to improve clarity and speed, not to replace official warnings or human judgement.</p>
+        <p>Generated explanations may be incomplete, oversimplified, outdated, overconfident, unclear, duplicated, inconsistent or wrong. They may misunderstand a source, fail to include a local factor, miss a recent update, or describe uncertainty in a way that does not fully capture the underlying meteorology.</p>
+        <p>You should not treat generated explanations, action plans, summary labels, confidence notes or automated briefings as professional advice, emergency instructions or guaranteed predictions. They are aids for understanding, and you should compare them with official sources where safety or important decisions are involved.</p>
+        <p>We may monitor, review, improve, test, rate-limit, disable or modify automated features to improve safety, accuracy, readability and reliability. We may also place additional warnings or restrictions around features that are experimental, high-impact or likely to be misunderstood.</p>
+        <p>If you notice an automated explanation that appears misleading, dangerous or materially wrong, you should report it with enough context for us to investigate, such as the location, time, warning, screenshot and what seemed incorrect.</p>
+
+        <h2 id="section-29">29. Schools, educational, business and organisational use</h2>
+<p>ClimaCast may be used by schools, clubs, small businesses, community groups, event organisers, creators, local projects or other organisations for general awareness and planning. However, organisational use can create greater responsibility because other people may rely on the information you display or distribute.</p>
+        <p>If you use ClimaCast in a school, educational or youth setting, you are responsible for making sure that use is age-appropriate, supervised where necessary, consistent with safeguarding expectations, and not presented as an official emergency-warning system. Students should be encouraged to compare information with official sources and understand forecast uncertainty.</p>
+        <p>If you use ClimaCast for a business, event, venue, club, transport operation, outdoor activity or workplace, you must not treat it as a substitute for your own risk assessment, legal duties, insurance obligations, professional advice, site checks, local authority guidance or official warnings. You remain responsible for decisions affecting staff, customers, attendees, volunteers or the public.</p>
+        <p>Organisational users must choose a plan that matches their use. A personal plan may not permit team access, public display, customer-facing use, API redistribution, internal dashboards for multiple staff, or commercial reliance. If you need those uses, you should contact us or select a suitable plan where available.</p>
+        <p>Where an organisation creates accounts for others, adds team members, uses student or staff data, or integrates ClimaCast into internal systems, the organisation is responsible for permissions, data accuracy, user management, cancellation, billing, training and compliance with relevant rules.</p>
+
+        <h2 id="section-30">30. High-risk uses and professional reliance</h2>
+<p>ClimaCast is not designed for high-risk, safety-critical or professional reliance unless we expressly agree otherwise in a separate written contract. You must not use ClimaCast as the sole basis for decisions where a wrong, delayed or missing update could reasonably contribute to death, injury, serious property damage, major financial loss, legal breach, public disorder, evacuation failure or critical operational disruption.</p>
+        <p>Prohibited or restricted high-risk uses include aviation, maritime navigation, emergency response command, public evacuation decisions, flood-defence operation, medical decisions, construction-site safety sign-off, outdoor event safety certification, rail or road control, energy-grid operation, insurance underwriting, legal compliance decisions and any use requiring official or professional meteorological advice.</p>
+        <p>You may still use ClimaCast as one general information source in a wider risk-management process, provided you also use official sources, professional judgement, appropriate expertise and your own checks. In those situations, ClimaCast should be treated as supplementary context, not the deciding authority.</p>
+        <p>If you need a service for safety-critical, regulated, professional or operational use, you should obtain an appropriate written agreement, service specification, data licence, support arrangement and professional advice. The ordinary public Terms are not intended to provide that level of assurance.</p>
+        <p>We may refuse, restrict or terminate use that appears to involve unacceptable high-risk reliance, especially if the use could mislead the public, expose vulnerable people to harm, or imply that ClimaCast has official responsibility it does not have.</p>
+
+        <h2 id="section-31">31. Suspension, restriction and termination</h2>
+<p>We may suspend, restrict, rate-limit, downgrade, revoke API keys, disable features, remove content or terminate accounts where we reasonably believe there has been a breach of these Terms, unlawful activity, non-payment, security risk, misuse, fraudulent activity, excessive load, unauthorised sharing, harmful conduct or unacceptable risk.</p>
+        <p>Where practical and appropriate, we may give notice or an opportunity to fix the issue before taking action. However, we may act immediately without notice where needed to protect users, data, infrastructure, third-party providers, payment systems, legal compliance, public safety, or the integrity of ClimaCast.</p>
+        <p>You may stop using ClimaCast at any time. If you have a paid subscription, you should cancel it through the billing process to avoid future renewals. Simply stopping use, deleting bookmarks, unsubscribing from emails or uninstalling a shortcut may not cancel a paid plan.</p>
+        <p>After termination, your right to access the service ends. We may delete or retain information according to our Privacy Policy, legal obligations, security needs, billing requirements and backup processes. Some sections of these Terms will continue after termination, including sections about intellectual property, payment obligations, disclaimers, liability, privacy, disputes and general legal terms.</p>
+        <p>If you believe your account was restricted or terminated by mistake, you may contact support with relevant details. We are not required to restore access where doing so would create risk, breach legal obligations or undermine enforcement of these Terms.</p>
+
+        <h2 id="section-32">32. Disclaimers</h2>
+<p>ClimaCast is provided on an “as is” and “as available” basis, subject to rights that cannot lawfully be excluded. We do not promise that the service will be uninterrupted, error-free, secure, perfectly accurate, complete, current, compatible with every device, available in every area, or suitable for every use case.</p>
+        <p>We do not promise that ClimaCast will identify every risk, send every alert, interpret every source correctly, cover every location, include every official update, predict every impact, or prevent loss, disruption, injury, damage or inconvenience. Weather is uncertain and can change faster than any information service can reflect.</p>
+        <p>We do not provide emergency services, legal advice, insurance advice, engineering advice, professional meteorological consultancy, medical advice, travel guarantees, event-safety certification or official public-warning services through the ordinary ClimaCast product.</p>
+        <p>Any suggested actions, preparation prompts, impact notes or explanations are general information only. You are responsible for deciding whether they are suitable for your circumstances and for checking official sources where the decision matters.</p>
+        <p>Nothing in these Terms excludes warranties, guarantees, rights or remedies that cannot be excluded under applicable law. If the law gives you non-excludable rights, those rights continue to apply.</p>
+
+        <h2 id="section-33">33. Liability</h2>
+<p>Nothing in these Terms excludes or limits liability where it would be unlawful to do so. This includes liability for death or personal injury caused by negligence, fraud, fraudulent misrepresentation, and any other liability that cannot legally be excluded or limited.</p>
+        <p>Subject to the previous paragraph and to any rights you have as a consumer, ClimaCast is not responsible for losses caused by reliance on weather information where the loss results from forecast uncertainty, third-party data errors, official-source changes, local conditions, delivery delays, user settings, misuse, unsupported use, high-risk reliance or failure to check official sources.</p>
+        <p>For consumer users, we do not exclude responsibility for losses that are a foreseeable result of our breach of these Terms or our failure to use reasonable care and skill. However, we are not responsible for losses that are not foreseeable, not caused by us, caused by your misuse, caused by events outside our reasonable control, or connected to business use where you bought a consumer plan.</p>
+        <p>For business and organisational users, and to the fullest extent permitted by law, we exclude liability for loss of profits, revenue, business, contracts, goodwill, data, anticipated savings, business interruption, reputational damage, indirect loss, consequential loss and operational decisions made using ClimaCast. Any liability we do have may be limited to the amount paid for the relevant service during a reasonable period before the event giving rise to the claim, unless a separate written agreement says otherwise.</p>
+        <p>You are responsible for losses, claims, costs or liabilities arising from your breach of these Terms, misuse of ClimaCast, unlawful use, unauthorised public display, misuse of API access, infringement of third-party rights, or reliance on ClimaCast in a way that these Terms prohibit.</p>
+
+        <h2 id="section-34">34. Complaints, disputes and governing law</h2>
+<p>If you have a complaint, you should contact us first so we can try to resolve it. Please include your account email, relevant dates, the feature or plan involved, screenshots or receipts where useful, and the outcome you are asking for. This helps us investigate and respond properly.</p>
+        <p>We will try to deal with complaints fairly and within a reasonable time. Some issues may require information from a payment provider, data provider, hosting provider, email provider or other third party, which can affect how quickly we can respond.</p>
+        <p>These Terms are governed by the laws of England and Wales, unless the law gives you mandatory rights under another UK jurisdiction or another country that cannot be overridden. If you are a consumer, you may have the right to bring proceedings in your local courts where the law allows.</p>
+        <p>If you are a business or organisation, the courts of England and Wales will have exclusive jurisdiction over disputes relating to these Terms or ClimaCast, unless a separate written agreement says otherwise.</p>
+        <p>Before starting formal proceedings, both sides should make a reasonable effort to resolve the dispute informally, unless urgent action is needed to protect rights, safety, data, confidentiality, intellectual property or the service.</p>
+
+        <h2 id="section-35">35. General legal terms, contact and version control</h2>
+<p>If any part of these Terms is found to be invalid, unlawful or unenforceable, the rest of the Terms will continue to apply. The invalid part will be treated as changed only as much as necessary to make it valid, lawful and enforceable, or removed if that is not possible.</p>
+        <p>Our failure to enforce a right immediately does not mean we give up that right. A waiver must be clear and in writing. You may not transfer your account, subscription, API key or rights under these Terms to another person or organisation without our permission. We may transfer our rights and obligations as part of a merger, reorganisation, sale, change of operator, service transfer or legal restructuring, provided your rights are not unfairly reduced.</p>
+        <p>These Terms, together with the Privacy Policy, Cookie Policy, plan description, checkout terms, API documentation and any applicable written agreement, form the agreement between you and ClimaCast for the service. They replace earlier informal statements about the same subject, except where a separate signed agreement says otherwise.</p>
+        <p>Questions about these Terms should be sent to [legal@climacast.uk]. Ordinary support, cancellation, billing and account questions should be sent to [support@climacast.uk] or handled through the account or billing portal where available.</p>
+        <p>Last updated: 26 June 2026. Version: ClimaCast Terms of Service — normal-length detailed edition with expanded sections. Before publishing, replace placeholders, confirm the legal operator, review payment-provider wording, check the Privacy Policy and ask a qualified UK legal professional to review the final version.</p>
+      </article>
+</div>
+</main>
+<footer class="footer-system">
+<div class="container">
+<div class="footer-main-grid">
+<div>
+<img alt="ClimaCast Logo" src="https://api.climacast.uk/logo/climacast-icon.svg" style="width: 128px;"/>
+<p class="footer-brand-summary">Simple, jargon-free weather warnings designed to protect your day, your travel, and your home from unexpected disruptions.</p>
+</div>
+<div class="footer-nav-columns">
+<div class="footer-column-group">
+<h4>Features</h4>
+<a href="https://climacast.uk/#how-it-works">How it Works</a>
+<a href="https://climacast.uk/#features">Why it's different</a>
+</div>
+<div class="footer-column-group">
+<h4>Help &amp; Support</h4>
+<a href="https://help.climacast.uk">Help Centre</a>
+<a href="https://help.climacast.uk">Report an Issue</a>
+<a href="https://status.climacast.uk">Status Page</a>
+</div>
+<div class="footer-column-group">
+<h4>Legal</h4>
+<a href="https://climacast.uk/legal/privacy">Privacy Policy</a>
+<a href="https://climacast.uk/legal/terms">Terms of Service</a>
+</div>
+</div>
+</div>
+<div class="footer-base-meta">
+<p class="footer-copyright">© <span id="runtime-year"></span> ClimaCast. All rights reserved.</p>
+<div class="footer-social-links">
+<a href="https://about.climacast.uk">About</a>
+<a href="https://help.climacast.uk">Help</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Year
+      const yearField = document.getElementById('runtime-year');
+      if (yearField) yearField.textContent = new Date().getFullYear();
+
+      // Reading progress bar
+      const progressBar = document.getElementById('reading-progress-bar');
+      const updateReadingProgress = () => {
+        if (!progressBar) return;
+        const documentElement = document.documentElement;
+        const scrollableDistance = documentElement.scrollHeight - window.innerHeight;
+        const currentScroll = window.scrollY || documentElement.scrollTop || 0;
+        const progress = scrollableDistance > 0
+          ? Math.min(100, Math.max(0, (currentScroll / scrollableDistance) * 100))
+          : 0;
+
+        progressBar.style.width = `${progress}%`;
+        progressBar.setAttribute('aria-valuenow', String(Math.round(progress)));
+      };
+
+      updateReadingProgress();
+      window.addEventListener('scroll', updateReadingProgress, { passive: true });
+      window.addEventListener('resize', updateReadingProgress);
+
+      // Simple Intersection Observer to highlight active TOC link based on scroll
+      const sections = document.querySelectorAll('.prose h2');
+      const navLinks = document.querySelectorAll('.toc-link');
+
+      if(sections.length > 0 && navLinks.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(link => {
+                link.classList.remove('is-active');
+                if (link.getAttribute('href') === `#${entry.target.id}`) {
+                  link.classList.add('is-active');
+                }
+              });
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+      }
+    });
+  </script>
+<script id="climacast-shared-about-header-script">
+    (() => {
+      const setupSharedHeader = () => {
+        const menu = document.getElementById('nav-menu-links');
+        const currentToggle = document.getElementById('mobile-menu-trigger');
+        let toggle = currentToggle;
+
+        if (currentToggle) {
+          toggle = currentToggle.cloneNode(true);
+          currentToggle.replaceWith(toggle);
+        }
+
+        const dropdowns = Array.from(document.querySelectorAll('.header .nav-dropdown'));
+        const triggers = dropdowns.map((dropdown) => {
+          const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+          if (!trigger) return null;
+          const cleanTrigger = trigger.cloneNode(true);
+          trigger.replaceWith(cleanTrigger);
+          return cleanTrigger;
+        }).filter(Boolean);
+
+        const closeDropdowns = (exception = null) => {
+          dropdowns.forEach((dropdown) => {
+            if (dropdown === exception) return;
+            dropdown.classList.remove('is-open');
+            dropdown.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        };
+
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('is-active');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.textContent = isOpen ? '\u00d7' : '\u2630';
+            if (!isOpen) closeDropdowns();
+          });
+        }
+
+        triggers.forEach((trigger) => {
+          const dropdown = trigger.closest('.nav-dropdown');
+          if (!dropdown) return;
+          trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            const willOpen = !dropdown.classList.contains('is-open');
+            closeDropdowns(dropdown);
+            dropdown.classList.toggle('is-open', willOpen);
+            trigger.setAttribute('aria-expanded', String(willOpen));
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.header .nav-dropdown') && !event.target.closest('#mobile-menu-trigger')) {
+            closeDropdowns();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeDropdowns();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSharedHeader);
+      } else {
+        setupSharedHeader();
+      }
+    })();
+  </script>
+</body>
+</html>

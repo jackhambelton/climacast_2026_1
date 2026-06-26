@@ -6,19 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="The page you requested could not be found on ClimaCast.">
   <title>Forbidden - ClimaCast</title>
-  <link rel="preconnect" href="https://api.climacast.uk" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="http://api.climacast.uk" crossorigin>
+
+  <link rel="preconnect" href="https://rsms.me">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
   <style>
-    @font-face {
-      font-family: 'ClimaCast Sans';
-      src: url('https://api.climacast.uk/fonts/climacast-sans/ClimaCastSans.woff2') format('woff2');
-      font-weight: 300 900;
-      font-style: normal;
-      font-display: swap;
-    }
 /* ── SYSTEM RESET & VARIABLES ── */
     *,
     *::before,
@@ -29,6 +22,11 @@
     }
 
     :root {
+      --heading: 'Inter', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --mono: 'Inter', sans-serif;
+      --interactive: 'Inter', sans-serif;
+      --font-features: "calt" 1, "frac" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv10" 1, "cv05" 1, "ss03" 1;
       /* Premium Slate-Neutral Light Palette */
       --bg: #ffffff;
       --bg-surface: #f8fafc;
@@ -65,11 +63,6 @@
       --blue-border: rgba(59, 130, 246, 0.25);
 
       /* Typography */
-      --heading: 'ClimaCast Sans', sans-serif;
-      --sans: 'ClimaCast Sans', sans-serif;
-      --mono: 'ClimaCast Sans', sans-serif;
-      --interactive: 'Inter', sans-serif;
-
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
@@ -78,6 +71,12 @@
       --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
+html,
+body {
+  font-family: var(--sans);
+  font-feature-settings: var(--font-features);
+}
 
     html {
       scroll-behavior: smooth;
@@ -111,6 +110,7 @@
     button,
     input {
       font: inherit;
+      font-feature-settings: var(--font-features);
       background: none;
       border: none;
     }
@@ -2152,6 +2152,7 @@
 
     .header button {
       font: inherit;
+      font-feature-settings: var(--font-features);
       background: none;
       border: 0;
     }
@@ -2437,7 +2438,7 @@
     <div class="container">
       <nav class="nav" id="global-navigation" aria-label="Global platform navigation">
         <a class="brand" href="https://climacast.uk" aria-label="ClimaCast Homepage">
-          <img style="width: 72px;" src="https://climacast.uk/assets/icon.png" alt="ClimaCast">
+          <img style="width: 72px;" src="https://api.climacast.uk/logo/climacast-icon.svg" alt="ClimaCast">
         </a>
 
         <div class="nav-menu" id="nav-menu-links">
@@ -2644,7 +2645,7 @@
     <div class="container">
       <div class="footer-main-grid">
         <div>
-          <img style="width: 128px;" src="https://climacast.uk/assets/icon.png">
+          <img style="width: 128px;" src="https://api.climacast.uk/logo/climacast-icon.svg">
           <p class="footer-brand-summary">Simple, jargon-free weather warnings designed to protect your day, your
             travel, and your home from unexpected disruptions.</p>
         </div>

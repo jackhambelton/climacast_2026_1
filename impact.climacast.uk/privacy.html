@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ClimaCast Privacy Policy — how ClimaCast collects, uses, protects and shares personal data." name="description"/>
+<title>Privacy Policy — ClimaCast</title>
+<link crossorigin="" href="https://api.climacast.uk" rel="preconnect"/>
+<link href="https://rsms.me" rel="preconnect"/>
+<link href="https://rsms.me/inter/inter.css" rel="stylesheet"/>
+<style>
+/* ── SYSTEM RESET & VARIABLES ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --heading: 'Inter', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --mono: 'Inter', sans-serif;
+      --interactive: 'Inter', sans-serif;
+      --font-features: "calt" 1, "frac" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv10" 1, "cv05" 1, "ss03" 1;
+      /* Premium Slate-Neutral Light Palette */
+      --bg: #ffffff;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-muted: #f1f5f9;
+
+      --border: rgba(15, 23, 42, 0.06);
+      --border-strong: rgba(15, 23, 42, 0.12);
+      --border-glow: rgba(15, 23, 42, 0.24);
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --text-dark: #ffffff;
+
+      /* Weather Severity System */
+      --amber: #b45309;
+      --amber-bg: rgba(245, 158, 11, 0.05);
+      --amber-border: rgba(245, 158, 11, 0.25);
+      --yellow: #e3c604;
+      --yellow-bg: rgba(234, 179, 8, 0.05);
+      --yellow-border: rgba(234, 179, 8, 0.25);
+      --red: #b91c1c;
+      --red-bg: rgba(239, 68, 68, 0.05);
+      --red-border: rgba(239, 68, 68, 0.25);
+      --green: #15803d;
+      --green-bg: rgba(22, 163, 74, 0.08);
+      --blue: #1d4ed8;
+      --blue-bg: rgba(59, 130, 246, 0.05);
+      --blue-border: rgba(59, 130, 246, 0.25);
+
+      /* Typography */
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+html,
+body {
+  font-family: var(--sans);
+  font-feature-settings: var(--font-features);
+}
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--heading) !important;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; background: none; border: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── LAYOUT UTILITIES ── */
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ── INTERACTIVE PREMIUM BUTTONS (Retained from Index) ── */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--text-dark);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    .btn-primary:hover:not(:disabled) { transform: scale(1.01); }
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    .btn-outline:hover:not(:disabled) {
+      background: var(--bg-surface);
+      border-color: var(--border-glow);
+      transform: scale(1.01);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+    }
+    .btn-ghost { color: var(--text-secondary); }
+    .btn-ghost:hover:not(:disabled) {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+      transform: scale(1.01);
+    }
+    .btn-nav {
+      height: 34px;
+      padding: 0 12px;
+      font-size: 12.5px;
+      background: rgba(15, 23, 42, 0.02);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-nav:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    /* ── HEADER & STICKY NAV (Retained from Index) ── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+    .brand:hover { opacity: 0.8; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+    /* ── ARTICLE ARCHITECTURE ── */
+    .article-hero {
+      padding: 80px 0 60px;
+      background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .article-hero-inner {
+      max-width: 800px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a { color: var(--text-secondary); transition: var(--transition); }
+    .breadcrumb a:hover { color: var(--text-primary); }
+
+    .article-title {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ── TWO-COLUMN DOCUMENT GRID ── */
+    .document-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+      padding-bottom: 120px;
+    }
+
+    /* ── STICKY SIDEBAR (TABLE OF CONTENTS) ── */
+    .toc-sidebar {
+      position: sticky;
+      top: 100px; /* Below header */
+      padding-right: 24px;
+      border-right: 1px solid var(--border);
+    }
+    
+    .toc-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toc-link {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      transition: var(--transition);
+      border-left: 2px solid transparent;
+      padding-left: 12px;
+      margin-left: -2px; /* Pull back to align with text */
+    }
+
+    .toc-link:hover, .toc-link.is-active {
+      color: var(--text-primary);
+      font-weight: 500;
+      border-left-color: var(--text-primary);
+    }
+
+    /* ── PROSE (THE READING EXPERIENCE) ── */
+    .prose {
+      max-width: 720px;
+      font-size: 16.5px; /* Larger for long-form reading */
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+
+    .prose h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin: 64px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 100px; /* Account for sticky header */
+    }
+
+    .prose h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+      scroll-margin-top: 100px;
+    }
+
+    .prose p {
+      margin-bottom: 24px;
+    }
+
+    .prose ul, .prose ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+
+    .prose li {
+      margin-bottom: 12px;
+      padding-left: 8px;
+    }
+    
+    .prose li::marker {
+      color: var(--text-muted);
+    }
+
+    .prose a {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 4px;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .prose a:hover {
+      text-decoration-color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .prose strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Elegant Callout/Info Box */
+    .prose .callout {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 32px 0;
+      display: flex;
+      gap: 16px;
+    }
+    
+    .callout-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      color: var(--text-primary);
+    }
+
+    .callout-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Embedded code/terminal styling */
+    .prose code {
+      font-family: var(--mono);
+      font-size: 13.5px;
+      background: var(--bg-surface);
+      padding: 3px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    /* ── FOOTER (Retained from Index) ── */
+    .footer-system {
+      border-top: 1px solid var(--border);
+      padding: 80px 0 40px;
+      background: #ffffff;
+    }
+    .footer-main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+    .footer-brand-summary {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 260px;
+      margin-top: 8px;
+    }
+    .footer-nav-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .footer-column-group h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .footer-column-group a {
+      display: block;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-column-group a:hover { color: var(--text-primary); transform: translateX(2px); }
+    .footer-base-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .footer-social-links { display: flex; gap: 20px; }
+    .footer-social-links a:hover { color: var(--text-primary); text-decoration: underline; }
+
+    /* ── RESPONSIVE ADAPTABILITY MATRIX ── */
+    @media (max-width: 900px) {
+      .document-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .toc-sidebar {
+        position: static;
+        border-right: none;
+        padding-right: 0;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .toc-link {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-main-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .nav-actions .btn-ghost { display: none; }
+    }
+    a[href],
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    label,
+    .btn,
+    .btn-copy,
+    .btn-nav,
+    .btn-ghost,
+    .btn-outline,
+    .btn-primary,
+    .nav,
+    .nav a,
+    .nav button,
+    .nav-dropdown-trigger,
+    .nav-dropdown-menu,
+    .dropdown-item,
+    .dropdown-col h4,
+    .menu-toggle,
+    .status-chip,
+    .labs-pill,
+    .version-tag,
+    .severity-tag,
+    .warning-chip,
+    .meta-badge,
+    .pill-item,
+    .hero-badge,
+    .footer a,
+    .footer-system a,
+    .footer-links a,
+    .footer-social-links a,
+    .toc-link,
+    .faq-toc a,
+    .system-tab,
+    .step-dot,
+    .code-tile,
+    .form-input-element,
+    .cookie-button-group,
+    [onclick],
+    [tabindex],
+    [role='button'],
+    [role='tab'],
+    [role='menuitem'] {
+      font-family: var(--interactive);
+    }
+  </style>
+<link href="editorial-theme.css?v=calm-simple-2026-06-23" rel="stylesheet"/>
+<style id="climacast-text-effects-standard">
+    /* Text effects: underline only. No colour or weight shifts for emphasis states. */
+    :where(.dim, .section-headline .dim, .section-heading em, .about-title .outline, .page-title .dim, .hero-title .dim, mark, em),
+    main :where(strong, b) {
+      color: inherit !important;
+      background: none !important;
+      font-weight: inherit !important;
+      font-style: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+      -webkit-text-stroke: 0 !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 0.08em !important;
+      text-underline-offset: 0.14em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link) {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-line: underline !important;
+      text-decoration-color: currentColor !important;
+      text-decoration-thickness: 1px !important;
+      text-underline-offset: 0.22em !important;
+    }
+
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):hover,
+    :where(a[href]:not(.btn):not(.brand):not(.dropdown-item):not(.metric-tile):not(.system-tab), .prose a, .lab-feature-body a, .footer-system a, .footer a, .footer-links a, .footer-social-links a, .stage-footer a, .toc-link, .faq-toc a, .breadcrumb a, a.text-link):focus-visible {
+      color: inherit !important;
+      font-weight: inherit !important;
+      text-decoration-color: currentColor !important;
+    }
+
+    :where(.dropdown-item:hover strong, .nav-dropdown-trigger:hover, .footer-column-group a:hover, .footer-social-links a:hover) {
+      color: inherit !important;
+      font-weight: inherit !important;
+    }
+  </style>
+<style id="climacast-shared-about-header">
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      transition: transform 0.3s ease;
+    }
+
+    .header .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .header .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      width: 100%;
+    }
+
+    .header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .brand:hover {
+      opacity: 0.8;
+    }
+
+    .header .brand img {
+      width: 72px;
+      display: block;
+    }
+
+    .header button {
+      font: inherit;
+      font-feature-settings: var(--font-features);
+      background: none;
+      border: 0;
+    }
+
+    .header .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header .nav-dropdown {
+      position: relative;
+    }
+
+    .header .nav-dropdown-trigger {
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .header .nav-dropdown-trigger:hover,
+    .header .nav-dropdown.is-open .nav-dropdown-trigger {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .header .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: max-content;
+      min-width: 320px;
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.02);
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      display: grid;
+      gap: 16px;
+      z-index: 2000;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      padding-top: 20px;
+      margin-top: -8px;
+    }
+
+    .header .nav-dropdown-menu.double-menu {
+      width: 620px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .header .nav-dropdown:hover .nav-dropdown-menu,
+    .header .nav-dropdown.is-open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .header .dropdown-col h4 {
+      font-family: var(--heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 6px;
+    }
+
+    .header .dropdown-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover {
+      background: var(--bg-surface);
+    }
+
+    .header .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-item:hover .dropdown-icon {
+      color: var(--text-primary);
+      background: #ffffff;
+    }
+
+    .header .dropdown-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .header .dropdown-item span {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .header .dropdown-item .dropdown-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .header .dropdown-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .header .nav-dropdown:hover .dropdown-chevron,
+    .header .nav-dropdown.is-open .dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--text-primary);
+    }
+
+    .header .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .header .btn-ghost {
+      color: var(--text-secondary);
+    }
+
+    .header .btn-ghost:hover {
+      color: var(--text-primary);
+      background: rgba(15, 23, 42, 0.04);
+    }
+
+    .header .btn-nav {
+      background: var(--text-primary);
+      color: var(--bg-card);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .header .btn-nav:hover {
+      background: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    .header .btn-nav svg {
+      color: var(--text-muted);
+      transition: var(--transition-bounce);
+    }
+
+    .header .btn-nav:hover svg {
+      color: var(--bg-card);
+      transform: translateX(4px);
+    }
+
+    .header .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header .container {
+        width: min(100% - 32px, 1200px);
+      }
+
+      .header .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 8px;
+      }
+
+      .header .nav-menu.is-active {
+        display: flex;
+      }
+
+      .header .nav-dropdown,
+      .header .nav-dropdown-trigger {
+        width: 100%;
+      }
+
+      .header .nav-dropdown-trigger {
+        justify-content: space-between;
+      }
+
+      .header .nav-dropdown-menu,
+      .header .nav-dropdown-menu.double-menu {
+        position: static;
+        transform: none !important;
+        width: 100% !important;
+        min-width: 0;
+        box-shadow: none;
+        border: none;
+        padding: 8px 12px;
+        display: none;
+        grid-template-columns: 1fr !important;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .header .nav-dropdown:hover .nav-dropdown-menu,
+      .header .nav-dropdown.is-open .nav-dropdown-menu {
+        display: grid;
+      }
+
+      .header .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .header .nav-actions .btn-nav {
+        height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .header .menu-toggle {
+        display: inline-flex;
+      }
+    }
+  </style>
+<!--
+    Publisher note: before publishing, confirm the legal operator/controller name, contact address,
+    processors, cookie banner, payment provider, retention workflow, under-18 settings and
+    privacy-rights request process. This draft should be reviewed before launch.
+  -->
+<style id="climacast-terms-prose-extensions">
+    .prose .terms-summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .prose .summary-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .prose .summary-card h3 {
+      font-size: 14px;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+      border: 0;
+      padding: 0;
+    }
+
+    .prose .summary-card p {
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .prose .legal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 14px;
+      line-height: 1.55;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+    }
+
+    .prose .legal-table th,
+    .prose .legal-table td {
+      text-align: left;
+      vertical-align: top;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prose .legal-table th {
+      width: 34%;
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      font-weight: 600;
+    }
+
+    .prose .legal-table tr:last-child th,
+    .prose .legal-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .prose .placeholder-note {
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      color: var(--text-secondary);
+      margin: 28px 0;
+    }
+
+    .prose .placeholder-note p {
+      margin-bottom: 12px;
+    }
+
+    .prose .placeholder-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose .legal-small {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .prose .terms-summary { grid-template-columns: 1fr; }
+      .prose .legal-table th,
+      .prose .legal-table td { display: block; width: 100%; }
+      .prose .legal-table td { border-top: 1px solid var(--border); }
+    }
+
+    /* ── READING PROGRESS BAR ── */
+    .reading-progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 5px;
+      background: rgba(15, 23, 42, 0.04);
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .reading-progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: #2f8f5b;
+      box-shadow: 0 0 16px rgba(180, 83, 9, 0.22);
+      transition: width 0.12s linear;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reading-progress-bar {
+        transition: none;
+      }
+    }
+
+  
+
+    .toc-sidebar {
+      max-height: calc(100vh - 120px);
+      overflow: auto;
+      scrollbar-width: thin;
+    }
+
+    .prose .section-note {
+      background: var(--blue-bg);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin: 28px 0;
+    }
+
+    .prose .section-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose .clause-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .prose .clause-card {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      padding: 18px 20px;
+    }
+
+    .prose .clause-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .prose .clause-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .prose .clause-grid { grid-template-columns: 1fr; }
+      .toc-sidebar { max-height: none; overflow: visible; }
+    }
+</style>
+</head>
+<body>
+<header class="header">
+<div class="container">
+<nav aria-label="Global platform navigation" class="nav" id="global-navigation">
+<a aria-label="ClimaCast Homepage" class="brand" href="https://climacast.uk">
+<img alt="ClimaCast" src="https://api.climacast.uk/logo/climacast-icon.svg" style="width: 72px;"/>
+</a>
+<div class="nav-menu" id="nav-menu-links">
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              Platform
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu double-menu">
+<div class="dropdown-col">
+<h4>Product</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/products/model-combinations/">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25M3 18.75A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75M3 18.75v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Model Combinations</strong><span>See where leading forecasts agree and uncertainty remains.</span></div>
+</a>
+<a class="dropdown-item" href="https://about.climacast.uk/#method">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 13.5 10.5 6.75l4.5 4.5 5.25-5.25M3.75 19.5h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>How it works</strong><span>The method behind each useful update.</span></div>
+</a>
+</div>
+<div class="dropdown-col">
+<h4>Explore</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/#principles">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Product principles</strong><span>The rules ClimaCast is designed around.</span></div>
+</a>
+</div>
+</div>
+</div>
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              About
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu">
+<div class="dropdown-col">
+<h4>ClimaCast</h4>
+<a class="dropdown-item" href="https://about.climacast.uk/#about">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.25 11.25 11.25 16.5m0-8.25h.008v.008H11.25V8.25Zm9.75 3.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Purpose</strong><span>Why clearer severe-weather information matters.</span></div>
+</a>
+<a class="dropdown-item" href="https://about.climacast.uk/#facts">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-10m0 0L6.25 21" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>At a glance</strong><span>The product commitments in numbers.</span></div>
+</a>
+</div>
+</div>
+</div>
+<div class="nav-dropdown">
+<button aria-expanded="false" class="nav-dropdown-trigger" type="button">
+              Resources
+              <svg aria-hidden="true" class="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="nav-dropdown-menu">
+<div class="dropdown-col">
+<h4>Support</h4>
+<a class="dropdown-item" href="https://help.climacast.uk">
+<div class="dropdown-icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div><strong>Help Centre</strong><span>Guides, account help and safety information.</span></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="nav-actions">
+<a class="btn btn-ghost" href="https://climacast.uk">Sign in</a>
+<a class="btn btn-nav" href="https://climacast.uk">
+            Create an Account
+            <svg aria-hidden="true" fill="none" height="12" viewbox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</a>
+<button aria-expanded="false" aria-label="Toggle structural menu" class="menu-toggle" id="mobile-menu-trigger">☰</button>
+</div>
+</nav>
+</div>
+<div aria-hidden="true" class="reading-progress">
+<div class="reading-progress-bar" id="reading-progress-bar"></div>
+</div>
+</header>
+<main id="main-content">
+<div class="article-hero">
+<div class="container">
+<div class="article-hero-inner">
+<div class="breadcrumb">
+<a href="https://climacast.uk">ClimaCast</a>
+<svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="12"><path d="M9 18l6-6-6-6"></path></svg>
+<a href="https://climacast.uk/legal">Legal</a>
+<svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="12"><path d="M9 18l6-6-6-6"></path></svg>
+            Privacy Policy
+          </div>
+<h1 class="article-title">Privacy Policy</h1>
+<div class="article-meta">
+<span class="meta-badge">Last updated: 26 June 2026</span>
+            <span>Approx. 24 min read</span>
+</div>
+</div>
+</div>
+</div>
+<div class="container document-grid">
+<aside class="toc-sidebar">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav">
+          <a href="#section-1" class="toc-link is-active">1. About this Privacy Policy</a>
+          <a href="#section-2" class="toc-link">2. Who controls your personal data</a>
+          <a href="#section-3" class="toc-link">3. The privacy principles we follow</a>
+          <a href="#section-4" class="toc-link">4. The kinds of data we collect</a>
+          <a href="#section-5" class="toc-link">5. Account, sign-in and profile data</a>
+          <a href="#section-6" class="toc-link">6. Weather locations, saved places and alert preferences</a>
+          <a href="#section-7" class="toc-link">7. Alerts, emails and notification data</a>
+          <a href="#section-8" class="toc-link">8. Payment, subscription and billing data</a>
+          <a href="#section-9" class="toc-link">9. Support, complaints and contact forms</a>
+          <a href="#section-10" class="toc-link">10. Technical logs, device data and security records</a>
+          <a href="#section-11" class="toc-link">11. Cookies, local storage and similar technologies</a>
+          <a href="#section-12" class="toc-link">12. Analytics, product measurement and performance tools</a>
+          <a href="#section-13" class="toc-link">13. Waitlists, beta programmes and ClimaCast Labs</a>
+          <a href="#section-14" class="toc-link">14. User content, uploads, feedback and public submissions</a>
+          <a href="#section-15" class="toc-link">15. API, developer and integration data</a>
+          <a href="#section-16" class="toc-link">16. AI-generated explanations and automated processing</a>
+          <a href="#section-17" class="toc-link">17. Children, young users and family use</a>
+          <a href="#section-18" class="toc-link">18. Lawful bases for processing</a>
+          <a href="#section-19" class="toc-link">19. How we use personal data</a>
+          <a href="#section-20" class="toc-link">20. When we share personal data</a>
+          <a href="#section-21" class="toc-link">21. Third-party services, links and official data providers</a>
+          <a href="#section-22" class="toc-link">22. International transfers</a>
+          <a href="#section-23" class="toc-link">23. How long we keep personal data</a>
+          <a href="#section-24" class="toc-link">24. Security and access controls</a>
+          <a href="#section-25" class="toc-link">25. Your data protection rights</a>
+          <a href="#section-26" class="toc-link">26. Managing your account, preferences and deletion</a>
+          <a href="#section-27" class="toc-link">27. Direct marketing and service communications</a>
+          <a href="#section-28" class="toc-link">28. Aggregated, anonymised and de-identified data</a>
+          <a href="#section-29" class="toc-link">29. Data about other people</a>
+          <a href="#section-30" class="toc-link">30. Schools, organisations and business users</a>
+          <a href="#section-31" class="toc-link">31. Privacy complaints and the ICO</a>
+          <a href="#section-32" class="toc-link">32. Changes to this Privacy Policy</a>
+          <a href="#section-33" class="toc-link">33. Contact details</a>
+          <a href="#section-34" class="toc-link">34. Pre-launch privacy checklist</a>
+        </nav>
+</aside>
+<article class="prose">
+
+        <p>This Privacy Policy explains how ClimaCast collects, uses, stores, protects and shares personal data when you use ClimaCast websites, dashboards, accounts, weather alerts, beta features, Labs features, APIs, integrations, documentation, support channels, email communications and related services.</p>
+
+        <div class="callout">
+          <svg class="callout-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+          <div class="callout-content">
+            <p><strong>Important:</strong> this draft is designed for a UK-facing weather-information service. Before publishing, replace every square-bracket placeholder and make sure the policy matches the way ClimaCast actually works. A privacy policy must describe real processing, not just ideal processing.</p>
+          </div>
+        </div>
+
+        <div class="placeholder-note">
+          <p><strong>Publication note:</strong> confirm the legal operator, contact address, support email, privacy email, payment processor, hosting provider, analytics tools, email provider, database provider, cookie banner setup, retention periods and any third-party weather data integrations before launch.</p>
+          <p>This policy is not a substitute for advice from a qualified UK data-protection professional or solicitor, especially if ClimaCast is likely to be accessed by children, uses location data, sends alerts, takes payments, offers API access, or processes data on behalf of business or school users.</p>
+        </div>
+
+        <h2 id="section-1">1. About this Privacy Policy</h2>
+        <p>This Privacy Policy tells you what personal data ClimaCast collects, why we collect it, what we do with it, who we may share it with, how long we keep it, and what rights you have. It is intended to provide clear privacy information before and during your use of ClimaCast, including when you browse the site, create an account, save locations, receive weather alerts, join a waitlist, use Labs features, subscribe to a paid plan, contact support, use an API key, or interact with our emails.</p>
+<p>Personal data means information that relates to an identified or identifiable person. This can include obvious information such as your name and email address, but it can also include account identifiers, IP addresses, device identifiers, payment references, location choices, saved places, support messages, usage logs, cookie identifiers, alert settings and other information that can reasonably be linked to you.</p>
+<p>ClimaCast is a weather-information and decision-support service, so some privacy risks are specific to how weather tools work. For example, a saved postcode, school area, work location, travel route or alert preference can reveal information about where you live, where you go, what you care about, and when you may be affected by severe weather. We therefore aim to collect only what we need, explain why we need it, and avoid using weather-related personal data in ways that users would not reasonably expect.</p>
+<p>This policy should be read together with our Terms of Service, Cookie Policy, any subscription terms shown at checkout, and any separate notice shown when you use a specific feature. If a feature has its own short privacy notice, that notice supplements this policy and will explain anything feature-specific.</p>
+
+
+        <h2 id="section-2">2. Who controls your personal data</h2>
+        <p>The controller of your personal data is the legal operator of ClimaCast. The controller decides why and how personal data is processed. Until the details below are completed, this page should be treated as a draft and should not be published as a final privacy notice.</p>
+<table class="legal-table">
+  <tr><th>Trading name</th><td>ClimaCast</td></tr>
+  <tr><th>Legal operator / controller</th><td>[Full legal name of the person, sole trader, company or other legal entity operating ClimaCast]</td></tr>
+  <tr><th>Company number</th><td>[Company number, if applicable. If ClimaCast is not operated through a company, state “Not applicable”.]</td></tr>
+  <tr><th>Address for privacy notices</th><td>[Registered office, trading address or privacy contact address]</td></tr>
+  <tr><th>Privacy contact</th><td>[privacy@climacast.uk]</td></tr>
+  <tr><th>Support contact</th><td>[support@climacast.uk]</td></tr>
+  <tr><th>Data Protection Officer</th><td>[Name/contact if appointed, or “We have not appointed a Data Protection Officer because we are not required to do so.”]</td></tr>
+  <tr><th>ICO registration</th><td>[ICO registration number if registered, or “To be confirmed”.]</td></tr>
+</table>
+<p>References to “ClimaCast”, “we”, “us” and “our” mean the controller listed above. References to “you” and “your” mean the person using ClimaCast or whose personal data is processed through ClimaCast.</p>
+<p>If ClimaCast later operates through a company, partnership, adult representative, payment merchant of record, or another legal structure, this section must be updated so that users know exactly who they are dealing with. The identity of the controller is not a branding detail; it is core privacy information.</p>
+
+
+        <h2 id="section-3">3. The privacy principles we follow</h2>
+        <p>We aim to handle personal data in a way that is lawful, fair and transparent. That means we should have a valid reason for processing your data, we should not use it in a way that would be unfair or surprising, and we should explain important processing clearly enough that users can understand what is happening.</p>
+<p>We aim to collect only the personal data we need for specific purposes. For example, an email alert feature may need your email address and chosen alert areas, but it should not need unnecessary personal details. A payment feature may need billing and transaction information, but ClimaCast should not need to store full card details if a payment provider can process them securely.</p>
+<p>We aim to keep personal data accurate and up to date where accuracy matters. For a weather-alert service, outdated contact details, old saved locations or incorrect preferences can affect the usefulness of the service. You should keep your account details and alert settings current, and we may provide account tools to help you review or remove old data.</p>
+<p>We aim to keep data for no longer than necessary and to protect it using appropriate technical and organisational measures. No online service can guarantee perfect security, but privacy and security should be considered in product design, provider selection, access controls, logging, backups and support workflows.</p>
+
+
+        <h2 id="section-4">4. The kinds of data we collect</h2>
+        <p>The personal data we collect depends on how you use ClimaCast. Someone who only reads the public website may provide much less data than someone who creates an account, saves multiple locations, receives email alerts, uses Labs features, pays for a subscription, contacts support, or connects an API integration.</p>
+<p>We may collect account data, contact data, saved location data, weather preferences, alert settings, payment and billing references, subscription information, usage data, device and browser data, cookies and similar identifiers, support messages, beta feedback, API logs, security logs, and information you choose to submit through forms or dashboards.</p>
+<p>Some information is provided directly by you, such as your email address, chosen password, saved postcode, selected warning areas, support messages or billing details. Some information is generated automatically when you use ClimaCast, such as log data, timestamps, device information, approximate IP-derived location, pages visited, alerts sent, API calls made or error events. Some information may come from third parties, such as payment providers, authentication providers, email delivery providers, analytics tools, anti-abuse systems or official weather-data providers.</p>
+<p>We do not intend to collect highly sensitive personal data unless a feature clearly asks for it and there is a proper reason. You should not send us unnecessary sensitive information in support messages, feedback forms or free-text fields. For example, you should avoid sending medical details, precise personal routines, private family information, financial hardship details, political opinions or other sensitive information unless it is genuinely needed for your request.</p>
+<table class="legal-table">
+  <tr><th>Account and contact data</th><td>Name or display name, email address, login details, account ID, verification status, plan status and communication preferences.</td></tr>
+  <tr><th>Weather and location data</th><td>Saved places, postcodes, towns, alert areas, manually selected map regions, routes, warning preferences and local weather-interest settings.</td></tr>
+  <tr><th>Payment and subscription data</th><td>Plan selected, billing period, payment status, invoices, tax information, subscription ID and payment-provider references.</td></tr>
+  <tr><th>Technical and usage data</th><td>IP address, browser, device type, operating system, pages viewed, features used, timestamps, errors, security logs and API requests.</td></tr>
+  <tr><th>Support and feedback data</th><td>Messages, screenshots, bug reports, survey responses, waitlist answers, product feedback and records of our replies.</td></tr>
+</table>
+
+
+        <h2 id="section-5">5. Account, sign-in and profile data</h2>
+        <p>If you create a ClimaCast account, we collect the information needed to create, secure, identify and manage that account. This may include your email address, display name, username, password hash, authentication provider, verification status, account settings, saved preferences, plan status, role, team membership, and records of important account events such as account creation, login attempts, password changes and subscription changes.</p>
+<p>We use account data to let you sign in, keep your preferences, provide paid or restricted features, prevent unauthorised access, communicate important service information, manage support requests, enforce plan limits, maintain audit records, and protect ClimaCast from misuse. Where appropriate, we may also use account data to personalise the dashboard, show relevant alert settings, remember your chosen places, and make the service easier to use.</p>
+<p>You must provide accurate account information and keep it up to date. If your email address is wrong, you may miss security notices, billing notices, cancellation confirmations, alert emails or important product updates. If you use a shared device, school device, family device or public computer, you should sign out after using ClimaCast.</p>
+<p>We do not store your password in plain text. Where passwords are used, they should be stored in hashed form using appropriate security measures. If ClimaCast uses a third-party sign-in provider, that provider may process your login data under its own privacy notice, and we may receive limited information needed to create or authenticate your ClimaCast account.</p>
+
+
+        <h2 id="section-6">6. Weather locations, saved places and alert preferences</h2>
+        <p>ClimaCast may ask you to provide or select locations so that we can show relevant weather information. This may include a postcode, town, city, region, county, school area, work area, travel destination, route, map point, drawn polygon, flood area, warning region or named saved place such as “home”, “school”, “work”, “Nan’s house” or “holiday”.</p>
+<p>Location data can be more revealing than it first appears. A saved postcode may suggest where you live. Multiple saved places may suggest your routine, school, family connections, travel habits, caring responsibilities or work patterns. Alert settings can reveal what kinds of weather risks matter to you, such as flood risk, heat, wind, snow, travel disruption or school closure concerns. We therefore treat location and alert-preference data as important personal data, even where it is not highly precise GPS data.</p>
+<p>We use location and preference data to provide local forecasts, warning summaries, impact notes, saved-location dashboards, route-aware context, email alerts, account personalisation, beta features, service testing and support. We may also use aggregated or anonymised location patterns to understand which regions users care about, improve system capacity, improve warning presentation, or decide which public datasets to prioritise.</p>
+<p>You should only save places that you are comfortable using in ClimaCast. You should avoid saving another person’s precise home, school or workplace unless you have a legitimate reason and they would reasonably expect it. If we offer labels for saved places, you should avoid labels that reveal unnecessary sensitive information.</p>
+<p>Where possible, ClimaCast should let you delete saved locations or change alert settings. Deleting a saved location from the dashboard may not instantly delete all related logs or backups, but we will avoid retaining identifiable location data longer than necessary for the purposes described in this policy.</p>
+
+
+        <h2 id="section-7">7. Alerts, emails and notification data</h2>
+        <p>If you sign up for weather alerts, newsletters, account notices, product updates, status updates, beta invites or other communications, we may process your email address, communication preferences, saved alert areas, weather thresholds, subscription status, delivery logs, open or click data where enabled, bounce information, unsubscribe records and records of messages sent to you.</p>
+<p>Service emails are messages that are necessary or important for your use of ClimaCast, such as account verification, password resets, billing notices, subscription changes, security alerts, major service changes, important legal updates, status notices, and critical information about features you have chosen to use. Marketing emails are optional promotional messages, such as product announcements, feature campaigns, launch offers, newsletters or upgrade prompts.</p>
+<p>You can usually opt out of marketing emails by using an unsubscribe link or changing your account settings. You may still receive service emails where they are necessary to provide the service, protect your account, fulfil a contract, comply with law, or explain important changes. If you turn off weather alerts, you may stop receiving the alert messages for that feature, but you may still receive account or security messages.</p>
+<p>Email and notification delivery is not fully controlled by ClimaCast. Delivery can be affected by your email provider, spam filtering, device settings, network connection, browser restrictions, email-client behaviour, third-party email platforms and outages. We may keep delivery and unsubscribe records to prove compliance, troubleshoot issues, prevent repeated messages and respect your choices.</p>
+
+
+        <h2 id="section-8">8. Payment, subscription and billing data</h2>
+        <p>If ClimaCast offers paid plans, we may process information needed to manage subscriptions, invoices, tax, refunds, fraud prevention, customer support and access control. This may include your name, email address, billing address, country, tax status, plan, billing period, coupon code, subscription start and end dates, renewal date, payment status, invoice history, payment-provider customer ID, transaction references and refund records.</p>
+<p>We should not need to store your full card number or full payment credentials ourselves. Payments should be handled by a specialist payment provider such as [Stripe / Paddle / Lemon Squeezy / other provider]. That provider may collect and process card details, bank details, billing details, authentication information, fraud signals, tax information and payment records according to its own terms and privacy notice.</p>
+<p>We use billing data to provide paid access, manage renewals, issue invoices or receipts, apply discounts, process cancellations, handle failed payments, prevent abuse of trials, respond to billing questions, comply with accounting and tax obligations, and maintain records required by law. We may also use subscription status to decide which features, limits or support options are available to your account.</p>
+<p>Some billing records must be kept for longer than ordinary account data because accounting, tax, fraud-prevention, dispute, chargeback and legal obligations may require retention. If you delete your ClimaCast account, we may still need to keep limited billing records where the law requires or where there is a legitimate need to resolve a dispute or maintain financial records.</p>
+
+
+        <h2 id="section-9">9. Support, complaints and contact forms</h2>
+        <p>If you contact ClimaCast, we may collect the information you provide and the information needed to respond. This may include your name, email address, account ID, message content, screenshots, attachments, bug reports, device details, browser details, location or saved-place context, subscription status, support category, timestamps and records of our replies.</p>
+<p>Support messages can accidentally include more personal data than is necessary. You should remove or hide information that we do not need, such as full addresses, private family details, health information, financial details, school information, personal documents, or other sensitive material. If we receive unnecessary sensitive information, we may delete, redact or restrict it where appropriate.</p>
+<p>We use support data to answer questions, troubleshoot issues, investigate bugs, verify account ownership, deal with complaints, improve documentation, improve product design, detect recurring problems and protect ClimaCast from abuse. Where a bug report shows a real product issue, we may extract a non-identifying summary for internal development work, such as “alert settings fail to save in Safari”.</p>
+<p>If you make a privacy complaint, cancellation request, refund request, safeguarding concern, security report or legal request, we may keep a more formal record of the issue and our response. This helps us handle the request properly, show what happened, meet legal obligations and improve our processes.</p>
+
+
+        <h2 id="section-10">10. Technical logs, device data and security records</h2>
+        <p>When you use ClimaCast, our systems and providers may automatically collect technical information. This may include IP address, approximate location derived from IP address, browser type, device type, operating system, referring page, pages viewed, buttons clicked, feature usage, session identifiers, timestamps, error messages, API requests, rate-limit events, authentication events, security alerts and diagnostic logs.</p>
+<p>Technical data is used to operate the service, keep pages loading, detect errors, measure performance, understand feature usage, prevent abuse, protect accounts, investigate outages, enforce API limits, secure the platform and improve the user experience. For example, logs may help us discover that an alert endpoint is failing, that a browser version has a display bug, or that an account is being targeted by repeated login attempts.</p>
+<p>Security records may be kept where needed to protect ClimaCast and users. This may include failed login attempts, suspicious requests, bot activity, rate-limit breaches, blocked IP addresses, abuse reports, API-key misuse, unusual payment behaviour, account recovery events and other indicators of risk. We may use these records to prevent unauthorised access, maintain service reliability and enforce our Terms of Service.</p>
+<p>Technical logs can sometimes contain personal data, especially where they include IP addresses, account IDs, API keys, URLs, saved-location references or support identifiers. We aim to limit access to logs, avoid logging unnecessary sensitive data, redact secrets where possible, and retain logs only as long as reasonably needed for security, debugging, analytics, legal or operational purposes.</p>
+
+
+        <h2 id="section-11">11. Cookies, local storage and similar technologies</h2>
+        <p>ClimaCast may use cookies, local storage, session storage, pixels, SDKs or similar technologies. These technologies can remember your preferences, keep you signed in, protect forms, measure traffic, understand how features are used, support analytics, prevent fraud, remember cookie choices, improve performance and support paid or account-based features.</p>
+<p>Some cookies or storage technologies are strictly necessary for the service to work, such as login sessions, security tokens, load balancing, fraud prevention, cookie-consent records and essential account features. Other technologies, such as analytics, advertising, tracking pixels or non-essential performance tools, may require consent depending on how they work and the law that applies.</p>
+<p>Where required, ClimaCast should provide a cookie banner or preference centre that lets users accept, reject or manage non-essential cookies. Consent should be freely given and should not be bundled into the Terms of Service. Users should be able to change their choices later without unreasonable difficulty.</p>
+<p>Local storage can sometimes be used to remember dashboard preferences, theme choices, recently viewed areas, dismissed notices or temporary feature state. Even where data is stored on your device, it can still affect privacy if it reveals saved places, account status or alert choices. You can often clear cookies and storage through your browser settings, but doing so may sign you out or reset preferences.</p>
+<table class="legal-table">
+  <tr><th>Essential cookies/storage</th><td>Used for login, security, cookie choices, account sessions and service operation.</td></tr>
+  <tr><th>Preference storage</th><td>Used for display settings, saved interface choices and dashboard behaviour.</td></tr>
+  <tr><th>Analytics cookies</th><td>Used only where enabled and legally appropriate to understand traffic, errors and product usage.</td></tr>
+  <tr><th>Marketing cookies</th><td>Used only if ClimaCast later adopts marketing pixels or advertising tools and obtains any required consent.</td></tr>
+</table>
+
+
+        <h2 id="section-12">12. Analytics, product measurement and performance tools</h2>
+        <p>We may use analytics and performance tools to understand how ClimaCast is used, which pages are popular, where errors occur, which devices need support, how users move through the dashboard, and whether features are working as expected. Analytics helps us decide what to improve, what to remove, where to simplify language, and where infrastructure capacity may be needed during severe weather.</p>
+<p>Analytics data may include page views, feature interactions, approximate device information, browser information, referral sources, session identifiers, error events, performance timings and aggregated usage trends. Depending on the tool used, analytics may also involve cookies or similar identifiers, in which case cookie-consent rules may apply.</p>
+<p>We should avoid using analytics in a way that creates unnecessary profiles of users, exposes sensitive location patterns, or turns weather-safety behaviour into advertising targeting. Where possible, we prefer aggregated, privacy-conscious, limited or anonymised analytics that help improve ClimaCast without collecting more personal data than needed.</p>
+<p>If we use a named analytics provider, this policy or the Cookie Policy should identify it. Before launch, confirm whether ClimaCast uses [Plausible / PostHog / Google Analytics / Vercel Analytics / Cloudflare Web Analytics / other provider], what data is collected, whether cookies are used, where data is hosted, and how users can manage choices.</p>
+
+
+        <h2 id="section-13">13. Waitlists, beta programmes and ClimaCast Labs</h2>
+        <p>If you join a waitlist, beta programme or ClimaCast Labs feature, we may collect information such as your name, email address, age range where relevant, reason for joining, feature interests, region, device type, feedback, survey responses, bug reports, screenshots, usage data, invitation status and notes about whether you are suitable for a particular test.</p>
+<p>Beta and Labs data is used to manage invitations, control access, understand early demand, test reliability, prioritise features, fix bugs, evaluate whether a feature is clear and safe, and communicate with testers. Because beta features may be unfinished, we may collect additional diagnostics or feedback compared with the standard service, but we should explain any unusual collection at the point of use.</p>
+<p>If a beta feature involves location, alerts, AI-generated explanations, API access, schools, young users or paid features, we may need more careful privacy controls. For example, we may restrict access, ask for adult involvement, avoid unnecessary analytics, disable public sharing, or require explicit feedback consent depending on the feature.</p>
+<p>Joining a waitlist does not require you to accept marketing emails unless the sign-up clearly explains that you are joining a newsletter or promotional list. We may still email you about the waitlist, invitation status, beta access, safety notices, feedback requests or important changes to the feature you asked to test.</p>
+
+
+        <h2 id="section-14">14. User content, uploads, feedback and public submissions</h2>
+        <p>ClimaCast may allow you to submit feedback, bug reports, screenshots, map notes, support attachments, suggested improvements, survey answers, incident reports, public comments, form responses, or other content. Some of this may contain personal data about you or other people.</p>
+<p>You should not upload or submit personal data about someone else unless you have a proper reason and they would reasonably expect it. For example, avoid submitting another person’s precise location, contact details, school information, medical information, private messages or images unless it is genuinely necessary and lawful.</p>
+<p>We may use user content to provide support, improve the service, investigate problems, develop features, train support processes, maintain records, enforce our Terms, and respond to legal or safety issues. If you give product feedback or suggestions, we may use the ideas to improve ClimaCast without treating the feedback as confidential unless we have separately agreed otherwise.</p>
+<p>If ClimaCast later allows public submissions, community reports, shared warning notes or public map contributions, those features must have clear notices explaining what will be public, what will be linked to your account, whether submissions can be edited or deleted, and what moderation rules apply.</p>
+
+
+        <h2 id="section-15">15. API, developer and integration data</h2>
+        <p>If you use ClimaCast APIs, webhooks, feeds, embeddable widgets, developer tools or integrations, we may process additional technical and account data. This may include API keys, tokens, endpoint requests, request timestamps, response codes, IP addresses, usage volumes, integration names, account IDs, rate-limit events, error logs and security events.</p>
+<p>We use API and integration data to provide the API, enforce limits, calculate usage, protect service reliability, troubleshoot errors, prevent misuse, detect scraping or automated abuse, manage billing, and support developers. API logs may also help us understand whether documentation is unclear or whether a feature is being used in a way that could create safety or reliability risks.</p>
+<p>You are responsible for personal data you send to ClimaCast through an API or integration. You must not send unnecessary personal data, sensitive data, data about children, precise third-party location data or confidential data unless the API documentation clearly supports it and you have a lawful basis to do so.</p>
+<p>If a business, school or organisation uses ClimaCast to process personal data on behalf of others, a separate data-processing agreement may be required. This standard Privacy Policy is not, by itself, a full processor agreement for organisational customers.</p>
+
+
+        <h2 id="section-16">16. AI-generated explanations and automated processing</h2>
+        <p>ClimaCast may use automated systems to summarise weather data, classify risk, compare model outputs, create plain-English explanations, prioritise alerts, detect unusual activity, personalise dashboards or support customer-service workflows. Some features may use AI or rule-based automation to make complex weather information easier to understand.</p>
+<p>Automated explanations can be useful, but they can also be wrong, incomplete, misleading, overconfident or based on incomplete data. Where AI or automated logic is used for weather explanations, it should support human judgement and official-source checks; it should not be treated as an emergency instruction or official warning.</p>
+<p>We do not intend to use automated decision-making that produces legal or similarly significant effects about users without appropriate safeguards. For example, ClimaCast should not use automation to make decisions about your legal rights, employment, education, insurance, credit, health treatment or access to essential public services.</p>
+<p>We may use automated systems for lower-risk operational purposes, such as spam prevention, abuse detection, rate limiting, account security, analytics grouping or alert routing. Where automation affects access to your account or service, you may contact us if you believe a mistake has been made.</p>
+
+
+        <h2 id="section-17">17. Children, young users and family use</h2>
+        <p>ClimaCast may be used by families, students and young people because weather affects school, travel, outdoor plans, safety and home life. If ClimaCast is likely to be accessed by children, we must consider children’s privacy carefully and design the service in a way that is fair, transparent and appropriate for younger users.</p>
+<p>If you are under 13, you must not create an account or provide personal data unless we have obtained consent from a person with parental responsibility where required by law, or another lawful basis applies and the feature is designed appropriately. If you are under 18, you should involve a parent, guardian or responsible adult before using paid features, saving sensitive locations, enabling alerts, contacting support about personal matters, or using features that could affect safety decisions.</p>
+<p>We should not knowingly use children’s personal data for behavioural advertising, unnecessary profiling, invisible tracking, harmful nudges or features that pressure children into sharing more data than needed. If we offer child-accessible services, we should use clear language, high privacy defaults, limited data collection, age-appropriate explanations and safety-first design choices.</p>
+<p>Parents or guardians may contact us if they believe a child has provided personal data without appropriate consent or if they need help managing a child’s account. We may need to verify the requester’s identity and relationship to the child before taking action, especially where account security or privacy is involved.</p>
+
+
+        <h2 id="section-18">18. Lawful bases for processing</h2>
+        <p>Under UK data protection law, we need a lawful basis for each purpose for which we process personal data. The lawful basis may differ depending on the feature, the type of data, and the reason we are processing it.</p>
+<p>We may rely on contract where processing is necessary to provide the service you requested, such as creating an account, providing a subscription, sending chosen alerts, managing billing, or providing API access. We may rely on legitimate interests where processing is necessary for reasonable business or user-protection purposes, such as service security, fraud prevention, debugging, limited analytics, product improvement and responding to non-contractual enquiries, provided your rights and interests do not override those interests.</p>
+<p>We may rely on consent where the law requires consent or where consent is the most appropriate basis, such as for certain non-essential cookies, optional marketing emails, some beta research activities, or certain processing involving children where consent is required. You may withdraw consent at any time, but withdrawal does not make earlier processing unlawful.</p>
+<p>We may rely on legal obligation where we need to keep records or share information to comply with the law, accounting rules, tax obligations, consumer-law obligations, data-protection obligations, court orders or lawful requests from authorities. In rare cases, we may rely on vital interests if processing is necessary to protect someone’s life, although ClimaCast should not be treated as an emergency service.</p>
+<table class="legal-table">
+  <tr><th>Account access</th><td>Usually contract, with legitimate interests for security and abuse prevention.</td></tr>
+  <tr><th>Weather alerts</th><td>Usually contract or consent, depending on how the feature is offered.</td></tr>
+  <tr><th>Paid subscriptions</th><td>Contract, legal obligation and legitimate interests for payment security and records.</td></tr>
+  <tr><th>Analytics</th><td>Legitimate interests or consent, depending on the technology and level of tracking.</td></tr>
+  <tr><th>Marketing emails</th><td>Consent or another lawful route where permitted by electronic marketing rules.</td></tr>
+  <tr><th>Security logs</th><td>Legitimate interests and, where relevant, legal obligation.</td></tr>
+</table>
+
+
+        <h2 id="section-19">19. How we use personal data</h2>
+        <p>We use personal data to operate ClimaCast and provide the features you request. This includes account creation, sign-in, dashboard personalisation, saved locations, alert delivery, subscription access, API access, support, service notices, security monitoring, bug fixing, performance improvement and legal compliance.</p>
+<p>We also use personal data to improve ClimaCast. For example, usage patterns may show that users do not understand a warning label, that a page loads slowly during storms, that a certain alert type creates confusion, or that a beta feature should be simplified. Where possible, we use aggregated or de-identified information for product improvement rather than reviewing identifiable user records.</p>
+<p>We may use personal data to protect ClimaCast, users and the public. This includes detecting misuse, preventing credential attacks, enforcing API limits, investigating suspicious activity, stopping spam, handling chargebacks, preventing fraud, responding to security reports, and enforcing our Terms of Service.</p>
+<p>We may use personal data to communicate with you. Communications may include account emails, service announcements, security warnings, billing notices, subscription reminders, beta invitations, support replies, legal updates, status notices, weather-alert messages and optional marketing messages where permitted.</p>
+<p>We do not intend to sell personal data to advertisers. We do not intend to use precise saved locations or weather-alert preferences for third-party advertising. If ClimaCast ever changes its advertising or data-sharing model, this policy must be updated clearly before that change takes effect.</p>
+
+
+        <h2 id="section-20">20. When we share personal data</h2>
+        <p>We may share personal data with trusted service providers who help us operate ClimaCast. These may include hosting providers, database providers, authentication providers, payment processors, email delivery services, analytics providers, error-monitoring tools, customer-support tools, security providers, domain/DNS providers, infrastructure providers and professional advisers.</p>
+<p>Service providers should only process personal data for agreed purposes and should protect it appropriately. Where required, we should have suitable contracts in place with processors, including data-processing terms. Before launch, ClimaCast should keep a list of processors and confirm what data each provider receives.</p>
+<p>We may share personal data where required by law, court order, regulator request, tax authority, payment dispute, fraud investigation, security incident, legal claim or other lawful process. We may also share data where necessary to protect rights, safety, security, users, ClimaCast, or the public, provided the sharing is lawful and proportionate.</p>
+<p>If ClimaCast is reorganised, transferred, merged, sold, incorporated, assigned to a new operator, or moved to a different legal structure, personal data may be transferred as part of that change. Users should be informed where required, and the new controller should continue to respect this policy or provide a new privacy notice.</p>
+<p>We do not publish your personal saved locations, account details or alert preferences unless a feature clearly says that information will be public and you choose to use that feature.</p>
+
+
+        <h2 id="section-21">21. Third-party services, links and official data providers</h2>
+        <p>ClimaCast may link to or integrate with third-party services, including official weather providers, flood-warning services, mapping providers, payment processors, analytics tools, email platforms, status pages, support tools, authentication providers, social platforms, documentation platforms and hosting providers.</p>
+<p>When you use a third-party service, that service may process your personal data under its own privacy notice. For example, a payment provider may process payment details, an email provider may process delivery data, a mapping provider may process map requests, and an analytics provider may process usage events. ClimaCast is not responsible for every aspect of a third party’s privacy practices, but we should choose providers carefully and explain important dependencies where appropriate.</p>
+<p>Official weather and flood data providers may supply data used by ClimaCast, but that does not mean they receive your account data from ClimaCast. If ClimaCast sends requests to third-party APIs that include personal or location-related data, this policy should identify the provider and explain what is shared.</p>
+<p>You should review third-party privacy notices where you interact directly with those services, follow links away from ClimaCast, pay through a hosted checkout, sign in through another provider, view embedded content, or use a third-party integration.</p>
+
+
+        <h2 id="section-22">22. International transfers</h2>
+        <p>Some of our providers may process or store personal data outside the United Kingdom. This can happen where cloud hosting, email delivery, analytics, customer support, payment processing, security tools or infrastructure providers operate internationally.</p>
+<p>Where personal data is transferred outside the UK, we aim to use appropriate safeguards required by UK data protection law. These may include adequacy regulations, the UK International Data Transfer Agreement, the UK Addendum to EU Standard Contractual Clauses, or other lawful transfer mechanisms.</p>
+<p>International transfers are an important area to confirm before launch because the correct wording depends on the actual providers used by ClimaCast. The final policy should identify key international providers or at least describe the categories of providers and safeguards accurately.</p>
+<p>If you are an organisation using ClimaCast in a regulated setting, such as a school, local authority, charity, infrastructure provider or business with strict data-handling requirements, you should contact us before using ClimaCast with personal data that has special transfer restrictions.</p>
+
+
+        <h2 id="section-23">23. How long we keep personal data</h2>
+        <p>We keep personal data only for as long as reasonably necessary for the purposes described in this policy, unless a longer retention period is required or permitted by law. Retention depends on the type of data, the reason it was collected, whether you have an account, whether there is a paid subscription, whether there is a dispute, and whether the data is needed for security or legal records.</p>
+<p>Account data is normally kept while your account is active. If you delete your account or request deletion, we will delete or anonymise account data where appropriate, but some records may remain for a limited period in backups, logs, billing systems, fraud-prevention records, legal records or support archives.</p>
+<p>Saved locations and alert preferences should normally be kept while you use those features and deleted or anonymised when you remove them, subject to technical backups and legitimate retention needs. Email subscription records may be kept after unsubscribe to ensure we do not email you again by mistake. Payment records may need to be kept for accounting, tax, dispute and chargeback purposes.</p>
+<p>Security logs and API logs may be kept for a period needed to investigate abuse, protect the service, debug issues and maintain reliability. Aggregated or anonymised information may be kept for longer because it no longer identifies individual users.</p>
+<table class="legal-table">
+  <tr><th>Account profile</th><td>Usually while the account exists, then deleted or anonymised after closure unless retention is needed.</td></tr>
+  <tr><th>Saved locations</th><td>Usually while saved by the user, then removed or anonymised subject to backups and logs.</td></tr>
+  <tr><th>Billing records</th><td>Kept as needed for tax, accounting, disputes, fraud prevention and legal obligations.</td></tr>
+  <tr><th>Support records</th><td>Kept while needed to resolve issues and maintain a reasonable support history.</td></tr>
+  <tr><th>Security/API logs</th><td>Kept for a limited operational period unless needed for investigation or legal reasons.</td></tr>
+</table>
+
+
+        <h2 id="section-24">24. Security and access controls</h2>
+        <p>We use technical and organisational measures designed to protect personal data from unauthorised access, loss, misuse, alteration or disclosure. Measures may include HTTPS, access controls, password hashing, provider security controls, logging, backups, least-privilege access, secret management, anti-abuse tools, monitoring and staff or operator procedures.</p>
+<p>Security is a shared responsibility. You should use a strong password, protect your email account, avoid reusing passwords, keep your devices secure, sign out on shared devices, avoid sharing API keys, and tell us promptly if you believe your account has been compromised.</p>
+<p>No online service is completely secure. We cannot guarantee that personal data will never be accessed, lost or misused, but we aim to respond responsibly to security issues. If we become aware of a personal-data breach that creates a risk to users, we will assess it and take steps required by law, which may include notifying affected users or the ICO where legally required.</p>
+<p>If you discover a security issue, you should report it responsibly to [security@climacast.uk] or [privacy@climacast.uk]. You must not exploit the issue, access other users’ data, disrupt the service, publicly disclose the vulnerability before we have had a reasonable chance to respond, or break the law while testing.</p>
+
+
+        <h2 id="section-25">25. Your data protection rights</h2>
+        <p>Depending on the circumstances, you may have rights under UK data protection law. These can include the right to be informed about how your data is used, the right to access your personal data, the right to correct inaccurate data, the right to erase data, the right to restrict processing, the right to data portability, the right to object to certain processing, and rights relating to certain automated decisions.</p>
+<p>These rights are not always absolute. For example, we may need to keep some billing records for tax purposes, keep security logs to protect the service, keep unsubscribe records to respect your opt-out, or refuse a deletion request where we need data to establish, exercise or defend legal claims. If a right does not apply, we will explain why where required.</p>
+<p>You can exercise rights by contacting [privacy@climacast.uk]. To protect your privacy and account security, we may need to verify your identity before responding. If a request relates to a child or another person, we may need to verify your authority to act for that person.</p>
+<p>We aim to respond to valid rights requests within the time required by law. Complex requests, repeated requests or requests involving large amounts of data may take longer where the law allows, but we will communicate with you where required.</p>
+<table class="legal-table">
+  <tr><th>Access</th><td>Ask for a copy of personal data we hold about you.</td></tr>
+  <tr><th>Correction</th><td>Ask us to correct inaccurate or incomplete personal data.</td></tr>
+  <tr><th>Deletion</th><td>Ask us to delete personal data where the right applies.</td></tr>
+  <tr><th>Restriction</th><td>Ask us to limit how we use data in certain circumstances.</td></tr>
+  <tr><th>Portability</th><td>Ask for certain data in a structured, commonly used format where the right applies.</td></tr>
+  <tr><th>Objection</th><td>Object to certain processing, including some legitimate-interest processing and direct marketing.</td></tr>
+</table>
+
+
+        <h2 id="section-26">26. Managing your account, preferences and deletion</h2>
+        <p>Where account tools are available, you may be able to update your email address, saved locations, alert preferences, marketing choices, dashboard settings, subscription details and other account information directly. Keeping these settings up to date helps us provide the right alerts and avoid sending unnecessary messages.</p>
+<p>If you delete a saved place, turn off an alert, unsubscribe from marketing, cancel a plan or close an account, the visible service may update quickly, but some data may remain temporarily in backups, logs, support records, billing systems or security systems. We will not keep identifiable data longer than needed for the relevant purpose.</p>
+<p>If you want to delete your account, contact [support@climacast.uk] or use the account-deletion tool if available. Account deletion may remove access to paid features, saved places, alert history, API keys, beta access and preferences. It may not automatically cancel a subscription if billing is managed through a separate payment-provider portal, so you should also check your billing settings.</p>
+<p>We may retain limited records after account closure where necessary to handle disputes, prove cancellation, comply with tax or accounting obligations, prevent fraud, enforce bans, respect unsubscribe choices, or comply with legal obligations.</p>
+
+
+        <h2 id="section-27">27. Direct marketing and service communications</h2>
+        <p>We may send you marketing communications if you have consented or if another lawful route applies. Marketing may include launch announcements, feature updates, subscription offers, product newsletters, surveys, beta opportunities or promotional content. We will not intentionally send marketing emails to children where doing so would be inappropriate or unlawful.</p>
+<p>You can opt out of marketing emails at any time by using an unsubscribe link or contacting us. Opting out of marketing does not stop service communications that are necessary for your account, subscription, security, legal notices, billing, support, beta participation or selected alerts.</p>
+<p>Some messages are not marketing even if they mention product changes. For example, an email explaining a privacy-policy change, a billing change, a security issue, an outage, a change to alert delivery, or a change affecting your subscription may be a service communication.</p>
+<p>If we use audience tools, referral tracking, advertising pixels, custom audiences or similar marketing technologies in the future, we must update this policy and the Cookie Policy, obtain any required consent, and avoid using sensitive location or weather-safety behaviour for inappropriate advertising targeting.</p>
+
+
+        <h2 id="section-28">28. Aggregated, anonymised and de-identified data</h2>
+        <p>We may create aggregated, anonymised or de-identified information from personal data. For example, we may count how many users saved locations in a region, how many alerts were sent during a storm, how many users opened a dashboard during a warning, or which features are most used by paid subscribers.</p>
+<p>Properly anonymised data is not personal data because it no longer identifies a person and cannot reasonably be used to identify them. We may use anonymised or aggregated information for analytics, product development, public transparency, performance reporting, capacity planning, research, business planning and marketing claims, provided the information does not identify individual users.</p>
+<p>De-identification must be done carefully, especially with location data. Even if names are removed, a precise location pattern, rare saved place, detailed route or unusual event history may still identify someone. We therefore aim to avoid publishing or sharing granular location-related statistics where users could reasonably be re-identified.</p>
+<p>If we use anonymised examples in public materials, such as case studies or product screenshots, we should remove or alter personal details, exact locations, account identifiers, email addresses and other information that could identify a real user.</p>
+
+
+        <h2 id="section-29">29. Data about other people</h2>
+        <p>ClimaCast may allow you to save places or submit information that relates to other people, such as a family member’s area, a school, a workplace, an event venue, a care location, a friend’s town or a travel destination. You must use these features responsibly.</p>
+<p>You should not submit another person’s personal data unless you have a lawful and fair reason to do so. You should be especially careful with children’s locations, school locations, precise home addresses, care settings, medical context, private travel plans or information about vulnerable people.</p>
+<p>If you use ClimaCast for a family, school, club, workplace or organisation, you are responsible for making sure that any personal data you enter is appropriate and that the relevant people have been informed where necessary. For organisational use, you may need your own privacy notice and internal policies.</p>
+<p>If someone believes their personal data has been added to ClimaCast inappropriately, they can contact [privacy@climacast.uk]. We may need enough information to identify the relevant data and verify the request without exposing another user’s account information.</p>
+
+
+        <h2 id="section-30">30. Schools, organisations and business users</h2>
+        <p>If a school, business, charity, club, local group, public body or other organisation uses ClimaCast, the organisation may control some of the personal data it enters or manages. For example, an organisation might add staff users, save operational locations, configure alerts for venues, or connect an API integration.</p>
+<p>Organisations are responsible for making sure they have a lawful basis for using ClimaCast with personal data, providing their own privacy information where required, managing user permissions, removing users who no longer need access, and ensuring that ClimaCast is suitable for their intended use.</p>
+<p>Where ClimaCast processes personal data on behalf of an organisation as a processor, a separate data-processing agreement may be required. That agreement should cover subject matter, duration, nature and purpose of processing, types of personal data, categories of data subjects, processor obligations, subprocessors, security, audit, deletion and international transfers.</p>
+<p>The standard consumer Privacy Policy may not be sufficient for schools, local authorities, emergency-adjacent organisations, infrastructure operators or businesses with strict data-governance requirements. Such users should contact us before relying on ClimaCast for organisational processing.</p>
+
+
+        <h2 id="section-31">31. Privacy complaints and the ICO</h2>
+        <p>If you are unhappy with how we handle your personal data, please contact us first at [privacy@climacast.uk]. Explain the issue clearly and include enough information for us to identify the relevant account, message, transaction or data, but avoid sending unnecessary sensitive information.</p>
+<p>We will aim to investigate privacy complaints fairly and respond within a reasonable time. Some complaints may require identity verification, technical investigation, provider checks, review of logs or legal assessment. If we made a mistake, we will aim to correct it and explain what we have done.</p>
+<p>If you are not satisfied with our response, you can complain to the Information Commissioner’s Office, the UK’s data-protection regulator. You can also seek advice from the ICO if you are concerned about how an organisation is handling your personal data.</p>
+<table class="legal-table">
+  <tr><th>Regulator</th><td>Information Commissioner’s Office (ICO)</td></tr>
+  <tr><th>Address</th><td>Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF</td></tr>
+  <tr><th>Telephone</th><td>0303 123 1113</td></tr>
+  <tr><th>Website</th><td>ico.org.uk</td></tr>
+</table>
+<p>You are not required to contact us before contacting the ICO, but giving us a chance to deal with the issue first may help resolve the problem more quickly.</p>
+
+
+        <h2 id="section-32">32. Changes to this Privacy Policy</h2>
+        <p>We may update this Privacy Policy as ClimaCast develops, as features change, as providers change, as legal requirements change, or as we improve how we explain privacy. The “Last updated” date at the top of the page shows when this version was published.</p>
+<p>If we make a minor change, such as fixing wording, correcting a link or clarifying an existing practice, we may update the policy without a direct notice. If we make a material change, such as adding a new category of data, changing how we use location data, adding a new analytics or marketing provider, changing the controller, or changing how children’s data is handled, we will provide a more noticeable update where appropriate.</p>
+<p>If a change requires your consent, we will ask for it. If you do not agree with a change that affects your use of ClimaCast, you may need to stop using the affected feature, change your settings, delete saved data, cancel a subscription or close your account.</p>
+<p>We may keep archived versions of this policy so that we can show what privacy terms applied at a particular time. Version control is especially important for a service that may add paid plans, alerts, Labs features, APIs and child-accessible features over time.</p>
+
+
+        <h2 id="section-33">33. Contact details</h2>
+        <p>For privacy questions, rights requests, account-data queries, cookie questions, deletion requests, complaints or concerns about how ClimaCast handles personal data, contact us using the details below.</p>
+<table class="legal-table">
+  <tr><th>Privacy email</th><td>[privacy@climacast.uk]</td></tr>
+  <tr><th>Support email</th><td>[support@climacast.uk]</td></tr>
+  <tr><th>Security email</th><td>[security@climacast.uk]</td></tr>
+  <tr><th>Postal address</th><td>[Postal or registered address for legal/privacy notices]</td></tr>
+  <tr><th>Response language</th><td>English, unless we choose to support another language.</td></tr>
+</table>
+<p>When contacting us, please use the email address linked to your ClimaCast account where possible. This helps us verify your request and protect your data from being disclosed to someone else.</p>
+<p>Do not send passwords, full card details, unnecessary identity documents, private family details or sensitive information unless we specifically ask for them and explain why they are needed.</p>
+
+
+        <h2 id="section-34">34. Pre-launch privacy checklist</h2>
+        <p>This checklist is not part of your legal rights, but it helps make sure the published Privacy Policy matches the real ClimaCast product. A privacy policy becomes risky when it promises one thing but the actual website, payment flow, cookie banner or analytics setup does something else.</p>
+<ul>
+  <li>Confirm the legal controller and privacy contact details.</li>
+  <li>List every provider that receives personal data, including hosting, auth, email, payments, analytics, support, logging and database providers.</li>
+  <li>Confirm whether non-essential cookies, analytics cookies, tracking pixels or local storage are used.</li>
+  <li>Confirm whether users can delete saved locations, alerts and accounts.</li>
+  <li>Confirm actual retention periods for accounts, logs, payments, support messages, alerts and backups.</li>
+  <li>Confirm whether under-13s can create accounts, and if not, how that is enforced or explained.</li>
+  <li>Confirm whether location data is postcode-level, town-level, IP-derived, device GPS, user-drawn or route-based.</li>
+  <li>Confirm whether AI tools or third-party model providers receive personal data.</li>
+  <li>Confirm international transfer safeguards for each key provider.</li>
+  <li>Confirm the account-deletion and data-rights request workflow before publishing.</li>
+</ul>
+<p>Before launch, compare this checklist against the actual code, dashboard, checkout flow, cookie banner, database schema, email tools and support process. Remove wording that does not match the real product and add wording for anything the product actually does.</p>
+
+      </article>
+</div>
+</main>
+<footer class="footer-system">
+<div class="container">
+<div class="footer-main-grid">
+<div>
+<img alt="ClimaCast Logo" src="https://api.climacast.uk/logo/climacast-icon.svg" style="width: 128px;"/>
+<p class="footer-brand-summary">Simple, jargon-free weather warnings designed to protect your day, your travel, and your home from unexpected disruptions.</p>
+</div>
+<div class="footer-nav-columns">
+<div class="footer-column-group">
+<h4>Features</h4>
+<a href="https://climacast.uk/#how-it-works">How it Works</a>
+<a href="https://climacast.uk/#features">Why it's different</a>
+</div>
+<div class="footer-column-group">
+<h4>Help &amp; Support</h4>
+<a href="https://help.climacast.uk">Help Centre</a>
+<a href="https://help.climacast.uk">Report an Issue</a>
+<a href="https://status.climacast.uk">Status Page</a>
+</div>
+<div class="footer-column-group">
+<h4>Legal</h4>
+<a href="https://climacast.uk/legal/privacy">Privacy Policy</a>
+<a href="https://climacast.uk/legal/terms">Terms of Service</a>
+</div>
+</div>
+</div>
+<div class="footer-base-meta">
+<p class="footer-copyright">© <span id="runtime-year"></span> ClimaCast. All rights reserved.</p>
+<div class="footer-social-links">
+<a href="https://about.climacast.uk">About</a>
+<a href="https://help.climacast.uk">Help</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Year
+      const yearField = document.getElementById('runtime-year');
+      if (yearField) yearField.textContent = new Date().getFullYear();
+
+      // Reading progress bar
+      const progressBar = document.getElementById('reading-progress-bar');
+      const updateReadingProgress = () => {
+        if (!progressBar) return;
+        const documentElement = document.documentElement;
+        const scrollableDistance = documentElement.scrollHeight - window.innerHeight;
+        const currentScroll = window.scrollY || documentElement.scrollTop || 0;
+        const progress = scrollableDistance > 0
+          ? Math.min(100, Math.max(0, (currentScroll / scrollableDistance) * 100))
+          : 0;
+
+        progressBar.style.width = `${progress}%`;
+        progressBar.setAttribute('aria-valuenow', String(Math.round(progress)));
+      };
+
+      updateReadingProgress();
+      window.addEventListener('scroll', updateReadingProgress, { passive: true });
+      window.addEventListener('resize', updateReadingProgress);
+
+      // Simple Intersection Observer to highlight active TOC link based on scroll
+      const sections = document.querySelectorAll('.prose h2');
+      const navLinks = document.querySelectorAll('.toc-link');
+
+      if(sections.length > 0 && navLinks.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(link => {
+                link.classList.remove('is-active');
+                if (link.getAttribute('href') === `#${entry.target.id}`) {
+                  link.classList.add('is-active');
+                }
+              });
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+      }
+    });
+  </script>
+<script id="climacast-shared-about-header-script">
+    (() => {
+      const setupSharedHeader = () => {
+        const menu = document.getElementById('nav-menu-links');
+        const currentToggle = document.getElementById('mobile-menu-trigger');
+        let toggle = currentToggle;
+
+        if (currentToggle) {
+          toggle = currentToggle.cloneNode(true);
+          currentToggle.replaceWith(toggle);
+        }
+
+        const dropdowns = Array.from(document.querySelectorAll('.header .nav-dropdown'));
+        const triggers = dropdowns.map((dropdown) => {
+          const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+          if (!trigger) return null;
+          const cleanTrigger = trigger.cloneNode(true);
+          trigger.replaceWith(cleanTrigger);
+          return cleanTrigger;
+        }).filter(Boolean);
+
+        const closeDropdowns = (exception = null) => {
+          dropdowns.forEach((dropdown) => {
+            if (dropdown === exception) return;
+            dropdown.classList.remove('is-open');
+            dropdown.querySelector('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        };
+
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('is-active');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.textContent = isOpen ? '\u00d7' : '\u2630';
+            if (!isOpen) closeDropdowns();
+          });
+        }
+
+        triggers.forEach((trigger) => {
+          const dropdown = trigger.closest('.nav-dropdown');
+          if (!dropdown) return;
+          trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            const willOpen = !dropdown.classList.contains('is-open');
+            closeDropdowns(dropdown);
+            dropdown.classList.toggle('is-open', willOpen);
+            trigger.setAttribute('aria-expanded', String(willOpen));
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.header .nav-dropdown') && !event.target.closest('#mobile-menu-trigger')) {
+            closeDropdowns();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeDropdowns();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSharedHeader);
+      } else {
+        setupSharedHeader();
+      }
+    })();
+  </script>
+</body>
+</html>
